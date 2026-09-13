@@ -3,8 +3,15 @@
   "@type": "Organization",
   "name": "Brittek Digital",
   "url": "https://brittek.net",
+  "identifier": "https://github.com/brittek/Brittek",
   "email": "mailto:hello@brittek.net",
   "foundingDate": "2018",
+  "keywords": [
+    "design engineering",
+    "digital infrastructure",
+    "systems",
+    "machine-readable architecture"
+  ],
   "location": {
     "@type": "Place",
     "name": "Sydney, Australia"
@@ -13,7 +20,12 @@
     "https://github.com/brittek",
     "https://linkedin.com/in/brittek-digital",
     "https://x.com/brittekdgtl",
-    "https://instagram.com/brittekdgtl"
+    "https://instagram.com/brittekdgtl",
+    "https://dev.to/brittek",
+    "https://hashnode.com/brittek",
+    "https://codepen.io/brittek",
+    "https://dribbble.com/brittek",
+    "https://behance.net/brittekdgtl"
   ],
   "description": "Independent design-engineering practice working across interfaces, digital infrastructure, systems and machine-readable architecture.",
   "knowsAbout": [
@@ -24,6 +36,7 @@
     "Accessibility",
     "Performance engineering",
     "Automation",
-    "Machine-readable architecture"
+    "Machine-readable architecture",
+    "Quality systems"
   ]
 }

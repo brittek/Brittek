@@ -2,6 +2,15 @@
 BRITTEK DIGITAL — GITHUB PROFILE
 Design engineering · digital infrastructure · systems
 -->
+<!--
+keywords: Brittek Digital, design engineering, digital infrastructure, systems, machine-readable architecture, GitHub profile, Sydney
+canonical: https://brittek.net
+llms: /llms.txt
+llm-json: /llm.json
+schema: /schema.org.json
+site-index: /site-index.json
+feed: /feed.xml
+-->
 
 <div align="center">
 
@@ -38,9 +47,22 @@ Interfaces, infrastructure and machine-readable systems designed as one governed
 
 </div>
 
+## Quick navigation
+
+- [The Lab](#the-lab)
+- [Core engineering system](#core-engineering-system)
+- [Production architecture](#production-architecture)
+- [Operating principles](#operating-principles)
+- [Human + machine surface](#human-machine-surface)
+- [AI systems](#ai-systems)
+- [Activity](#activity)
+- [Repository standard](#repository-standard)
+- [Elsewhere](#elsewhere)
+
+<a id="the-lab"></a>
 <div align="center">
 
-The Lab
+## The Lab
 
 Brittek Digital works across design, software and infrastructure.
 
@@ -82,7 +104,8 @@ DESIGN ENGINEERING · DIGITAL INFRASTRUCTURE · AUTOMATION · QUALITY SYSTEMS ·
 
 <div align="center">
 
-Core engineering system
+<a id="core-engineering-system"></a>
+## Core engineering system
 
 Interface
 
@@ -162,6 +185,7 @@ Quality + tooling
 
 </details>
 
+<a id="production-architecture"></a>
 <div align="center">
 
 ## Production architecture
@@ -212,9 +236,10 @@ Customer impact → Business impact → Engineering simplicity → Long-term mai
 
 </div>
 
+<a id="operating-principles"></a>
 <div align="center">
 
-Operating principles
+## Operating principles
 
 Systems over pages.
 Performance is an aesthetic property.
@@ -225,15 +250,16 @@ Reference informs judgement; it does not become authority.
 
 </div>
 
+<a id="human-machine-surface"></a>
 <div align="center">
 
-Human + machine surface
+## Human + machine surface
 
 <img src="https://img.shields.io/badge/Schema.org-0D0D0B?style=flat-square&logo=schema.org&logoColor=F4F3EF" alt="Schema.org">
 <img src="https://img.shields.io/badge/llms.txt-0D0D0B?style=flat-square&logoColor=F4F3EF" alt="llms.txt">
 <img src="https://img.shields.io/badge/llm.json-0D0D0B?style=flat-square&logo=json&logoColor=F4F3EF" alt="llm.json">
 <img src="https://img.shields.io/badge/site--index.json-0D0D0B?style=flat-square&logo=json&logoColor=F4F3EF" alt="site-index.json">
-<img src="https://img.shields.io/badge/sitemap.xml-0D0D0B?style=flat-square&logo=sitemap&logoColor=F4F3EF" alt="sitemap.xml">
+<img src="https://img.shields.io/badge/feed.xml-0D0D0B?style=flat-square&logo=rss&logoColor=F4F3EF" alt="feed.xml">
 <img src="https://img.shields.io/badge/RSS-0D0D0B?style=flat-square&logo=rss&logoColor=F4F3EF" alt="RSS">
 
 <br><br>
@@ -244,9 +270,10 @@ One governed source should remain legible to both humans and machines.
 
 </div>
 
+<a id="ai-systems"></a>
 <div align="center">
 
-AI systems
+## AI systems
 
 AI is infrastructure, not identity.
 
@@ -269,9 +296,10 @@ Deterministic software remains preferable where deterministic software is suffic
 
 </details>
 
+<a id="activity"></a>
 <div align="center">
 
-Activity
+## Activity
 
 <img src="./profile/metrics.svg" width="480" alt="Brittek GitHub metrics">
 
@@ -285,6 +313,7 @@ Activity
 
 </div>
 
+<a id="repository-standard"></a>
 <details>
 <summary><strong>Repository standard</strong></summary>
 
@@ -293,19 +322,27 @@ LICENSE
 CONTRIBUTING.md
 SECURITY.md
 CHANGELOG.md
+.gitignore
+llms.txt
+llm.json
+schema.org.json
+site-index.json
+feed.xml
+
+docs/
+└── WORKFLOWS.md
 
 .github/
-├── ISSUE_TEMPLATE/
-├── PULL_REQUEST_TEMPLATE.md
 └── workflows/
 
 Documentation is implementation infrastructure.
 
 </details>
 
+<a id="elsewhere"></a>
 <div align="center">
 
-Elsewhere
+## Elsewhere
 
 <a href="https://linkedin.com/in/brittek-digital"><img src="https://img.shields.io/badge/LinkedIn-0D0D0B?style=flat-square&logo=linkedin&logoColor=F4F3EF" alt="LinkedIn"></a>
 <a href="https://x.com/brittekdgtl"><img src="https://img.shields.io/badge/X-0D0D0B?style=flat-square&logo=x&logoColor=F4F3EF" alt="X"></a>

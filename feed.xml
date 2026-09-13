@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Brittek Digital — Repository Updates</title>
+    <link>https://github.com/brittek/Brittek</link>
+    <description>Repository-level update feed for Brittek Digital profile infrastructure.</description>
+    <language>en-AU</language>
+    <lastBuildDate>Sat, 13 Sep 2026 17:31:13 GMT</lastBuildDate>
+    <ttl>1440</ttl>
+    <item>
+      <title>Repository optimization baseline</title>
+      <link>https://github.com/brittek/Brittek</link>
+      <guid>https://github.com/brittek/Brittek#repository-optimization-baseline</guid>
+      <pubDate>Sat, 13 Sep 2026 17:31:13 GMT</pubDate>
+      <description>Standards, machine-readable surfaces, workflow documentation, and README metadata baseline.</description>
+    </item>
+  </channel>
+</rss>

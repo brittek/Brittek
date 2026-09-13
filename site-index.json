@@ -35,6 +35,16 @@
       "id": "readme",
       "type": "human-document",
       "path": "/README.md"
+    },
+    {
+      "id": "feed",
+      "type": "rss",
+      "path": "/feed.xml"
+    },
+    {
+      "id": "workflow-docs",
+      "type": "documentation",
+      "path": "/docs/WORKFLOWS.md"
     }
   ]
 }
