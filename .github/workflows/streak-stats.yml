@@ -1,0 +1,50 @@
+name: Update profile activity
+
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/streak-stats.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate activity SVG
+        uses: DenverCoder1/github-readme-streak-stats@9202e37665889fdb42d9a7df8501c1800acf761d
+        with:
+          options: >-
+            user=${{ github.repository_owner }}
+            &hide_border=true
+            &border_radius=0
+            &disable_animations=true
+            &background=00000000
+            &ring=FE4A02
+            &fire=FE4A02
+            &currStreakNum=0D0D0B
+            &sideNums=0D0D0B
+            &currStreakLabel=6B6B66
+            &sideLabels=6B6B66
+            &dates=6B6B66
+          path: profile/streak.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit generated profile asset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/streak.svg
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore(profile): update activity"
+          git push
