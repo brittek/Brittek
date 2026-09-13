@@ -8,7 +8,14 @@ Independent design-engineering studio based in Sydney, Australia.
 
 We design and build digital systems where **interface, engineering and infrastructure are treated as one system**.
 
-[Website](https://brittek.net) · [Email](mailto:hello@brittek.net) · [GitHub](https://github.com/brittek)
+<p>
+  <a href="https://brittek.net"><img src="https://img.shields.io/badge/Website-brittek.net-0D0D0B?style=flat-square&logo=googlechrome&logoColor=F4F3EF" alt="Brittek website" /></a>
+  <a href="mailto:hello@brittek.net"><img src="https://img.shields.io/badge/Email-hello%40brittek.net-0D0D0B?style=flat-square&logo=maildotru&logoColor=F4F3EF" alt="Email Brittek" /></a>
+  <a href="https://github.com/brittek"><img src="https://img.shields.io/badge/GitHub-%40brittek-0D0D0B?style=flat-square&logo=github&logoColor=F4F3EF" alt="Brittek on GitHub" /></a>
+  <img src="https://img.shields.io/badge/Sydney-Australia-0D0D0B?style=flat-square&logo=googlemaps&logoColor=F4F3EF" alt="Sydney, Australia" />
+  <a href="https://github.com/brittek?tab=followers"><img src="https://img.shields.io/github/followers/brittek?style=flat-square&label=Followers&labelColor=6B6B66&color=0D0D0B&logo=github&logoColor=F4F3EF" alt="GitHub followers" /></a>
+  <a href="https://github.com/brittek/brittek/actions/workflows/streak-stats.yml"><img src="https://img.shields.io/github/actions/workflow/status/brittek/brittek/streak-stats.yml?style=flat-square&label=Profile%20activity&labelColor=6B6B66&color=0D0D0B&logo=githubactions&logoColor=F4F3EF" alt="Profile activity workflow status" /></a>
+</p>
 
 </div>
 
@@ -263,6 +270,10 @@ A feature is not complete when it merely renders.
 ## Activity
 
 <!-- The SVG is generated in this repository by GitHub Actions; see .github/workflows/streak-stats.yml. -->
+
+<p>
+  <img src="./profile/metrics.svg" alt="Brittek GitHub profile metrics" />
+</p>
 
 <p>
   <img src="./profile/streak.svg" alt="GitHub contribution activity" />
