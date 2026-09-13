@@ -1,0 +1,29 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Brittek Digital",
+  "url": "https://brittek.net",
+  "email": "mailto:hello@brittek.net",
+  "foundingDate": "2018",
+  "location": {
+    "@type": "Place",
+    "name": "Sydney, Australia"
+  },
+  "sameAs": [
+    "https://github.com/brittek",
+    "https://linkedin.com/in/brittek-digital",
+    "https://x.com/brittekdgtl",
+    "https://instagram.com/brittekdgtl"
+  ],
+  "description": "Independent design-engineering practice working across interfaces, digital infrastructure, systems and machine-readable architecture.",
+  "knowsAbout": [
+    "Design engineering",
+    "Digital infrastructure",
+    "Web architecture",
+    "Design systems",
+    "Accessibility",
+    "Performance engineering",
+    "Automation",
+    "Machine-readable architecture"
+  ]
+}

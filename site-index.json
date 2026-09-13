@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "entity": "Brittek Digital",
+  "canonical": "https://brittek.net",
+  "profile": "https://github.com/brittek",
+  "resources": [
+    {
+      "id": "website",
+      "type": "website",
+      "url": "https://brittek.net",
+      "description": "Canonical public surface."
+    },
+    {
+      "id": "github",
+      "type": "profile",
+      "url": "https://github.com/brittek",
+      "description": "Public source and profile surface."
+    },
+    {
+      "id": "llms",
+      "type": "llm-guidance",
+      "path": "/llms.txt"
+    },
+    {
+      "id": "llm-metadata",
+      "type": "structured-metadata",
+      "path": "/llm.json"
+    },
+    {
+      "id": "schema",
+      "type": "schema-org",
+      "path": "/schema.org.json"
+    },
+    {
+      "id": "readme",
+      "type": "human-document",
+      "path": "/README.md"
+    }
+  ]
+}

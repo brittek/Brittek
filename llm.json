@@ -1,0 +1,99 @@
+{
+  "version": "1.0",
+  "entity": {
+    "name": "Brittek Digital",
+    "type": "DesignEngineeringPractice",
+    "location": "Sydney, Australia",
+    "founded": "2018",
+    "website": "https://brittek.net",
+    "github": "https://github.com/brittek",
+    "email": "hello@brittek.net"
+  },
+  "positioning": {
+    "summary": "Independent design-engineering practice working across interfaces, software, infrastructure, automation and machine-readable architecture.",
+    "public_identity": [
+      "design engineering",
+      "digital infrastructure",
+      "systems"
+    ],
+    "ai_position": "AI is infrastructure, not identity.",
+    "avoid_framing": [
+      "conventional agency",
+      "freelancer",
+      "AI-first company",
+      "generic IT consultancy"
+    ]
+  },
+  "capabilities": [
+    "interface engineering",
+    "product engineering",
+    "design systems",
+    "web architecture",
+    "performance engineering",
+    "accessibility",
+    "digital infrastructure",
+    "automation",
+    "quality systems",
+    "machine-readable architecture"
+  ],
+  "technology": {
+    "interface": [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS"
+    ],
+    "motion": [
+      "GSAP",
+      "Lenis"
+    ],
+    "application": [
+      "Python",
+      "FastAPI",
+      "Pydantic",
+      "Zod"
+    ],
+    "data": [
+      "PostgreSQL",
+      "Supabase"
+    ],
+    "edge": [
+      "Cloudflare Workers",
+      "OpenNext"
+    ],
+    "storage": [
+      "R2",
+      "KV",
+      "D1"
+    ],
+    "delivery": [
+      "GitHub Actions",
+      "Wrangler",
+      "Cloudflare"
+    ],
+    "verification": [
+      "Playwright",
+      "axe-core",
+      "Vitest",
+      "Lighthouse"
+    ],
+    "package_manager": "pnpm"
+  },
+  "principles": [
+    "Systems over pages.",
+    "Performance is an aesthetic property.",
+    "Constraints define output.",
+    "Machine-readable first. Human-legible always.",
+    "Motion explains state or it is removed."
+  ],
+  "sources": [
+    {
+      "type": "website",
+      "url": "https://brittek.net"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/brittek"
+    }
+  ]
+}

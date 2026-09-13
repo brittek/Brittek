@@ -1,0 +1,28 @@
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs / temporary files
+*.log
+tmp/
+.temp/
+.cache/
+
+# Dependency folders if local tooling is ever introduced
+node_modules/
+.venv/
+__pycache__/
+
+# Generated files are intentionally tracked:
+# profile/metrics.svg
+# profile/streak.svg
