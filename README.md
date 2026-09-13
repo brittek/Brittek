@@ -1,24 +1,22 @@
-<div align="left">
+<div align="center">
 
-# Brittek Digital
+# Hi, I'm Brittek Digital 👋
 
-**Design engineering · digital infrastructure · systems**
+Design engineering, digital infrastructure, systems and tools. Building Brittek Digital in Sydney.
 
-Independent design-engineering studio based in Sydney, Australia.
+<a href="https://github.com/brittek"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/GitHub-%40brittek-181717.svg?logo=github&amp;variant=branded&amp;mode=dark&amp;theme=orange"><img alt="GitHub" src="https://www.shieldcn.dev/badge/GitHub-%40brittek-181717.svg?logo=github&amp;variant=branded&amp;mode=light&amp;theme=orange"></picture></a>
+<a href="https://brittek.net"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/Website-brittek.net-181717.svg?logo=ri%3ALuLink&amp;variant=branded&amp;mode=dark&amp;theme=orange"><img alt="Website" src="https://www.shieldcn.dev/badge/Website-brittek.net-181717.svg?logo=ri%3ALuLink&amp;variant=branded&amp;mode=light&amp;theme=orange"></picture></a>
+<a href="mailto:hello@brittek.net"><img alt="Email" src="https://img.shields.io/badge/Email-hello%40brittek.net-181717?style=flat-square&logo=maildotru&logoColor=F4F3EF"></a>
 
-We design and build digital systems where **interface, engineering and infrastructure are treated as one system**.
+<a href="https://github.com/brittek?tab=followers"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/followers/brittek.svg?variant=secondary&amp;mode=dark&amp;theme=orange"><img alt="GitHub Followers" src="https://www.shieldcn.dev/github/followers/brittek.svg?variant=secondary&amp;mode=light&amp;theme=orange"></picture></a>
+<a href="https://github.com/brittek?tab=repositories"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/user-stars/brittek.svg?variant=secondary&amp;mode=dark&amp;theme=orange"><img alt="GitHub Stars" src="https://www.shieldcn.dev/github/user-stars/brittek.svg?variant=secondary&amp;mode=light&amp;theme=orange"></picture></a>
+<a href="https://github.com/brittek?tab=repositories"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/Repos-23-2563eb.svg?logo=github&amp;variant=secondary&amp;mode=dark&amp;theme=orange"><img alt="Public Repos" src="https://www.shieldcn.dev/badge/Repos-23-2563eb.svg?logo=github&amp;variant=secondary&amp;mode=light&amp;theme=orange"></picture></a>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/Location-Sydney%2C_Australia-6366f1.svg?logo=googlemaps&amp;variant=ghost&amp;mode=dark&amp;theme=orange"><img alt="Location" src="https://www.shieldcn.dev/badge/Location-Sydney%2C_Australia-6366f1.svg?logo=googlemaps&amp;variant=ghost&amp;mode=light&amp;theme=orange"></picture>
+<a href="https://github.com/brittek/brittek/actions/workflows/streak-stats.yml"><img alt="Profile activity workflow" src="https://img.shields.io/github/actions/workflow/status/brittek/brittek/streak-stats.yml?style=flat-square&label=Profile%20activity&labelColor=6B6B66&color=181717&logo=githubactions&logoColor=F4F3EF"></a>
 
-<p>
-  <a href="https://brittek.net"><img src="https://img.shields.io/badge/Website-brittek.net-0D0D0B?style=flat-square&logo=googlechrome&logoColor=F4F3EF" alt="Brittek website" /></a>
-  <a href="mailto:hello@brittek.net"><img src="https://img.shields.io/badge/Email-hello%40brittek.net-0D0D0B?style=flat-square&logo=maildotru&logoColor=F4F3EF" alt="Email Brittek" /></a>
-  <a href="https://github.com/brittek"><img src="https://img.shields.io/badge/GitHub-%40brittek-0D0D0B?style=flat-square&logo=github&logoColor=F4F3EF" alt="Brittek on GitHub" /></a>
-  <img src="https://img.shields.io/badge/Sydney-Australia-0D0D0B?style=flat-square&logo=googlemaps&logoColor=F4F3EF" alt="Sydney, Australia" />
-  <a href="https://github.com/brittek?tab=followers"><img src="https://img.shields.io/github/followers/brittek?style=flat-square&label=Followers&labelColor=6B6B66&color=0D0D0B&logo=github&logoColor=F4F3EF" alt="GitHub followers" /></a>
-  <a href="https://github.com/brittek/brittek/actions/workflows/streak-stats.yml"><img src="https://img.shields.io/github/actions/workflow/status/brittek/brittek/streak-stats.yml?style=flat-square&label=Profile%20activity&labelColor=6B6B66&color=0D0D0B&logo=githubactions&logoColor=F4F3EF" alt="Profile activity workflow status" /></a>
-</p>
+[![Human in the Loop](https://img.shields.io/badge/Human_in_the_Loop-Made_by_human-181717?style=flat-square&labelColor=6B6B66)](https://madebyhuman.iamjarl.com)
 
 </div>
-
 ---
 
 ## The Lab
@@ -49,26 +47,39 @@ The focus is not shipping more software. It is building **clearer, faster and mo
 
 ---
 
-## Engineering system
+## Skills & Technologies
 
 <p>
-  <img src="https://img.shields.io/badge/TypeScript-0D0D0B?style=flat-square&logo=typescript&logoColor=F4F3EF" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/React-0D0D0B?style=flat-square&logo=react&logoColor=F4F3EF" alt="React" />
-  <img src="https://img.shields.io/badge/Next.js-0D0D0B?style=flat-square&logo=nextdotjs&logoColor=F4F3EF" alt="Next.js" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-0D0D0B?style=flat-square&logo=tailwindcss&logoColor=F4F3EF" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/Python-0D0D0B?style=flat-square&logo=python&logoColor=F4F3EF" alt="Python" />
-  <img src="https://img.shields.io/badge/FastAPI-0D0D0B?style=flat-square&logo=fastapi&logoColor=F4F3EF" alt="FastAPI" />
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/-TypeScript-3178C6.svg?logo=typescript&amp;variant=branded&amp;mode=dark&amp;theme=orange"><img alt="TypeScript" src="https://www.shieldcn.dev/badge/-TypeScript-3178C6.svg?logo=typescript&amp;variant=branded&amp;mode=light&amp;theme=orange"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/-React-61DAFB.svg?logo=react&amp;variant=branded&amp;mode=dark&amp;theme=orange"><img alt="React" src="https://www.shieldcn.dev/badge/-React-61DAFB.svg?logo=react&amp;variant=branded&amp;mode=light&amp;theme=orange"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/badge/-Vite-646CFF.svg?logo=vite&amp;variant=branded&amp;mode=dark&amp;theme=orange"><img alt="Vite" src="https://www.shieldcn.dev/badge/-Vite-646CFF.svg?logo=vite&amp;variant=branded&amp;mode=light&amp;theme=orange"></picture>
+  <img src="https://img.shields.io/badge/Next.js-181717?style=flat-square&logo=nextdotjs&logoColor=F4F3EF" alt="Next.js" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-181717?style=flat-square&logo=tailwindcss&logoColor=F4F3EF" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Python-181717?style=flat-square&logo=python&logoColor=F4F3EF" alt="Python" />
+  <img src="https://img.shields.io/badge/FastAPI-181717?style=flat-square&logo=fastapi&logoColor=F4F3EF" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Zod-181717?style=flat-square&logo=zod&logoColor=F4F3EF" alt="Zod" />
 </p>
 
 <p>
-  <img src="https://img.shields.io/badge/Cloudflare-0D0D0B?style=flat-square&logo=cloudflare&logoColor=F4F3EF" alt="Cloudflare" />
-  <img src="https://img.shields.io/badge/Supabase-0D0D0B?style=flat-square&logo=supabase&logoColor=F4F3EF" alt="Supabase" />
-  <img src="https://img.shields.io/badge/PostgreSQL-0D0D0B?style=flat-square&logo=postgresql&logoColor=F4F3EF" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/Vercel-0D0D0B?style=flat-square&logo=vercel&logoColor=F4F3EF" alt="Vercel" />
-  <img src="https://img.shields.io/badge/GitHub_Actions-0D0D0B?style=flat-square&logo=githubactions&logoColor=F4F3EF" alt="GitHub Actions" />
-  <img src="https://img.shields.io/badge/Linux-0D0D0B?style=flat-square&logo=linux&logoColor=F4F3EF" alt="Linux" />
+  <img src="https://img.shields.io/badge/Cloudflare-181717?style=flat-square&logo=cloudflare&logoColor=F4F3EF" alt="Cloudflare" />
+  <img src="https://img.shields.io/badge/OpenNext-181717?style=flat-square&logo=nextdotjs&logoColor=F4F3EF" alt="OpenNext" />
+  <img src="https://img.shields.io/badge/Supabase-181717?style=flat-square&logo=supabase&logoColor=F4F3EF" alt="Supabase" />
+  <img src="https://img.shields.io/badge/PostgreSQL-181717?style=flat-square&logo=postgresql&logoColor=F4F3EF" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/Stripe-181717?style=flat-square&logo=stripe&logoColor=F4F3EF" alt="Stripe" />
+  <img src="https://img.shields.io/badge/Resend-181717?style=flat-square&logo=resend&logoColor=F4F3EF" alt="Resend" />
+  <img src="https://img.shields.io/badge/Vercel-181717?style=flat-square&logo=vercel&logoColor=F4F3EF" alt="Vercel" />
 </p>
 
+<p>
+  <img src="https://img.shields.io/badge/GSAP-181717?style=flat-square&logo=greensock&logoColor=F4F3EF" alt="GSAP" />
+  <img src="https://img.shields.io/badge/Motion-181717?style=flat-square&logo=framer&logoColor=F4F3EF" alt="Motion" />
+  <img src="https://img.shields.io/badge/Playwright-181717?style=flat-square&logo=playwright&logoColor=F4F3EF" alt="Playwright" />
+  <img src="https://img.shields.io/badge/axe--core-181717?style=flat-square&logo=axe&logoColor=F4F3EF" alt="axe-core" />
+  <img src="https://img.shields.io/badge/ESLint-181717?style=flat-square&logo=eslint&logoColor=F4F3EF" alt="ESLint" />
+  <img src="https://img.shields.io/badge/GitHub_Actions-181717?style=flat-square&logo=githubactions&logoColor=F4F3EF" alt="GitHub Actions" />
+  <img src="https://img.shields.io/badge/pnpm-181717?style=flat-square&logo=pnpm&logoColor=F4F3EF" alt="pnpm" />
+  <img src="https://img.shields.io/badge/Linux-181717?style=flat-square&logo=linux&logoColor=F4F3EF" alt="Linux" />
+</p>
 Our production work is currently centred around:
 
 | Layer                     | System                                                            |
