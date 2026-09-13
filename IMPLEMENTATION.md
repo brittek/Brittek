@@ -11,7 +11,7 @@ This bundle closes the repository-standard gap identified in the profile audit.
 - `.gitignore`
 - `.github/CODEOWNERS`
 - `.github/dependabot.yml`
-- `docs/workflows.md`
+- `docs/WORKFLOWS.md`
 - `llms.txt`
 - `llm.json`
 - `site-index.json`
@@ -21,9 +21,9 @@ This bundle closes the repository-standard gap identified in the profile audit.
 
 ## Do not add to this repository by default
 
-`sitemap.xml` and RSS belong at the canonical web origin (`brittek.net`)
-unless this repository is deployed as a public website. A GitHub repository
-containing a sitemap does not make that sitemap authoritative for brittek.net.
+`feed.xml` is intentionally limited to a repository-level skeleton for
+GitHub-facing updates. `sitemap.xml` remains out of scope unless this
+repository also becomes the canonical deployed website for `brittek.net`.
 
 ## README correction
 
