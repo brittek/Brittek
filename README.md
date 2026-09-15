@@ -86,6 +86,25 @@ Structured data, retrieval and agent-readable representations beneath the human 
 
 <div align="center">
 
+## Selected systems
+
+A small selection of the systems and instruments that represent how Brittek Digital works.
+
+</div>
+
+| System | Scope | Role |
+| :--- | :--- | :--- |
+| **Brittek Surface** | Design system · frontend architecture · publishing | Production environment |
+| **Visibility Scanner** | Analysis · retrieval · reporting · machine-readable output | Studio instrument |
+| **Machine Surface** | Structured data · entities · schema · retrieval representations | Knowledge infrastructure |
+| **Profile Infrastructure** | Metrics · activity assets · validation · automated link checks | Public-system governance |
+
+<sub>Commercial implementation is predominantly private. Public repositories and profile infrastructure show only part of the production system.</sub>
+
+---
+
+<div align="center">
+
 ## Core engineering system
 
 ### Interface
