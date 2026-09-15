@@ -1,70 +1,50 @@
 <!--
 BRITTEK DIGITAL — GITHUB PROFILE
 Design engineering · digital infrastructure · systems
--->
-<!--
-keywords: Brittek Digital, design engineering, digital infrastructure, systems, machine-readable architecture, GitHub profile, Sydney
-canonical: https://brittek.net
-llms: /llms.txt
-llm-json: /llm.json
-schema: /schema.org.json
-site-index: /site-index.json
-feed: /feed.xml
+https://brittek.net
 -->
 
 <div align="center">
 
 <a href="https://brittek.net">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="brittek-keys-logo.webp">
-  <img src="brittek-keys-logo.webp" width="520" alt="Brittek Digital">
-</picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="brittek-keys-logo.webp">
+    <img src="brittek-keys-logo.webp" width="520" alt="Brittek Digital">
+  </picture>
+</a>
+
+<br><br>
+
+<a href="https://brittek.net">
+  <img
+    src="https://readme-typing-svg.demolab.com?font=Geist+Mono&weight=500&size=14&duration=2200&pause=1300&color=FE4A02&center=true&vCenter=true&repeat=true&width=760&height=34&lines=DESIGN+ENGINEERING;DIGITAL+INFRASTRUCTURE;SYSTEMS;MACHINE-READABLE+ARCHITECTURE"
+    alt="Brittek Digital disciplines"
+  >
 </a>
 
 <br>
 
-<a href="https://brittek.net">
-<img src="https://readme-typing-svg.demolab.com?font=Geist+Mono&weight=500&size=14&duration=2200&pause=1300&color=FE4A02&center=true&vCenter=true&repeat=true&width=760&height=34&lines=DESIGN+ENGINEERING;DIGITAL+INFRASTRUCTURE;SYSTEMS;MACHINE-READABLE+ARCHITECTURE" alt="Brittek Digital disciplines">
-</a>
-
-Independent design-engineering practice · Sydney, Australia
+**Independent design-engineering practice · Sydney, Australia**
 
 Interfaces, infrastructure and machine-readable systems designed as one governed environment.
 
 <br>
 
-<a href="https://brittek.net"><img src="https://img.shields.io/badge/BRITTEK.NET-0D0D0B?style=flat-square&logo=googlechrome&logoColor=F4F3EF" alt="Brittek website"></a>
-<a href="mailto:hello@brittek.net"><img src="https://img.shields.io/badge/HELLO%40BRITTEK.NET-0D0D0B?style=flat-square&logo=maildotru&logoColor=F4F3EF" alt="Email Brittek"></a>
-<a href="https://github.com/brittek"><img src="https://img.shields.io/badge/GITHUB-%40BRITTEK-0D0D0B?style=flat-square&logo=github&logoColor=F4F3EF" alt="GitHub brittek"></a>
-<a href="https://github.com/brittek/Brittek/actions"><img src="https://img.shields.io/badge/PROFILE-CI-0D0D0B?style=flat-square&logo=githubactions&logoColor=F4F3EF" alt="Profile CI"></a>
+<a href="https://brittek.net"><img src="https://img.shields.io/badge/BRITTEK.NET-0D0D0B?style=flat-square&logo=googlechrome&logoColor=F4F3EF" alt="Brittek website"></a> <a href="mailto:hello@brittek.net"><img src="https://img.shields.io/badge/HELLO%40BRITTEK.NET-0D0D0B?style=flat-square&logo=maildotru&logoColor=F4F3EF" alt="Email Brittek Digital"></a> <a href="https://github.com/brittek"><img src="https://img.shields.io/badge/GITHUB-%40BRITTEK-0D0D0B?style=flat-square&logo=github&logoColor=F4F3EF" alt="GitHub brittek"></a> <a href="https://github.com/brittek/Brittek/actions"><img src="https://img.shields.io/badge/PROFILE-CI-0D0D0B?style=flat-square&logo=githubactions&logoColor=F4F3EF" alt="Profile CI"></a>
 
 <br>
 
-<a href="https://github.com/brittek?tab=followers"><img src="https://img.shields.io/github/followers/brittek?style=flat-square&label=FOLLOWERS&labelColor=6B6B66&color=0D0D0B&logo=github&logoColor=F4F3EF" alt="Followers"></a>
-<a href="https://github.com/brittek?tab=repositories"><img src="https://img.shields.io/github/stars/brittek?affiliations=OWNER&style=flat-square&label=STARS&labelColor=6B6B66&color=0D0D0B&logo=github&logoColor=F4F3EF" alt="Stars"></a>
-<img src="https://img.shields.io/badge/SYDNEY-AUSTRALIA-0D0D0B?style=flat-square&labelColor=FE4A02&logo=googlemaps&logoColor=F4F3EF" alt="Sydney Australia">
-<a href="https://madebyhuman.iamjarl.com"><img src="https://img.shields.io/badge/HUMAN_IN_THE_LOOP-MADE_BY_HUMAN-0D0D0B?style=flat-square&labelColor=FE4A02" alt="Human in the Loop"></a>
+<a href="https://github.com/brittek?tab=followers"><img src="https://img.shields.io/github/followers/brittek?style=flat-square&label=FOLLOWERS&labelColor=6B6B66&color=0D0D0B&logo=github&logoColor=F4F3EF" alt="GitHub followers"></a> <a href="https://github.com/brittek?tab=repositories"><img src="https://img.shields.io/github/stars/brittek?affiliations=OWNER&style=flat-square&label=STARS&labelColor=6B6B66&color=0D0D0B&logo=github&logoColor=F4F3EF" alt="GitHub stars"></a> <img src="https://img.shields.io/badge/SYDNEY-AUSTRALIA-0D0D0B?style=flat-square&labelColor=FE4A02&logo=googlemaps&logoColor=F4F3EF" alt="Sydney Australia"> <a href="https://madebyhuman.iamjarl.com"><img src="https://img.shields.io/badge/HUMAN_IN_THE_LOOP-MADE_BY_HUMAN-0D0D0B?style=flat-square&labelColor=FE4A02" alt="Human in the Loop"></a>
 
 </div>
 
-## Quick navigation
+---
 
-- [The Lab](#the-lab)
-- [Core engineering system](#core-engineering-system)
-- [Production architecture](#production-architecture)
-- [Operating principles](#operating-principles)
-- [Human + machine surface](#human-machine-surface)
-- [AI systems](#ai-systems)
-- [Activity](#activity)
-- [Repository standard](#repository-standard)
-- [Elsewhere](#elsewhere)
-
-<a id="the-lab"></a>
 <div align="center">
 
 ## The Lab
 
-Brittek Digital works across design, software and infrastructure.
+Brittek Digital works across **design, software and infrastructure**.
 
 We build clearer, faster and more maintainable digital systems by treating interface, engineering and infrastructure as one system.
 
@@ -74,21 +54,21 @@ We build clearer, faster and more maintainable digital systems by treating inter
 <tr>
 <td width="33%" align="center" valign="top">
 
-01 — Frontend Systems
+### 01 — Frontend Systems
 
 Semantic, performant and accessible interfaces built as systems rather than isolated pages.
 
 </td>
 <td width="33%" align="center" valign="top">
 
-02 — Identity Systems
+### 02 — Identity Systems
 
 Typography, interaction, motion and editorial rhythm held as one visual grammar.
 
 </td>
 <td width="33%" align="center" valign="top">
 
-03 — Machine Surface
+### 03 — Machine Surface
 
 Structured data, retrieval and agent-readable representations beneath the human interface.
 
@@ -98,16 +78,17 @@ Structured data, retrieval and agent-readable representations beneath the human 
 
 <div align="center">
 
-DESIGN ENGINEERING · DIGITAL INFRASTRUCTURE · AUTOMATION · QUALITY SYSTEMS · RETRIEVAL ARCHITECTURE
+**DESIGN ENGINEERING · DIGITAL INFRASTRUCTURE · AUTOMATION · QUALITY SYSTEMS · RETRIEVAL ARCHITECTURE**
 
 </div>
 
+---
+
 <div align="center">
 
-<a id="core-engineering-system"></a>
 ## Core engineering system
 
-Interface
+### Interface
 
 <img src="https://img.shields.io/badge/TypeScript-0D0D0B?style=flat-square&logo=typescript&logoColor=F4F3EF" alt="TypeScript">
 <img src="https://img.shields.io/badge/React-0D0D0B?style=flat-square&logo=react&logoColor=F4F3EF" alt="React">
@@ -115,7 +96,7 @@ Interface
 <img src="https://img.shields.io/badge/Tailwind_CSS-0D0D0B?style=flat-square&logo=tailwindcss&logoColor=F4F3EF" alt="Tailwind CSS">
 <img src="https://img.shields.io/badge/GSAP-0D0D0B?style=flat-square&logo=greensock&logoColor=F4F3EF" alt="GSAP">
 
-Application + data
+### Application + data
 
 <img src="https://img.shields.io/badge/Python-0D0D0B?style=flat-square&logo=python&logoColor=F4F3EF" alt="Python">
 <img src="https://img.shields.io/badge/FastAPI-0D0D0B?style=flat-square&logo=fastapi&logoColor=F4F3EF" alt="FastAPI">
@@ -123,7 +104,7 @@ Application + data
 <img src="https://img.shields.io/badge/PostgreSQL-0D0D0B?style=flat-square&logo=postgresql&logoColor=F4F3EF" alt="PostgreSQL">
 <img src="https://img.shields.io/badge/Supabase-0D0D0B?style=flat-square&logo=supabase&logoColor=F4F3EF" alt="Supabase">
 
-Infrastructure + delivery
+### Infrastructure + delivery
 
 <img src="https://img.shields.io/badge/Cloudflare-0D0D0B?style=flat-square&logo=cloudflare&logoColor=F4F3EF" alt="Cloudflare">
 <img src="https://img.shields.io/badge/Workers-0D0D0B?style=flat-square&logo=cloudflareworkers&logoColor=F4F3EF" alt="Cloudflare Workers">
@@ -131,7 +112,7 @@ Infrastructure + delivery
 <img src="https://img.shields.io/badge/GitHub_Actions-0D0D0B?style=flat-square&logo=githubactions&logoColor=F4F3EF" alt="GitHub Actions">
 <img src="https://img.shields.io/badge/pnpm-0D0D0B?style=flat-square&logo=pnpm&logoColor=F4F3EF" alt="pnpm">
 
-Verification
+### Verification
 
 <img src="https://img.shields.io/badge/Playwright-0D0D0B?style=flat-square&logo=playwright&logoColor=F4F3EF" alt="Playwright">
 <img src="https://img.shields.io/badge/axe--core-0D0D0B?style=flat-square&logoColor=F4F3EF" alt="axe-core">
@@ -148,7 +129,7 @@ Verification
 
 <div align="center">
 
-Web + interaction
+### Web + interaction
 
 <img src="https://img.shields.io/badge/HTML5-0D0D0B?style=flat-square&logo=html5&logoColor=F4F3EF" alt="HTML5">
 <img src="https://img.shields.io/badge/CSS-0D0D0B?style=flat-square&logo=css&logoColor=F4F3EF" alt="CSS">
@@ -156,7 +137,7 @@ Web + interaction
 <img src="https://img.shields.io/badge/Lenis-0D0D0B?style=flat-square&logoColor=F4F3EF" alt="Lenis">
 <img src="https://img.shields.io/badge/MDX-0D0D0B?style=flat-square&logo=mdx&logoColor=F4F3EF" alt="MDX">
 
-Contracts + platform
+### Contracts + platform
 
 <img src="https://img.shields.io/badge/Pydantic-0D0D0B?style=flat-square&logo=pydantic&logoColor=F4F3EF" alt="Pydantic">
 <img src="https://img.shields.io/badge/Node.js-0D0D0B?style=flat-square&logo=nodedotjs&logoColor=F4F3EF" alt="Node.js">
@@ -166,12 +147,12 @@ Contracts + platform
 <img src="https://img.shields.io/badge/Wrangler-0D0D0B?style=flat-square&logo=cloudflare&logoColor=F4F3EF" alt="Wrangler">
 <img src="https://img.shields.io/badge/Vercel-0D0D0B?style=flat-square&logo=vercel&logoColor=F4F3EF" alt="Vercel">
 
-Commerce + messaging
+### Commerce + messaging
 
 <img src="https://img.shields.io/badge/Stripe-0D0D0B?style=flat-square&logo=stripe&logoColor=F4F3EF" alt="Stripe">
 <img src="https://img.shields.io/badge/Resend-0D0D0B?style=flat-square&logo=resend&logoColor=F4F3EF" alt="Resend">
 
-Quality + tooling
+### Quality + tooling
 
 <img src="https://img.shields.io/badge/ESLint-0D0D0B?style=flat-square&logo=eslint&logoColor=F4F3EF" alt="ESLint">
 <img src="https://img.shields.io/badge/Figma-0D0D0B?style=flat-square&logo=figma&logoColor=F4F3EF" alt="Figma">
@@ -185,7 +166,8 @@ Quality + tooling
 
 </details>
 
-<a id="production-architecture"></a>
+---
+
 <div align="center">
 
 ## Production architecture
@@ -194,27 +176,25 @@ One system from interface through infrastructure, verification and deployment.
 
 </div>
 
-| Layer | Production system |
-| :--- | :--- |
-| **Interface** | Next.js 15 App Router · React 19 · TypeScript · Tailwind CSS v4 |
-| **Motion** | GSAP 3.15 · Lenis |
-| **Application** | Next.js server/runtime primitives · FastAPI · Python 3.12 · Pydantic v2 · Zod |
-| **Data** | PostgreSQL · Supabase |
-| **Edge runtime** | Cloudflare Workers · OpenNext |
-| **Storage** | Cloudflare R2 · KV · D1 where appropriate |
-| **Commerce** | Stripe |
-| **Messaging** | Resend |
-| **Delivery** | GitHub Actions · Wrangler · Cloudflare |
-| **Preview environments** | Vercel |
-| **Browser verification** | Playwright · axe-core |
-| **Code verification** | TypeScript · Vitest · ESLint |
-| **Performance** | Lighthouse CI · Core Web Vitals |
-| **Observability** | Sentry where wired |
-| **Package management** | pnpm only |
+| Layer                    | Production system                                                             |
+| :----------------------- | :---------------------------------------------------------------------------- |
+| **Interface**            | Next.js 15 App Router · React 19 · TypeScript · Tailwind CSS v4               |
+| **Motion**               | GSAP 3.15 · Lenis                                                             |
+| **Application**          | Next.js server/runtime primitives · FastAPI · Python 3.12 · Pydantic v2 · Zod |
+| **Data**                 | PostgreSQL · Supabase                                                         |
+| **Edge runtime**         | Cloudflare Workers · OpenNext                                                 |
+| **Storage**              | Cloudflare R2 · KV · D1 where appropriate                                     |
+| **Commerce**             | Stripe                                                                        |
+| **Messaging**            | Resend                                                                        |
+| **Delivery**             | GitHub Actions · Wrangler · Cloudflare                                        |
+| **Preview environments** | Vercel                                                                        |
+| **Browser verification** | Playwright · axe-core                                                         |
+| **Code verification**    | TypeScript · Vitest · ESLint                                                  |
+| **Performance**          | Lighthouse CI · Core Web Vitals                                               |
+| **Observability**        | Sentry where wired                                                            |
+| **Package management**   | pnpm only                                                                     |
 
-<div align="center">
-
-
+```text
 INTERFACE
     ↓
 APPLICATION
@@ -226,31 +206,40 @@ EDGE RUNTIME
 VERIFICATION
     ↓
 PRODUCTION
+```
 
 <div align="center">
 
-STRATEGY → REQUIREMENTS → ARCHITECTURE → DESIGN SYSTEM
-        → IMPLEMENTATION → VERIFICATION → PRODUCTION
+**STRATEGY → REQUIREMENTS → ARCHITECTURE → DESIGN SYSTEM → IMPLEMENTATION → VERIFICATION → PRODUCTION**
 
-Customer impact → Business impact → Engineering simplicity → Long-term maintainability
+<br>
+
+**Customer impact → Business impact → Engineering simplicity → Long-term maintainability**
 
 </div>
 
-<a id="operating-principles"></a>
+---
+
 <div align="center">
 
 ## Operating principles
 
-Systems over pages.
-Performance is an aesthetic property.
-Constraints define output.
-Machine-readable first. Human-legible always.
-Motion explains state or it is removed.
-Reference informs judgement; it does not become authority.
+**Systems over pages.**
+
+**Performance is an aesthetic property.**
+
+**Constraints define output.**
+
+**Machine-readable first. Human-legible always.**
+
+**Motion explains state or it is removed.**
+
+**Reference informs judgement; it does not become authority.**
 
 </div>
 
-<a id="human-machine-surface"></a>
+---
+
 <div align="center">
 
 ## Human + machine surface
@@ -259,23 +248,26 @@ Reference informs judgement; it does not become authority.
 <img src="https://img.shields.io/badge/llms.txt-0D0D0B?style=flat-square&logoColor=F4F3EF" alt="llms.txt">
 <img src="https://img.shields.io/badge/llm.json-0D0D0B?style=flat-square&logo=json&logoColor=F4F3EF" alt="llm.json">
 <img src="https://img.shields.io/badge/site--index.json-0D0D0B?style=flat-square&logo=json&logoColor=F4F3EF" alt="site-index.json">
-<img src="https://img.shields.io/badge/feed.xml-0D0D0B?style=flat-square&logo=rss&logoColor=F4F3EF" alt="feed.xml">
+<img src="https://img.shields.io/badge/sitemap.xml-0D0D0B?style=flat-square&logo=sitemap&logoColor=F4F3EF" alt="sitemap.xml">
 <img src="https://img.shields.io/badge/RSS-0D0D0B?style=flat-square&logo=rss&logoColor=F4F3EF" alt="RSS">
 
 <br><br>
 
-ENTITIES → CONTENT GRAPH → COMPILE → REPRESENTATIONS → VERIFY → DEPLOY
+`ENTITIES → CONTENT GRAPH → COMPILE → REPRESENTATIONS → VERIFY → DEPLOY`
+
+<br>
 
 One governed source should remain legible to both humans and machines.
 
 </div>
 
-<a id="ai-systems"></a>
+---
+
 <div align="center">
 
 ## AI systems
 
-AI is infrastructure, not identity.
+**AI is infrastructure, not identity.**
 
 <img src="https://img.shields.io/badge/OpenAI-0D0D0B?style=flat-square&logo=openai&logoColor=F4F3EF" alt="OpenAI">
 <img src="https://img.shields.io/badge/Claude-0D0D0B?style=flat-square&logo=anthropic&logoColor=F4F3EF" alt="Claude">
@@ -288,15 +280,18 @@ AI is infrastructure, not identity.
 <details>
 <summary><strong>AI architecture boundary</strong></summary>
 
+<br>
+
 When AI belongs in a system, define:
 
-model selection · context boundaries · prompt strategy · tool permissions · memory boundaries · structured outputs · evaluation · guardrails · fallbacks · observability · cost controls · human review
+**model selection · context boundaries · prompt strategy · tool permissions · memory boundaries · structured outputs · evaluation · guardrails · fallbacks · observability · cost controls · human review**
 
 Deterministic software remains preferable where deterministic software is sufficient.
 
 </details>
 
-<a id="activity"></a>
+---
+
 <div align="center">
 
 ## Activity
@@ -307,59 +302,47 @@ Deterministic software remains preferable where deterministic software is suffic
 
 <img src="./profile/streak.svg" width="480" alt="Brittek GitHub contribution streak">
 
-<br>
+<br><br>
 
 <sub>Most commercial implementation is private. Public GitHub activity represents only part of the engineering output.</sub>
 
 </div>
 
-<a id="repository-standard"></a>
 <details>
 <summary><strong>Repository standard</strong></summary>
 
+```text
 README.md
 LICENSE
 CONTRIBUTING.md
 SECURITY.md
 CHANGELOG.md
-.gitignore
-llms.txt
-llm.json
-schema.org.json
-site-index.json
-feed.xml
-
-docs/
-└── WORKFLOWS.md
 
 .github/
+├── ISSUE_TEMPLATE/
+├── PULL_REQUEST_TEMPLATE.md
 └── workflows/
+```
 
-Documentation is implementation infrastructure.
+**Documentation is implementation infrastructure.**
 
 </details>
 
-<a id="elsewhere"></a>
+---
+
 <div align="center">
 
 ## Elsewhere
 
-<a href="https://linkedin.com/in/brittek-digital"><img src="https://img.shields.io/badge/LinkedIn-0D0D0B?style=flat-square&logo=linkedin&logoColor=F4F3EF" alt="LinkedIn"></a>
-<a href="https://x.com/brittekdgtl"><img src="https://img.shields.io/badge/X-0D0D0B?style=flat-square&logo=x&logoColor=F4F3EF" alt="X"></a>
-<a href="https://instagram.com/brittekdgtl"><img src="https://img.shields.io/badge/Instagram-0D0D0B?style=flat-square&logo=instagram&logoColor=F4F3EF" alt="Instagram"></a>
-<a href="https://dev.to/brittek"><img src="https://img.shields.io/badge/dev.to-0D0D0B?style=flat-square&logo=devdotto&logoColor=F4F3EF" alt="dev.to"></a>
-<a href="https://hashnode.com/brittek"><img src="https://img.shields.io/badge/Hashnode-0D0D0B?style=flat-square&logo=hashnode&logoColor=F4F3EF" alt="Hashnode"></a>
-<a href="https://codepen.io/brittek"><img src="https://img.shields.io/badge/CodePen-0D0D0B?style=flat-square&logo=codepen&logoColor=F4F3EF" alt="CodePen"></a>
-<a href="https://dribbble.com/brittek"><img src="https://img.shields.io/badge/Dribbble-0D0D0B?style=flat-square&logo=dribbble&logoColor=F4F3EF" alt="Dribbble"></a>
-<a href="https://behance.net/brittekdgtl"><img src="https://img.shields.io/badge/Behance-0D0D0B?style=flat-square&logo=behance&logoColor=F4F3EF" alt="Behance"></a>
+<a href="https://linkedin.com/in/brittek-digital"><img src="https://img.shields.io/badge/LinkedIn-0D0D0B?style=flat-square&logo=linkedin&logoColor=F4F3EF" alt="LinkedIn"></a> <a href="https://x.com/brittekdgtl"><img src="https://img.shields.io/badge/X-0D0D0B?style=flat-square&logo=x&logoColor=F4F3EF" alt="X"></a> <a href="https://instagram.com/brittekdgtl"><img src="https://img.shields.io/badge/Instagram-0D0D0B?style=flat-square&logo=instagram&logoColor=F4F3EF" alt="Instagram"></a> <a href="https://dev.to/brittek"><img src="https://img.shields.io/badge/dev.to-0D0D0B?style=flat-square&logo=devdotto&logoColor=F4F3EF" alt="dev.to"></a> <a href="https://hashnode.com/brittek"><img src="https://img.shields.io/badge/Hashnode-0D0D0B?style=flat-square&logo=hashnode&logoColor=F4F3EF" alt="Hashnode"></a> <a href="https://codepen.io/brittek"><img src="https://img.shields.io/badge/CodePen-0D0D0B?style=flat-square&logo=codepen&logoColor=F4F3EF" alt="CodePen"></a> <a href="https://dribbble.com/brittek"><img src="https://img.shields.io/badge/Dribbble-0D0D0B?style=flat-square&logo=dribbble&logoColor=F4F3EF" alt="Dribbble"></a> <a href="https://behance.net/brittekdgtl"><img src="https://img.shields.io/badge/Behance-0D0D0B?style=flat-square&logo=behance&logoColor=F4F3EF" alt="Behance"></a>
 
 <br><br>
 
-Brittek Digital
+**Brittek Digital**
 
 Sydney, Australia
 
-brittek.net · hello@brittek.net · github.com/brittek
+[brittek.net](https://brittek.net) · [hello@brittek.net](mailto:hello@brittek.net) · [github.com/brittek](https://github.com/brittek)
 
 <br>
 
