@@ -1,0 +1,35 @@
+# Brittek Digital profile link-check configuration.
+# https://github.com/lycheeverse/lychee
+
+verbose = "info"
+format = "detailed"
+no_progress = true
+
+max_retries = 3
+max_concurrency = 16
+host_concurrency = 4
+host_request_interval = "150ms"
+
+timeout = 25
+retry_wait_time = 2
+method = "get"
+
+# Standard success statuses plus common rate-limit / transient CDN responses.
+accept = ["200..=299", "429", "503"]
+
+scheme = ["https"]
+require_https = true
+
+# GitHub profile/social endpoints frequently block automated clients even when
+# the public URL is valid. These are intentionally excluded from network checks.
+exclude = [
+  '^https://(www\.)?linkedin\.com/',
+  '^https://x\.com/',
+  '^https://(www\.)?instagram\.com/',
+  '^https://dribbble\.com/',
+  '^https://(www\.)?behance\.net/'
+]
+
+include_verbatim = false
+include_mail = false
+hidden = true
