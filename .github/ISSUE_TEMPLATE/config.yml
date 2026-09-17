@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Commercial enquiries
+    url: https://brittek.net
+    about: Use the Brittek Digital website for commercial or project enquiries.
+  - name: Security vulnerability
+    url: mailto:hello@brittek.net
+    about: Report security concerns privately per SECURITY.md — do not open a public issue.

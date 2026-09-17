@@ -11,13 +11,17 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: streak-stats-${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   generate:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Generate activity SVG
         uses: DenverCoder1/github-readme-streak-stats@9202e37665889fdb42d9a7df8501c1800acf761d

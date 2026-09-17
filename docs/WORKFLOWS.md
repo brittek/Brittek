@@ -21,9 +21,15 @@ This repository uses GitHub Actions to generate the profile assets committed to
 - **Schedule:** `17 2 * * *`
 - **Timezone reference:** Australia/Sydney
 - **Manual trigger:** `workflow_dispatch`
-- **Pinned dependency:** `DenverCoder1/github-readme-streak-stats@9202e37665889fdb42d9a7df8501c1800acf761d`
+- **Pinned dependencies:** `actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1` (v7.0.1),
+  `DenverCoder1/github-readme-streak-stats@9202e37665889fdb42d9a7df8501c1800acf761d`
 - **Key settings:** transparent background; animations off; Brittek accent ring
   and fire colours; bot-authored conditional commit.
+
+Both `profile-metrics.yml` and `streak-stats.yml` run under a per-workflow
+`concurrency` group with `cancel-in-progress: true`, so an overlapping
+scheduled and manually dispatched run cannot push conflicting commits to the
+same generated asset.
 
 ## Maintenance rules
 

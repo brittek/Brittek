@@ -13,12 +13,24 @@ semantic versioning for ordinary profile edits.
 - repository governance documents;
 - machine-readable profile surfaces;
 - workflow documentation;
-- repository hygiene configuration.
+- repository hygiene configuration;
+- `.github/PULL_REQUEST_TEMPLATE.md` and `.github/ISSUE_TEMPLATE/` to match
+  the documented repository standard.
 
 ### Changed
 
 - repository standard moved from aspirational documentation toward actual
-  implementation.
+  implementation;
+- `streak-stats.yml` now pins `actions/checkout` to an immutable commit SHA,
+  matching the pinned-Action policy already applied elsewhere;
+- `profile-metrics.yml` and `streak-stats.yml` now run under a per-workflow
+  `concurrency` group so an overlapping scheduled and manual run cannot push
+  conflicting commits to the same generated asset.
+
+### Removed
+
+- `IMPLEMENTATION.md`, a repository-audit tracking note whose listed items
+  are now fully implemented.
 
 ## 2026-09-14
 
