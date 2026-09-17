@@ -29,12 +29,17 @@ semantic versioning for ordinary profile edits.
 - `profile-metrics.yml` and `streak-stats.yml` now restrict their `push`
   trigger to `branches: [main]`, so editing either workflow file on a
   feature branch no longer causes a bot commit to be pushed onto that
-  branch.
+  branch;
+- `lychee.toml` now excludes `codepen.io`, matching the automated-client
+  blocking already worked around for LinkedIn, X, Instagram, Dribbble, and
+  Behance.
 
 ### Removed
 
 - `IMPLEMENTATION.md`, a repository-audit tracking note whose listed items
-  are now fully implemented.
+  are now fully implemented;
+- the dev.to link and badge from the README "Elsewhere" section and
+  `schema.org.json`'s `sameAs`; the account no longer resolves (404).
 
 ## 2026-09-14
 
