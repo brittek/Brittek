@@ -5,6 +5,8 @@ on:
     - cron: "47 2 * * *"
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - ".github/workflows/profile-metrics.yml"
 

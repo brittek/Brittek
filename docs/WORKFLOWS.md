@@ -31,6 +31,11 @@ Both `profile-metrics.yml` and `streak-stats.yml` run under a per-workflow
 scheduled and manually dispatched run cannot push conflicting commits to the
 same generated asset.
 
+Both workflows' `push` triggers are also restricted to `branches: [main]`.
+Without that filter, editing either workflow file on a feature branch causes
+the generator to run against — and push a bot commit onto — that feature
+branch instead of `main`.
+
 ## Maintenance rules
 
 1. Keep third-party Actions pinned to immutable commit SHAs.

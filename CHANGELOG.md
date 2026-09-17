@@ -25,7 +25,11 @@ semantic versioning for ordinary profile edits.
   matching the pinned-Action policy already applied elsewhere;
 - `profile-metrics.yml` and `streak-stats.yml` now run under a per-workflow
   `concurrency` group so an overlapping scheduled and manual run cannot push
-  conflicting commits to the same generated asset.
+  conflicting commits to the same generated asset;
+- `profile-metrics.yml` and `streak-stats.yml` now restrict their `push`
+  trigger to `branches: [main]`, so editing either workflow file on a
+  feature branch no longer causes a bot commit to be pushed onto that
+  branch.
 
 ### Removed
 
