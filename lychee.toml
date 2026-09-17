@@ -27,7 +27,8 @@ exclude = [
   '^https://x\.com/',
   '^https://(www\.)?instagram\.com/',
   '^https://dribbble\.com/',
-  '^https://(www\.)?behance\.net/'
+  '^https://(www\.)?behance\.net/',
+  '^https://codepen\.io/'
 ]
 
 include_verbatim = false

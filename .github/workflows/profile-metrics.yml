@@ -5,11 +5,17 @@ on:
     - cron: "47 2 * * *"
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - ".github/workflows/profile-metrics.yml"
 
 permissions:
   contents: write
+
+concurrency:
+  group: profile-metrics-${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
   generate:
