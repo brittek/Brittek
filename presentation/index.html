@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brittek Selected Work</title>
+<meta name="description" content="Brittek Digital selected work, 2018–2026: websites, identity systems, instruments and operational tools, presented as one sequence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500&display=swap">
+<style>
+/* ---------------------------------------------------------------------------
+   Tokens. Values follow brittek-surface (app/globals.css, lib/design) and the
+   Brittek motion contract. Light is paper; dark is the instrument surface.
+--------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+  --bg: #F4F3EF;
+  --raised: #FAFAF7;
+  --low: #EDECEA;
+  --ink: #111111;
+  --muted: #5B5953;
+  --faint: #8C897F;
+  --line: #D7D0C4;
+  --signal: #FE4A02;
+  --signal-hover: #CC3B02;
+  --field-top: #FAFAF7;
+  --field-left: #E3E1DA;
+  --field-right: #D0CDC4;
+  --field-edge: rgba(17, 17, 17, 0.30);
+
+  --font-display: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Geist", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-metric: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --ease-enter: cubic-bezier(.16, 1, .3, 1);
+  --ease-state: cubic-bezier(.83, 0, .17, 1);
+  --ease-physical: cubic-bezier(.22, 1, .36, 1);
+  --dur-exit: 340ms;
+  --dur-enter: 420ms;
+  --dur-reveal: 820ms;
+  --stagger: 60ms;
+
+  --gutter: clamp(16px, 4vw, 56px);
+  --radius: 2px;
+  --target: 44px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0D0D0B;
+    --raised: #161614;
+    --low: #1C1C19;
+    --ink: #F4F3EF;
+    --muted: #A9A69E;
+    --faint: #75726B;
+    --line: #2F2D29;
+    --field-top: #22221F;
+    --field-left: #161614;
+    --field-right: #0F0F0D;
+    --field-edge: rgba(244, 243, 239, 0.24);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0D0D0B;
+  --raised: #161614;
+  --low: #1C1C19;
+  --ink: #F4F3EF;
+  --muted: #A9A69E;
+  --faint: #75726B;
+  --line: #2F2D29;
+  --field-top: #22221F;
+  --field-left: #161614;
+  --field-right: #0F0F0D;
+  --field-edge: rgba(244, 243, 239, 0.24);
+}
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 15px/1.55 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+*, *::before, *::after { box-sizing: border-box; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* --- Frame --------------------------------------------------------------- */
+.deck {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+.bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px var(--gutter);
+}
+.mark {
+  font: 600 17px/1 var(--font-display);
+  letter-spacing: -0.03em;
+}
+.label {
+  font: 400 10px/1.4 var(--font-mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stage { position: relative; min-height: 0; }
+.scene {
+  position: absolute; inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(8px, 3vh, 40px) var(--gutter) clamp(24px, 5vh, 56px);
+  opacity: 0; visibility: hidden;
+  transition: opacity var(--dur-exit) var(--ease-state), visibility 0s linear var(--dur-exit);
+}
+.scene.is-active {
+  opacity: 1; visibility: visible;
+  transition: opacity var(--dur-enter) var(--ease-enter), visibility 0s;
+}
+.scene__inner {
+  max-width: 1440px; min-height: 100%;
+  margin-inline: auto;
+  display: grid; align-content: center; gap: clamp(24px, 4vh, 48px);
+}
+
+/* --- Reveal primitives: transform, opacity and clip-path only ------------- */
+[data-r], [data-mask], [data-line] {
+  transition:
+    opacity 0s linear var(--dur-exit),
+    transform 0s linear var(--dur-exit),
+    clip-path 0s linear var(--dur-exit);
+}
+[data-r] { opacity: 0; transform: translateY(20px); }
+[data-mask] { clip-path: inset(0 0 100% 0); transform: translateY(24px); }
+[data-line] { transform: scaleX(0); transform-origin: 0 50%; }
+[data-line="y"] { transform: scaleY(0); transform-origin: 50% 0; }
+.is-active [data-r] {
+  opacity: 1; transform: none;
+  transition:
+    opacity var(--dur-reveal) var(--ease-enter) calc(var(--i, 0) * var(--stagger) + 120ms),
+    transform var(--dur-reveal) var(--ease-enter) calc(var(--i, 0) * var(--stagger) + 120ms);
+}
+.is-active [data-mask] {
+  clip-path: inset(0 0 0 0); transform: none;
+  transition:
+    clip-path var(--dur-reveal) var(--ease-physical) calc(var(--i, 0) * var(--stagger) + 60ms),
+    transform var(--dur-reveal) var(--ease-physical) calc(var(--i, 0) * var(--stagger) + 60ms);
+}
+.is-active [data-line] {
+  transform: none;
+  transition: transform var(--dur-reveal) var(--ease-state) calc(var(--i, 0) * var(--stagger) + 200ms);
+}
+.no-motion *, .no-motion *::before, .no-motion *::after { transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 1ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Type ---------------------------------------------------------------- */
+.display {
+  margin: 0;
+  font: 500 clamp(2.6rem, 7vw, 7rem)/0.94 var(--font-display);
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  padding-bottom: 0.08em;
+}
+.h2 {
+  margin: 0;
+  font: 500 clamp(2rem, 4.4vw, 4.4rem)/0.98 var(--font-display);
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  padding-bottom: 0.08em;
+}
+.h3 {
+  margin: 0;
+  font: 500 clamp(1.125rem, 1.5vw, 1.375rem)/1.2 var(--font-display);
+  letter-spacing: -0.02em;
+}
+.lede {
+  margin: 0; max-width: 58ch;
+  font-size: clamp(1rem, 1.25vw, 1.1875rem); line-height: 1.55;
+  color: var(--muted);
+}
+.body { margin: 0; color: var(--muted); max-width: 52ch; }
+.head { display: grid; gap: 18px; max-width: 1100px; }
+.stack { font: 400 11px/1.5 var(--font-mono); letter-spacing: 0.04em; color: var(--muted); }
+.ref { font: 400 11px/1.5 var(--font-mono); color: var(--signal); }
+
+/* --- Title --------------------------------------------------------------- */
+.title {
+  display: grid; gap: clamp(24px, 4vw, 64px); align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+}
+.title__text { display: grid; gap: 24px; }
+.title__meta { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+.field { position: relative; width: 100%; aspect-ratio: 1 / 0.86; max-width: 100%; }
+.field canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+/* --- Ruled lists (practices, index) ------------------------------------- */
+.ruled { display: grid; gap: 0 clamp(20px, 3vw, 48px); margin: 0; padding: 0; list-style: none; }
+.ruled--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ruled--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ruled > li { position: relative; display: grid; align-content: start; gap: 10px; padding: 20px 0 28px; }
+.ruled > li::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--ink);
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform 0s linear var(--dur-exit);
+}
+.is-active .ruled > li::before {
+  transform: none;
+  transition: transform var(--dur-reveal) var(--ease-state) calc(var(--i, 0) * var(--stagger) + 120ms);
+}
+.ruled .idx { font: 400 10px/1 var(--font-mono); letter-spacing: 0.2em; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 0; padding: 0; list-style: none; }
+.chips li {
+  font: 400 10.5px/1 var(--font-mono); letter-spacing: 0.06em;
+  padding: 6px 8px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--muted);
+}
+.note { font: 400 11px/1.6 var(--font-mono); letter-spacing: 0.06em; color: var(--muted); margin: 0; max-width: 90ch; }
+
+/* --- Lineage ------------------------------------------------------------- */
+.lineage {
+  display: grid; align-items: center;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+}
+.lineage__list { margin: 0; padding: 0; list-style: none; position: relative; }
+.lineage__list::after { /* the bus that collects every donor */
+  content: ""; position: absolute; right: 0; top: 30px; bottom: 30px; width: 1px; background: var(--ink);
+  transform: scaleY(0); transform-origin: 50% 0;
+  transition: transform 0s linear var(--dur-exit);
+}
+.is-active .lineage__list::after {
+  transform: none;
+  transition: transform var(--dur-reveal) var(--ease-state) 520ms;
+}
+.lineage__row {
+  display: grid; grid-template-columns: minmax(0, 1fr) clamp(32px, 7vw, 120px);
+  align-items: center; gap: 20px;
+  padding: 10px 0; border-top: 1px solid var(--line);
+}
+.lineage__row:last-child { border-bottom: 1px solid var(--line); }
+.lineage__text { display: grid; gap: 2px; }
+.lineage__top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.lineage__conn { height: 1px; background: var(--ink); }
+.lineage__target { position: relative; padding-left: clamp(32px, 5vw, 80px); display: grid; gap: 14px; }
+.lineage__target::before {
+  content: ""; position: absolute; left: 0; top: 50%; width: clamp(32px, 5vw, 80px); height: 1px; background: var(--ink);
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform 0s linear var(--dur-exit);
+}
+.is-active .lineage__target::before {
+  transform: none;
+  transition: transform var(--dur-reveal) var(--ease-state) 760ms;
+}
+.target-dot { width: 10px; height: 10px; background: var(--signal); }
+
+/* --- Architecture -------------------------------------------------------- */
+.flow {
+  display: grid; align-items: center;
+  grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr) 48px minmax(0, 1.35fr);
+}
+.node {
+  display: grid; align-content: start; gap: 8px;
+  padding: 20px; background: var(--raised); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.node--signal { border-top: 2px solid var(--signal); }
+.node code { font: 500 13px/1.3 var(--font-mono); color: var(--ink); }
+.flow__arrow { align-self: center; height: 1px; background: var(--ink); position: relative; }
+.flow__arrow::after {
+  content: ""; position: absolute; right: -1px; top: -4px;
+  border: 4.5px solid transparent; border-left: 7px solid var(--ink); border-right: 0;
+}
+.outputs { display: grid; gap: 12px; }
+.files { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.files li { font: 400 12px/1 var(--font-mono); padding: 7px 9px; background: var(--low); border-radius: var(--radius); }
+.gates { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 0; padding: 0; list-style: none; }
+.gates li { font: 400 10px/1 var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.gates li + li::before { content: "→"; margin-right: 10px; color: var(--faint); letter-spacing: 0; }
+
+/* --- Dual layer ---------------------------------------------------------- */
+.dual { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 4vw, 64px); }
+.dual__col { display: grid; align-content: start; gap: 14px; }
+.terms { margin: 0; padding: 0; list-style: none; display: grid; }
+.terms li {
+  font: 400 clamp(1.25rem, 2.2vw, 2rem)/1.3 var(--font-display); letter-spacing: -0.03em;
+  padding: 6px 0; border-bottom: 1px solid var(--line);
+}
+.terms--machine li { font-family: var(--font-mono); font-size: clamp(0.95rem, 1.5vw, 1.25rem); letter-spacing: 0; }
+.chain { display: flex; flex-wrap: wrap; gap: 8px 0; margin: 0; padding: 0; list-style: none; }
+.chain li { font: 500 11px/1 var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; padding: 10px 12px; }
+.chain li:nth-child(odd) { background: var(--ink); color: var(--bg); }
+.chain li:nth-child(even) { color: var(--muted); padding-inline: 8px; }
+
+/* --- Instrument ---------------------------------------------------------- */
+.instrument { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: clamp(24px, 5vw, 80px); align-items: end; }
+.metric {
+  margin: 0;
+  font: 300 clamp(7rem, 20vw, 17rem)/0.8 var(--font-metric);
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+}
+.metric-caption { display: grid; gap: 6px; margin-top: 18px; }
+.meter { display: grid; gap: 18px; }
+.meter__bar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px; height: 14px; }
+.meter__seg { background: var(--ink); }
+.meter__seg:first-child { background: var(--signal); }
+.meter__groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px; }
+.meter__group { display: grid; align-content: start; gap: 6px; padding-right: 10px; }
+.meter__pts { font: 400 clamp(1.5rem, 2.4vw, 2.25rem)/1 var(--font-metric); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.steps { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; }
+.steps li { font: 400 10px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.steps li::before { content: attr(data-n) "  "; color: var(--faint); white-space: pre; }
+
+/* --- Identity ------------------------------------------------------------ */
+.identity { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); }
+.specimens { margin: 0; padding: 0; list-style: none; display: grid; }
+.specimen {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 16px;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
+}
+.specimen__sample { font-size: clamp(1.5rem, 3vw, 2.75rem); line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.swatches { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
+.swatch { display: grid; gap: 8px; }
+.swatch__chip { aspect-ratio: 1 / 1.2; border: 1px solid var(--line); border-radius: var(--radius); }
+.curves { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.curve { display: grid; gap: 8px; }
+.curve svg { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: var(--radius); background: var(--raised); }
+.side { display: grid; align-content: start; gap: 28px; }
+.block { display: grid; align-content: start; gap: 12px; }
+
+/* --- Operations ---------------------------------------------------------- */
+.ops { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 72px); align-items: start; }
+.facts { margin: 0; padding: 0; list-style: none; display: grid; }
+.facts li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.facts li span:first-child { font: 400 10px/2 var(--font-mono); color: var(--muted); letter-spacing: 0.1em; }
+.process { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.process li { display: grid; grid-template-columns: 28px minmax(0, 1fr); align-items: center; gap: 12px; }
+.process li span:first-child { font: 400 10px/1 var(--font-mono); color: var(--muted); }
+.process li span:last-child {
+  font: 500 clamp(1rem, 1.7vw, 1.5rem)/1.2 var(--font-display); letter-spacing: -0.02em;
+  padding: 8px 12px; background: var(--raised); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.process li:last-child span:last-child { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+/* --- Close --------------------------------------------------------------- */
+.close { display: grid; gap: clamp(28px, 5vh, 56px); }
+.principles { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 clamp(20px, 3vw, 48px); }
+.principles li { padding: 14px 0; border-top: 1px solid var(--line); font: 500 clamp(1rem, 1.3vw, 1.1875rem)/1.35 var(--font-display); letter-spacing: -0.015em; }
+.contact { display: flex; flex-wrap: wrap; gap: 10px 32px; }
+.contact a, .contact span { font: 400 12px/1.4 var(--font-mono); letter-spacing: 0.1em; color: var(--ink); text-decoration: none; }
+.contact a { border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.contact a:hover { border-bottom-color: var(--signal); }
+
+/* --- Transport ----------------------------------------------------------- */
+.transport {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px 24px;
+  padding: 10px var(--gutter) calc(14px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.buttons { display: flex; gap: 4px; }
+.btn {
+  min-width: var(--target); min-height: var(--target);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--raised); cursor: pointer;
+  font: 500 11px/1 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;
+  transition: border-color 180ms var(--ease-state);
+}
+.btn:hover { border-color: var(--ink); }
+.btn > span[aria-hidden] { transition: transform 180ms var(--ease-state); }
+.btn:active > span[aria-hidden] { transform: scale(.97); }
+.btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn:disabled { opacity: .42; cursor: default; }
+.segments { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; margin: 0; padding: 0; list-style: none; }
+.seg {
+  width: 100%; min-height: var(--target); padding: 0; border: 0; background: none; cursor: pointer;
+  display: grid; align-items: center;
+}
+.seg::before { content: ""; height: 2px; background: var(--line); transition: background-color 180ms var(--ease-state); }
+.seg:hover::before { background: var(--faint); }
+.seg[data-state="past"]::before { background: var(--ink); }
+.seg[aria-current="step"]::before { background: var(--signal); }
+.count { display: grid; justify-items: end; gap: 4px; min-width: 18ch; }
+.count__n { font: 500 13px/1 var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: 0.08em; }
+
+/* --- Narrow screens ------------------------------------------------------ */
+@media (max-width: 960px) {
+  .title, .lineage, .instrument, .identity, .ops, .dual { grid-template-columns: minmax(0, 1fr); }
+  .title .field { order: -1; aspect-ratio: 16 / 9; }
+  .ruled--3, .ruled--4, .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flow { grid-template-columns: minmax(0, 1fr); }
+  .flow__arrow { width: 1px; height: 28px; justify-self: start; margin-left: 24px; }
+  .flow__arrow::after { right: -4px; top: auto; bottom: -1px; border: 4.5px solid transparent; border-top: 7px solid var(--ink); border-bottom: 0; }
+  .lineage__row { grid-template-columns: minmax(0, 1fr); }
+  .lineage__conn, .lineage__list::after, .lineage__target::before { display: none; }
+  .lineage__target { padding-left: 0; padding-top: 24px; }
+}
+@media (max-width: 640px) {
+  .ruled--3, .ruled--4, .principles, .meter__groups { grid-template-columns: minmax(0, 1fr); }
+  .meter__group { padding: 10px 0; border-top: 1px solid var(--line); }
+  .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .transport { grid-template-columns: auto minmax(0, 1fr); }
+  .segments { display: none; }
+  .bar .label:last-child { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+  <header class="bar">
+    <span class="mark">Brittek Digital</span>
+    <span class="label" id="edition">Selected work</span>
+  </header>
+
+  <main class="stage" id="stage" aria-roledescription="presentation" aria-label="Brittek Digital selected work">
+    <noscript>
+      <div class="scene is-active"><div class="scene__inner"><p class="lede">This presentation needs JavaScript to render its scenes. The same facts are published at https://brittek.net.</p></div></div>
+    </noscript>
+  </main>
+
+  <nav class="transport" aria-label="Presentation controls">
+    <div class="buttons">
+      <button class="btn" type="button" id="prev" aria-label="Previous scene"><span aria-hidden="true">←</span></button>
+      <button class="btn" type="button" id="play" aria-pressed="false"><span aria-hidden="true" id="play-icon">▶</span><span id="play-label">Play</span></button>
+      <button class="btn" type="button" id="next" aria-label="Next scene"><span aria-hidden="true">→</span></button>
+    </div>
+    <ol class="segments" id="segments"></ol>
+    <div class="count">
+      <span class="count__n" id="count">01 / 10</span>
+      <span class="label" id="scene-name"></span>
+    </div>
+  </nav>
+  <p class="sr-only" aria-live="polite" id="announce"></p>
+</div>
+
+<!--
+  Content is data, not markup. Every scene below renders from this JSON, so
+  facts change here and nowhere else. Sources: brittek-surface content/entities
+  (practices, capabilities, systems, tools, organisation), repository READMEs,
+  and this repository's workflows. Client identities are omitted until
+  publication clearance exists.
+-->
+<script type="application/json" id="deck-data">
+{
+  "edition": "Public edition",
+  "updated": "2026-09-28",
+  "scenes": [
+    {
+      "id": "title", "type": "title", "name": "Opening", "duration": 6000,
+      "eyebrow": "Brittek Digital · Sydney · Since 2018",
+      "heading": "Selected work, 2018–2026",
+      "lede": "Websites, identity systems, instruments and operational tools, designed and engineered inside one continuous process.",
+      "meta": ["Founded 06.10.2018", "Independent design-engineering studio", "Ten scenes"]
+    },
+    {
+      "id": "practices", "type": "practices", "name": "Practices", "duration": 8000,
+      "eyebrow": "Practice",
+      "heading": "Three practices. There is no fourth.",
+      "lede": "Every piece of work in this sequence belongs to one of them. Visibility, SEO and answer-engine work are methods inside Digital Infrastructure, not a separate line.",
+      "items": [
+        { "id": "digital-infrastructure", "name": "Digital Infrastructure", "summary": "Websites and web apps that load fast, work for everyone and are easy for search engines and AI to read.", "outputs": ["Web architecture", "Applications", "Technical remediation", "Edge deployment"] },
+        { "id": "identity-systems", "name": "Identity Systems", "summary": "Logo, type, colour and motion designed together, so everything published looks like it came from one place.", "outputs": ["Identity systems", "Typography", "Design tokens", "Interface foundations"] },
+        { "id": "operational-infrastructure", "name": "Operational Infrastructure", "summary": "Tools and automations for the repetitive parts of a business, with approvals and records so people stay in control.", "outputs": ["Workflow architecture", "Internal tools", "Approval gates", "Execution records"] }
+      ]
+    },
+    {
+      "id": "lineage", "type": "lineage", "name": "Website lineage", "duration": 9000,
+      "eyebrow": "Websites · variations · upgrades",
+      "heading": "Many surfaces. One canonical system.",
+      "lede": "Earlier Brittek websites are kept as lineage. Mechanics that earn their place move into Brittek Surface after provenance, licence, security and test review.",
+      "items": [
+        { "id": "base-website", "name": "Static editorial reference", "role": "Reference surface", "summary": "Self-contained HTML that preserves the studio's editorial interface language for inspection.", "stack": "HTML · CSS" },
+        { "id": "brittek-net", "name": "Cinematic single-page site", "role": "Lineage", "summary": "Section-based React system with deterministic GSAP timelines and transform-first motion.", "stack": "React · Vite · Tailwind · GSAP" },
+        { "id": "website", "name": "Systems-scoping interface", "role": "Lineage", "summary": "Composition study whose scoping tool was moved behind a server boundary so no provider key reaches the browser.", "stack": "React 19 · Vite 6" },
+        { "id": "brit-net", "name": "Interaction donor", "role": "Donor", "summary": "React interface with Lenis scrolling and a Zod-validated Express contact endpoint.", "stack": "React 19 · GSAP · Lenis · Express 5 · Zod" },
+        { "id": "spheretek", "name": "Astro publishing theme", "role": "Theme study", "summary": "Static publishing and portfolio surface with MDX, RSS, sitemap and client-side search.", "stack": "Astro 4 · SolidJS · MDX" }
+      ],
+      "target": { "name": "Brittek Surface", "status": "Canonical · deployed", "summary": "The production merge target. Historical site repositories contribute only after review.", "stack": "Next.js · OpenNext · Cloudflare Workers" }
+    },
+    {
+      "id": "surface", "type": "architecture", "name": "Brittek Surface", "duration": 9000,
+      "eyebrow": "System · deployed · 2026",
+      "heading": "Brittek Surface",
+      "lede": "The public website and the governed publishing system behind it. Facts are written once, validated, then compiled into every human and machine representation.",
+      "source": { "path": "content/entities/", "summary": "Canonical public facts: organisation, practices, capabilities, systems, tools, articles." },
+      "boundary": { "path": "lib/content/graph.ts", "summary": "Validation and visibility boundary. Private, draft and donor material cannot pass." },
+      "outputs": [
+        { "name": "Human surface", "files": ["/", "/studio", "/systems", "/capabilities", "/journal", "/instruments"] },
+        { "name": "Machine surface", "files": ["llm.json", "llms.txt", "site-index.json", "schema.json", "sitemap.json", "feed.xml"] }
+      ],
+      "gates": ["Typecheck", "Lint", "Design governance", "Content validation", "Compile", "Tests", "Build", "Browser checks"]
+    },
+    {
+      "id": "machine", "type": "dual", "name": "Machine surface", "duration": 8000,
+      "eyebrow": "Dual occupancy",
+      "heading": "Two readers. One source.",
+      "lede": "People read the composition. Machines read the entities beneath it. Both come from the same governed record, so they cannot disagree.",
+      "human": ["Typography", "Hierarchy", "Composition", "Interaction", "Accessibility", "Editorial clarity"],
+      "machine": ["entities", "semantic relationships", "structured data", "provenance", "citations", "retrieval resources"],
+      "chain": ["Entities", "Content graph", "Compile", "Representations", "Verify", "Deploy"]
+    },
+    {
+      "id": "inspector", "type": "instrument", "name": "Instrument", "duration": 8000,
+      "eyebrow": "Tools · Public instrument · Available",
+      "heading": "Machine Surface Inspector",
+      "lede": "Inspects whether a public website exposes the evidence machines need to find, parse, classify and trust it.",
+      "metric": "18",
+      "metricLabel": "Deterministic evaluations",
+      "metricMeta": "Engine v2.4 · live extraction · no account required",
+      "groups": [
+        { "name": "Findability", "points": 25, "summary": "Crawl access, sitemap validity, canonicals, redirects." },
+        { "name": "Quotability", "points": 25, "summary": "Extractable answers, heading structure, freshness." },
+        { "name": "Structural", "points": 25, "summary": "JSON-LD accuracy, Open Graph, semantic architecture." },
+        { "name": "Trust", "points": 25, "summary": "HTTPS, identity, contact and policy signals." }
+      ],
+      "flow": ["Input", "Observe", "Analyse", "Evidence", "System state", "Recommended action"],
+      "boundary": "Observes public evidence only. Root cause and remediation stay with human review."
+    },
+    {
+      "id": "identity", "type": "identity", "name": "Identity system", "duration": 9000,
+      "eyebrow": "Identity · type · colour · motion",
+      "heading": "Identity that survives implementation.",
+      "specimens": [
+        { "role": "Editorial", "face": "Inter Tight", "family": "display", "sample": "Synthesis & Reduction" },
+        { "role": "Reading", "face": "Inter", "family": "body", "sample": "Built for clarity and scale" },
+        { "role": "Interface", "face": "Geist", "family": "ui", "sample": "Studio · Work · Journal" },
+        { "role": "Technical", "face": "Geist Mono", "family": "mono", "sample": "ENTITIES → DEPLOY" }
+      ],
+      "specimenNote": "A fifth register, Geist Pixel Square, is reserved for runtime states and served by the application.",
+      "palette": [
+        { "name": "Paper", "hex": "#F4F3EF" },
+        { "name": "Raised", "hex": "#FAFAF7" },
+        { "name": "Ink", "hex": "#111111" },
+        { "name": "Instrument", "hex": "#0D0D0D" },
+        { "name": "Signal", "hex": "#FE4A02" }
+      ],
+      "curves": [
+        { "name": "Enter", "use": "Arrivals", "bezier": [0.16, 1, 0.3, 1] },
+        { "name": "State", "use": "Reversible change", "bezier": [0.83, 0, 0.17, 1] },
+        { "name": "Physical", "use": "Weighted travel", "bezier": [0.22, 1, 0.36, 1] }
+      ],
+      "artefact": "Registered Execution field: a seeded keycap lattice. The same parameters produce the same SVG to the last vertex. The opening scene draws a study of it."
+    },
+    {
+      "id": "studies", "type": "index", "name": "Studies and tools", "duration": 10000,
+      "eyebrow": "Tools · prototypes · studies",
+      "heading": "Studies, tools and prototypes.",
+      "items": [
+        { "id": "cmndr", "name": "Presence command layer", "status": "Milestone 1", "summary": "Turns structured organisational knowledge into coordinated publications, with approval, scheduling and provenance.", "stack": "TypeScript · pnpm workspace · Supabase" },
+        { "id": "toolkit", "name": "Tooling product surface", "status": "Prototype", "summary": "Packages developer tooling and operational capabilities into a clearer product interface.", "stack": "React 19 · Vite 6 · Express · Resend" },
+        { "id": "bkos", "name": "Knowledge operating system", "status": "Governed", "summary": "Research, doctrine and evidence vault. Current doctrine is kept distinct from history.", "stack": "Markdown · Obsidian" },
+        { "id": "brand-system", "name": "Brand system workspace", "status": "Active", "summary": "Identity tokens and interface foundations, developed alongside Figma.", "stack": "TypeScript · Vite · Figma" },
+        { "id": "neuralinks", "name": "Generative canvas study", "status": "Study", "summary": "Rotating node field with data pulses. Framework-free, high-DPI and reduced-motion aware.", "stack": "Canvas · JavaScript" },
+        { "id": "innovate", "name": "Spatial motion prototype", "status": "Study", "summary": "Richer React presentation, spatial rendering and interaction mechanics under evaluation.", "stack": "React · Three.js · GSAP" },
+        { "id": "reframe", "name": "Task and streak prototype", "status": "Prototype", "summary": "Compact task system with categories, priorities, completion streaks and local persistence.", "stack": "React · TypeScript · localStorage" },
+        { "id": "execution-field", "name": "Registered Execution field", "status": "In preparation", "summary": "The generative keycap field behind the website, prepared as seeded artwork and a small generator.", "stack": "TypeScript · SVG" }
+      ],
+      "note": "Client work is withheld from this sequence until provenance and publication clearance are both in place."
+    },
+    {
+      "id": "operations", "type": "operations", "name": "Operations", "duration": 9000,
+      "eyebrow": "Operational infrastructure",
+      "heading": "Operations are part of the work.",
+      "lede": "The public profile runs on the same discipline as client systems: generated assets, validation on every change, and pinned dependencies.",
+      "facts": [
+        "Profile metrics regenerated daily by a scheduled workflow",
+        "Contribution streak regenerated daily and committed only when it changes",
+        "README structure, assets and external links validated on every change and weekly",
+        "Every third-party Action pinned to an immutable commit SHA",
+        "Per-workflow concurrency, with generator pushes restricted to main"
+      ],
+      "process": ["Strategy", "Requirements", "Architecture", "Design system", "Implementation", "Verification", "Production"],
+      "priority": "Customer impact → Business impact → Engineering simplicity → Long-term maintainability"
+    },
+    {
+      "id": "close", "type": "close", "name": "Close", "duration": 7000,
+      "eyebrow": "Brittek Digital",
+      "heading": "Strength is defined by what we remove.",
+      "principles": [
+        "Systems over pages.",
+        "Performance is an aesthetic property.",
+        "Constraints define output.",
+        "Machine-readable first. Human-legible always.",
+        "Motion explains state or it is removed.",
+        "AI is infrastructure, not identity."
+      ],
+      "contact": [
+        { "label": "brittek.net", "href": "https://brittek.net" },
+        { "label": "hello@brittek.net", "href": "" },
+        { "label": "github.com/brittek", "href": "https://github.com/brittek" }
+      ]
+    }
+  ]
+}
+</script>
+
+<script>
+(() => {
+  'use strict';
+
+  const data = JSON.parse(document.getElementById('deck-data').textContent);
+  const scenes = data.scenes;
+  const $ = (id) => document.getElementById(id);
+  const stage = $('stage');
+
+  /* ---------------------------------------------------------------- render */
+
+  const esc = (value) => String(value).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
+  const pad = (n) => String(n).padStart(2, '0');
+  const ref = (item) => (item.ref ? `<span class="ref">${esc(item.ref)}</span>` : '');
+  const r = (i) => `data-r style="--i:${i}"`;
+
+  const head = (s, level = 'h2') => `
+    <div class="head">
+      <span class="label" ${r(0)}>${esc(s.eyebrow)}</span>
+      <h2 class="${level}" data-mask style="--i:1">${esc(s.heading)}</h2>
+      ${s.lede ? `<p class="lede" ${r(3)}>${esc(s.lede)}</p>` : ''}
+    </div>`;
+
+  const renderers = {
+    title: (s) => `
+      <div class="title">
+        <div class="title__text">
+          <span class="label" ${r(0)}>${esc(s.eyebrow)}</span>
+          <h1 class="display" data-mask style="--i:1">${esc(s.heading)}</h1>
+          <p class="lede" ${r(3)}>${esc(s.lede)}</p>
+          <div class="title__meta">${s.meta.map((m, i) => `<span class="label" ${r(4 + i)}>${esc(m)}</span>`).join('')}</div>
+        </div>
+        <div class="field" data-mask style="--i:2">
+          <canvas data-field="${esc(s.id)}" role="img" aria-label="Isometric keycap field: a study of the Registered Execution field, with one signal module lit."></canvas>
+        </div>
+      </div>`,
+
+    practices: (s) => `
+      ${head(s)}
+      <ol class="ruled ruled--3">
+        ${s.items.map((p, i) => `
+          <li style="--i:${i + 3}">
+            <span class="idx" ${r(i + 3)}>${pad(i + 1)} / ${pad(s.items.length)}</span>
+            <h3 class="h3" ${r(i + 3)}>${esc(p.name)}</h3>
+            <p class="body" ${r(i + 4)}>${esc(p.summary)}</p>
+            <ul class="chips" ${r(i + 5)}>${p.outputs.map((o) => `<li>${esc(o)}</li>`).join('')}</ul>
+          </li>`).join('')}
+      </ol>`,
+
+    lineage: (s) => `
+      ${head(s)}
+      <div class="lineage">
+        <ol class="lineage__list">
+          ${s.items.map((it, i) => `
+            <li class="lineage__row" ${r(i + 3)}>
+              <div class="lineage__text">
+                <div class="lineage__top"><h3 class="h3">${esc(it.name)}</h3><span class="label">${esc(it.role)}</span>${ref(it)}</div>
+                <p class="body">${esc(it.summary)}</p>
+                <span class="stack">${esc(it.stack)}</span>
+              </div>
+              <span class="lineage__conn" data-line style="--i:${i + 4}" aria-hidden="true"></span>
+            </li>`).join('')}
+        </ol>
+        <div class="lineage__target" ${r(9)}>
+          <span class="target-dot" aria-hidden="true"></span>
+          <span class="label">${esc(s.target.status)}</span>
+          <h3 class="h2">${esc(s.target.name)}</h3>
+          <p class="body">${esc(s.target.summary)}</p>
+          <span class="stack">${esc(s.target.stack)}</span>
+          ${ref(s.target)}
+        </div>
+      </div>`,
+
+    architecture: (s) => `
+      ${head(s)}
+      <div class="flow" role="group" aria-label="Content compilation flow">
+        <div class="node" ${r(3)}><span class="label">Source</span><code>${esc(s.source.path)}</code><p class="body">${esc(s.source.summary)}</p></div>
+        <span class="flow__arrow" data-line style="--i:4" aria-hidden="true"></span>
+        <div class="node node--signal" ${r(5)}><span class="label">Boundary</span><code>${esc(s.boundary.path)}</code><p class="body">${esc(s.boundary.summary)}</p></div>
+        <span class="flow__arrow" data-line style="--i:6" aria-hidden="true"></span>
+        <div class="outputs">
+          ${s.outputs.map((o, i) => `
+            <div class="node" ${r(7 + i)}><span class="label">${esc(o.name)}</span>
+              <ul class="files">${o.files.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
+            </div>`).join('')}
+        </div>
+      </div>
+      <ul class="gates" ${r(10)} aria-label="Release gates">${s.gates.map((g) => `<li>${esc(g)}</li>`).join('')}</ul>`,
+
+    dual: (s) => `
+      ${head(s)}
+      <div class="dual">
+        <div class="dual__col"><span class="label" ${r(3)}>Human layer</span>
+          <ul class="terms">${s.human.map((t, i) => `<li ${r(i + 4)}>${esc(t)}</li>`).join('')}</ul></div>
+        <div class="dual__col"><span class="label" ${r(3)}>Machine layer</span>
+          <ul class="terms terms--machine">${s.machine.map((t, i) => `<li ${r(i + 5)}>${esc(t)}</li>`).join('')}</ul></div>
+      </div>
+      <ol class="chain" ${r(10)} aria-label="Compilation chain">
+        ${s.chain.map((c, i) => `${i ? '<li aria-hidden="true">→</li>' : ''}<li>${esc(c)}</li>`).join('')}
+      </ol>`,
+
+    instrument: (s) => `
+      ${head(s)}
+      <div class="instrument">
+        <div ${r(3)}>
+          <p class="metric">${esc(s.metric)}</p>
+          <div class="metric-caption"><span class="h3">${esc(s.metricLabel)}</span><span class="label">${esc(s.metricMeta)}</span></div>
+        </div>
+        <div class="meter">
+          <span class="label" ${r(4)}>Four evidence groups · 100 points</span>
+          <div class="meter__bar" aria-hidden="true">${s.groups.map((g, i) => `<span class="meter__seg" data-line style="--i:${i + 5}"></span>`).join('')}</div>
+          <div class="meter__groups">
+            ${s.groups.map((g, i) => `
+              <div class="meter__group" ${r(i + 6)}>
+                <span class="meter__pts">${esc(g.points)}</span>
+                <span class="h3">${esc(g.name)}</span>
+                <p class="body">${esc(g.summary)}</p>
+              </div>`).join('')}
+          </div>
+          <ol class="steps" ${r(11)} aria-label="Instrument flow">${s.flow.map((f, i) => `<li data-n="${pad(i + 1)}">${esc(f)}</li>`).join('')}</ol>
+          <p class="note" ${r(12)}>${esc(s.boundary)}</p>
+        </div>
+      </div>`,
+
+    identity: (s) => `
+      ${head(s)}
+      <div class="identity">
+        <div class="block">
+          <span class="label" ${r(2)}>Type registers</span>
+          <ul class="specimens">
+            ${s.specimens.map((sp, i) => `
+              <li class="specimen" ${r(i + 3)}>
+                <span class="specimen__sample" style="font-family:var(--font-${esc(sp.family)})">${esc(sp.sample)}</span>
+                <span class="label">${esc(sp.role)} · ${esc(sp.face)}</span>
+              </li>`).join('')}
+          </ul>
+          <p class="note" ${r(7)}>${esc(s.specimenNote)}</p>
+        </div>
+        <div class="side">
+          <div class="block">
+            <span class="label" ${r(4)}>Colour</span>
+            <ul class="swatches">
+              ${s.palette.map((c, i) => `
+                <li class="swatch" ${r(i + 5)}>
+                  <span class="swatch__chip" style="background:${esc(c.hex)}"></span>
+                  <span class="label">${esc(c.name)}<br>${esc(c.hex)}</span>
+                </li>`).join('')}
+            </ul>
+          </div>
+          <div class="block">
+            <span class="label" ${r(8)}>Motion · three named curves</span>
+            <ul class="curves">
+              ${s.curves.map((c, i) => {
+                const [x1, y1, x2, y2] = c.bezier;
+                const d = `M0 100 C${x1 * 100} ${100 - y1 * 100} ${x2 * 100} ${100 - y2 * 100} 100 0`;
+                return `
+                <li class="curve" ${r(i + 9)}>
+                  <svg viewBox="-6 -6 112 112" aria-hidden="true">
+                    <path d="M0 100 L100 0" fill="none" stroke="var(--line)" stroke-width="1"></path>
+                    <path d="${d}" fill="none" stroke="var(--ink)" stroke-width="2"></path>
+                    <rect x="97" y="-3" width="6" height="6" fill="var(--signal)"></rect>
+                  </svg>
+                  <span class="label">${esc(c.name)} · ${esc(c.use)}</span>
+                </li>`;
+              }).join('')}
+            </ul>
+          </div>
+          <p class="note" ${r(12)}>${esc(s.artefact)}</p>
+        </div>
+      </div>`,
+
+    index: (s) => `
+      ${head(s)}
+      <ol class="ruled ruled--4">
+        ${s.items.map((it, i) => `
+          <li style="--i:${i + 2}">
+            <span class="idx" ${r(i + 2)}>${pad(i + 1)} · ${esc(it.status)}</span>
+            <h3 class="h3" ${r(i + 2)}>${esc(it.name)}</h3>
+            <p class="body" ${r(i + 3)}>${esc(it.summary)}</p>
+            <span class="stack" ${r(i + 3)}>${esc(it.stack)}</span>
+            ${it.ref ? `<span ${r(i + 3)}>${ref(it)}</span>` : ''}
+          </li>`).join('')}
+      </ol>
+      <p class="note" ${r(11)}>${esc(s.note)}</p>`,
+
+    operations: (s) => `
+      ${head(s)}
+      <div class="ops">
+        <div class="block">
+          <span class="label" ${r(3)}>Profile infrastructure</span>
+          <ul class="facts">${s.facts.map((f, i) => `<li ${r(i + 4)}><span>${pad(i + 1)}</span><span>${esc(f)}</span></li>`).join('')}</ul>
+        </div>
+        <div class="block">
+          <span class="label" ${r(3)}>Process</span>
+          <ol class="process">${s.process.map((p, i) => `<li ${r(i + 4)}><span>${pad(i + 1)}</span><span>${esc(p)}</span></li>`).join('')}</ol>
+          <p class="note" ${r(11)}>${esc(s.priority)}</p>
+        </div>
+      </div>`,
+
+    close: (s) => `
+      <div class="close">
+        <span class="label" ${r(0)}>${esc(s.eyebrow)}</span>
+        <h2 class="display" data-mask style="--i:1">${esc(s.heading)}</h2>
+        <ul class="principles">${s.principles.map((p, i) => `<li ${r(i + 3)}>${esc(p)}</li>`).join('')}</ul>
+        <div class="contact" ${r(9)}>
+          ${s.contact.map((c) => (c.href
+            ? `<a href="${esc(c.href)}" target="_blank" rel="noopener">${esc(c.label)}</a>`
+            : `<span>${esc(c.label)}</span>`)).join('')}
+        </div>
+      </div>`,
+  };
+
+  $('edition').textContent = `Selected work · ${data.edition}`;
+  stage.insertAdjacentHTML('beforeend', scenes.map((s, i) => `
+    <section class="scene" id="scene-${i + 1}" data-index="${i}"
+      aria-roledescription="scene" aria-label="${pad(i + 1)} of ${pad(scenes.length)}: ${esc(s.name)}">
+      <div class="scene__inner">${renderers[s.type](s)}</div>
+    </section>`).join(''));
+
+  const sceneEls = [...stage.querySelectorAll('.scene')];
+  const segments = $('segments');
+  segments.innerHTML = scenes.map((s, i) => `
+    <li><button class="seg" type="button" data-go="${i}" aria-label="Scene ${i + 1}: ${esc(s.name)}"></button></li>`).join('');
+  const segEls = [...segments.querySelectorAll('.seg')];
+
+  /* ---------------------------------------------------------------- field */
+  // A study of the Registered Execution field: a seeded isometric lattice of
+  // keycap frusta at four elevation levels, drawn back to front. Same seed,
+  // same field. Drawn once per size or theme change; it never loops.
+
+  const C30 = Math.cos(Math.PI / 6);
+  const LEVELS = [0.45, 1, 1.4, 1.9];
+
+  function mulberry(seed) {
+    let a = seed;
+    return () => {
+      a |= 0; a = (a + 0x6d2b79f5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function hash2(x, y, seed) {
+    let h = Math.imul(x, 374761393) ^ Math.imul(y, 668265263) ^ Math.imul(seed, 2246822519);
+    h = Math.imul(h ^ (h >>> 13), 1274126177);
+    return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+  }
+  function valueNoise(x, y, seed) {
+    const xi = Math.floor(x), yi = Math.floor(y);
+    const xf = x - xi, yf = y - yi;
+    const sx = xf * xf * (3 - 2 * xf), sy = yf * yf * (3 - 2 * yf);
+    const a = hash2(xi, yi, seed), b = hash2(xi + 1, yi, seed);
+    const c = hash2(xi, yi + 1, seed), d = hash2(xi + 1, yi + 1, seed);
+    return (a + (b - a) * sx) + ((c + (d - c) * sx) - (a + (b - a) * sx)) * sy;
+  }
+
+  function drawField(canvas, seed = 1018) {
+    const box = canvas.parentElement.getBoundingClientRect();
+    const w = Math.round(box.width), h = Math.round(box.height);
+    if (!w || !h) return;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    const css = getComputedStyle(document.documentElement);
+    const col = (name) => css.getPropertyValue(name).trim();
+    const top = col('--field-top'), left = col('--field-left'), right = col('--field-right');
+    const edge = col('--field-edge'), signal = col('--signal');
+
+    const s = Math.max(18, Math.min(40, w / 24));
+    const a = s * C30, b = s * 0.5;
+    const fx = w * 0.58, fy = h * 0.52, diag = Math.hypot(w, h);
+    const rand = mulberry(seed);
+    const caps = [];
+
+    for (let row = -2; row * b < h + s * 3; row++) {
+      for (let c = -Math.ceil(w / a) - 2; c * a < w + a * 2; c++) {
+        if ((c + row) & 1) continue;
+        const x = c * a, y = row * b;
+        if (x < -a || x > w + a) continue;
+        const d = Math.hypot(x - fx, y - fy) / diag;
+        const fall = Math.max(0, 1 - d / 0.52);
+        const presence = valueNoise(c * 0.21, row * 0.21, seed) * 0.55 + fall * 0.8;
+        if (presence < 0.74) continue;
+        const level = Math.min(3, Math.floor(valueNoise(c * 0.13 + 40, row * 0.13 + 40, seed + 7) * 3.2 + fall * 1.4));
+        caps.push({ x, y, level, d, jitter: rand() });
+      }
+    }
+    if (!caps.length) return;
+
+    // One Signal module: the most central cap at elevation two or above.
+    let signalCap = caps[0];
+    for (const cap of caps) {
+      if (cap.level >= 2 && (signalCap.level < 2 || cap.d < signalCap.d)) signalCap = cap;
+    }
+
+    const g = 0.86, t = 0.6;
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = 0.75;
+    ctx.strokeStyle = edge;
+    const poly = (pts, fill) => {
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+      ctx.closePath();
+      ctx.fillStyle = fill; ctx.fill(); ctx.stroke();
+    };
+
+    for (const cap of caps) { // Painter's order: rows were generated back to front.
+      const { x, y } = cap;
+      const lift = LEVELS[cap.level] * s * 0.34;
+      const B = [[x, y - b * g], [x + a * g, y], [x, y + b * g], [x - a * g, y]];
+      const ty = y - lift, tg = g * t;
+      const T = [[x, ty - b * tg], [x + a * tg, ty], [x, ty + b * tg], [x - a * tg, ty]];
+      poly([B[3], B[2], T[2], T[3]], left);
+      poly([B[2], B[1], T[1], T[2]], right);
+      poly(T, cap === signalCap ? signal : top);
+      if (cap !== signalCap && cap.jitter > 0.93) { // sparse asterisk legends
+        ctx.save();
+        ctx.strokeStyle = edge; ctx.lineWidth = 1;
+        const r0 = b * tg * 0.55;
+        for (let k = 0; k < 3; k++) {
+          const ang = (Math.PI / 3) * k;
+          ctx.beginPath();
+          ctx.moveTo(x - Math.cos(ang) * r0 * 1.6, ty - Math.sin(ang) * r0);
+          ctx.lineTo(x + Math.cos(ang) * r0 * 1.6, ty + Math.sin(ang) * r0);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+    }
+  }
+
+  const fields = [...stage.querySelectorAll('canvas[data-field]')];
+  let fieldFrame = 0;
+  const redrawFields = () => {
+    cancelAnimationFrame(fieldFrame);
+    fieldFrame = requestAnimationFrame(() => fields.forEach((c) => drawField(c)));
+  };
+  const fieldObserver = new ResizeObserver(redrawFields);
+  fields.forEach((c) => fieldObserver.observe(c.parentElement));
+  const themeObserver = new MutationObserver(redrawFields);
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+  const schemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  schemeQuery.addEventListener('change', redrawFields);
+
+  /* ---------------------------------------------------------------- state */
+
+  let index = 0;
+  let playing = false;
+  let timer = 0;
+  const last = scenes.length - 1;
+
+  function go(next, { announce = true } = {}) {
+    index = Math.max(0, Math.min(last, next));
+    sceneEls.forEach((el, i) => {
+      const active = i === index;
+      el.classList.toggle('is-active', active);
+      el.inert = !active;
+      el.setAttribute('aria-hidden', String(!active));
+      if (active) el.scrollTop = 0;
+    });
+    segEls.forEach((el, i) => {
+      el.dataset.state = i < index ? 'past' : i === index ? 'current' : 'future';
+      if (i === index) el.setAttribute('aria-current', 'step'); else el.removeAttribute('aria-current');
+    });
+    $('count').textContent = `${pad(index + 1)} / ${pad(scenes.length)}`;
+    $('scene-name').textContent = scenes[index].name;
+    $('prev').disabled = index === 0;
+    $('next').disabled = index === last;
+    if (announce) $('announce').textContent = `Scene ${index + 1} of ${scenes.length}: ${scenes[index].name}`;
+    try { history.replaceState(null, '', `#scene-${index + 1}`); } catch (e) { /* sandboxed frame */ }
+    if (playing) schedule();
+  }
+
+  function schedule() {
+    clearTimeout(timer);
+    if (!playing || document.hidden) return;
+    timer = setTimeout(() => (index < last ? go(index + 1) : setPlaying(false)), scenes[index].duration || 8000);
+  }
+
+  function setPlaying(value) {
+    playing = value;
+    $('play').setAttribute('aria-pressed', String(playing));
+    $('play-label').textContent = playing ? 'Pause' : 'Play';
+    $('play-icon').textContent = playing ? '❚❚' : '▶';
+    if (playing && index === last) go(0); else schedule();
+    if (!playing) clearTimeout(timer);
+  }
+
+  /* ---------------------------------------------------------------- input */
+
+  $('prev').addEventListener('click', () => go(index - 1));
+  $('next').addEventListener('click', () => go(index + 1));
+  $('play').addEventListener('click', () => setPlaying(!playing));
+  segments.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-go]');
+    if (btn) go(Number(btn.dataset.go));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    const onControl = e.target.closest && e.target.closest('button, a, input, textarea, select');
+    const keys = {
+      ArrowRight: () => go(index + 1), PageDown: () => go(index + 1),
+      ArrowLeft: () => go(index - 1), PageUp: () => go(index - 1),
+      Home: () => go(0), End: () => go(last),
+      k: () => setPlaying(!playing), K: () => setPlaying(!playing),
+    };
+    if (e.key === ' ' && !onControl) keys[' '] = () => go(index + 1);
+    const action = keys[e.key];
+    if (!action) return;
+    e.preventDefault();
+    action();
+  });
+
+  // Horizontal swipe changes scene; vertical movement stays with the scene's own scroll.
+  let touch = null;
+  stage.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'mouse') touch = { x: e.clientX, y: e.clientY };
+  });
+  stage.addEventListener('pointerup', (e) => {
+    if (!touch) return;
+    const dx = e.clientX - touch.x, dy = e.clientY - touch.y;
+    touch = null;
+    if (Math.abs(dx) > 60 && Math.abs(dy) < 48) go(index + (dx < 0 ? 1 : -1));
+  });
+  stage.addEventListener('pointercancel', () => { touch = null; });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) clearTimeout(timer); else schedule();
+  });
+  window.addEventListener('pagehide', () => {
+    clearTimeout(timer);
+    fieldObserver.disconnect();
+    themeObserver.disconnect();
+    schemeQuery.removeEventListener('change', redrawFields);
+  });
+
+  /* ---------------------------------------------------------------- start */
+  // The first scene renders in its resting state. Nothing plays until asked.
+
+  const fromHash = /^#scene-(\d+)$/.exec(location.hash);
+  document.documentElement.classList.add('no-motion');
+  go(fromHash ? Number(fromHash[1]) - 1 : 0, { announce: false });
+  redrawFields();
+  requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.remove('no-motion')));
+})();
+</script>
+</body>
+</html>
