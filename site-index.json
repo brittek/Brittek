@@ -45,6 +45,12 @@
       "id": "workflow-docs",
       "type": "documentation",
       "path": "/docs/WORKFLOWS.md"
+    },
+    {
+      "id": "presentation",
+      "type": "presentation",
+      "path": "/presentation/index.html",
+      "description": "Selected work, 2018–2026, as an animated presentation."
     }
   ]
 }

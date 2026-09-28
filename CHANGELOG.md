@@ -15,7 +15,11 @@ semantic versioning for ordinary profile edits.
 - workflow documentation;
 - repository hygiene configuration;
 - `.github/PULL_REQUEST_TEMPLATE.md` and `.github/ISSUE_TEMPLATE/` to match
-  the documented repository standard.
+  the documented repository standard;
+- `presentation/index.html`, a self-contained animated presentation of
+  selected Brittek work (practices, website lineage, Brittek Surface, the
+  Machine Surface Inspector, identity system, studies and tools, operations).
+  Content lives in one JSON block; client work is withheld until clearance.
 
 ### Changed
 
