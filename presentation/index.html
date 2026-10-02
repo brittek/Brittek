@@ -105,10 +105,9 @@ button { font: inherit; color: inherit; }
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
   padding: 18px var(--gutter);
 }
-.mark {
-  font: 600 17px/1 var(--font-display);
-  letter-spacing: -0.03em;
-}
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); }
+.brand__wm { display: block; height: 19px; width: auto; --wm-stop: var(--signal); }
+.brand__ast { display: block; height: 9px; width: auto; color: var(--signal); }
 .label {
   font: 400 10px/1.4 var(--font-mono);
   letter-spacing: 0.2em;
@@ -131,7 +130,7 @@ button { font: inherit; color: inherit; }
 .scene__inner {
   max-width: 1440px; min-height: 100%;
   margin-inline: auto;
-  display: grid; align-content: center; gap: clamp(24px, 4vh, 48px);
+  display: grid; align-content: center; gap: clamp(20px, 3.2vh, 40px);
 }
 
 /* --- Reveal primitives: transform, opacity and clip-path only ------------- */
@@ -214,7 +213,7 @@ button { font: inherit; color: inherit; }
 .ruled { display: grid; gap: 0 clamp(20px, 3vw, 48px); margin: 0; padding: 0; list-style: none; }
 .ruled--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .ruled--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.ruled > li { position: relative; display: grid; align-content: start; gap: 10px; padding: 20px 0 28px; }
+.ruled > li { position: relative; display: grid; align-content: start; gap: 8px; padding: 16px 0 20px; }
 .ruled > li::before {
   content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--ink);
   transform: scaleX(0); transform-origin: 0 50%;
@@ -250,10 +249,11 @@ button { font: inherit; color: inherit; }
 .lineage__row {
   display: grid; grid-template-columns: minmax(0, 1fr) clamp(32px, 7vw, 120px);
   align-items: center; gap: 20px;
-  padding: 10px 0; border-top: 1px solid var(--line);
+  padding: 6px 0; border-top: 1px solid var(--line);
 }
 .lineage__row:last-child { border-bottom: 1px solid var(--line); }
-.lineage__text { display: grid; gap: 2px; }
+.lineage__text { display: grid; gap: 0; }
+.lineage__text .body { font-size: 14px; line-height: 1.45; }
 .lineage__top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
 .lineage__conn { height: 1px; background: var(--ink); }
 .lineage__target { position: relative; padding-left: clamp(32px, 5vw, 80px); display: grid; gap: 14px; }
@@ -365,6 +365,55 @@ button { font: inherit; color: inherit; }
 .contact a { border-bottom: 1px solid var(--line); padding-bottom: 2px; }
 .contact a:hover { border-bottom-color: var(--signal); }
 
+/* --- Wipe primitive: wordmarks enter left to right ---------------------- */
+[data-wipe] { clip-path: inset(0 100% 0 0); transition: clip-path 0s linear var(--dur-exit); }
+.is-active [data-wipe] {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path var(--dur-reveal) var(--ease-state) calc(var(--i, 0) * var(--stagger) + 200ms);
+}
+
+/* --- Marks: placed from the vector masters, never redrawn ---------------- */
+.cmd { fill: var(--bg); stroke: currentColor; stroke-width: 2.2; --cmd-ast: var(--signal); }
+.marks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); margin: 0; padding: 0; list-style: none; }
+.mk { display: grid; align-content: start; gap: 10px; }
+.mk__art {
+  position: relative; aspect-ratio: 1.15 / 1; display: grid; place-items: center; overflow: hidden;
+  background: var(--raised); border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink);
+}
+.mk__art svg { display: block; height: auto; max-width: 100%; }
+.mk__art .label { position: absolute; left: 12px; top: 10px; }
+.mk__cmd { width: 50%; }
+.mk__wm { width: 60%; --wm-stop: var(--signal); }
+.mk__ast { width: 58%; color: var(--signal); }
+.mk__rt { width: 58%; --rt-stop: var(--signal); }
+.mk__top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+
+/* --- Applications: fixed brand grounds, independent of viewer theme ----- */
+.apps { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(12px, 1.6vw, 24px); margin: 0; padding: 0; list-style: none; }
+.app { display: grid; align-content: start; gap: 10px; }
+.app__art {
+  position: relative; height: clamp(180px, 30vh, 300px); display: grid; place-items: center; overflow: hidden;
+  border-radius: var(--radius); border: 1px solid var(--line);
+}
+.app__art--ink { background: #0D0D0B; border-color: #0D0D0B; }
+.app__art--paper { background: #FAFAF7; }
+.app__art--low { background: #E4E2DC; }
+.avatar { width: clamp(130px, 22vh, 230px); aspect-ratio: 1; border-radius: 50%; background: #F4F3EF; display: grid; place-items: center; }
+.avatar svg { width: 68%; height: auto; color: #111111; --rt-stop: #FE4A02; }
+.lockup { display: flex; align-items: center; gap: clamp(8px, 1.6vw, 22px); width: 88%; color: #111111; }
+.lockup .cmd { width: 24%; height: auto; flex: none; fill: #FAFAF7; stroke: #111111; stroke-width: 6; }
+.lockup__rt { width: 40%; height: auto; flex: none; --rt-stop: #FE4A02; }
+.lockup__rule { align-self: stretch; width: 1px; background: #BDB8AE; margin-block: 6%; flex: none; }
+.lockup__txt { margin: 0; font: 500 clamp(7px, 0.85vw, 12px)/1.6 var(--font-mono); letter-spacing: 0.3em; text-transform: uppercase; color: #111111; }
+.lid { width: min(74%, clamp(160px, 26vh, 280px)); aspect-ratio: 1.42; background: #111111; border-bottom: 10px solid #2A2A27; display: grid; place-items: center; }
+.lid svg { width: 38%; height: auto; fill: none; stroke: #F4F3EF; stroke-width: 3; --cmd-ast: #F4F3EF; }
+
+/* --- The Lab ------------------------------------------------------------- */
+.figs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 clamp(16px, 2vw, 32px); }
+.figs > div { display: grid; align-content: start; gap: 6px; padding-top: 10px; border-top: 1px solid var(--ink); }
+.figs__n { font: 300 clamp(3rem, 5.5vw, 5rem)/0.85 var(--font-metric); letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
+.figs > div:last-child .figs__n { color: var(--signal); }
+
 /* --- Transport ----------------------------------------------------------- */
 .transport {
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px 24px;
@@ -403,7 +452,9 @@ button { font: inherit; color: inherit; }
   .title, .lineage, .instrument, .identity, .ops, .dual { grid-template-columns: minmax(0, 1fr); }
   .title .field { order: -1; aspect-ratio: 16 / 9; }
   .ruled--3, .ruled--4, .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .flow { grid-template-columns: minmax(0, 1fr); }
+  .flow, .apps { grid-template-columns: minmax(0, 1fr); }
+  .marks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lockup__txt { font-size: 9px; }
   .flow__arrow { width: 1px; height: 28px; justify-self: start; margin-left: 24px; }
   .flow__arrow::after { right: -4px; top: auto; bottom: -1px; border: 4.5px solid transparent; border-top: 7px solid var(--ink); border-bottom: 0; }
   .lineage__row { grid-template-columns: minmax(0, 1fr); }
@@ -412,6 +463,7 @@ button { font: inherit; color: inherit; }
 }
 @media (max-width: 640px) {
   .ruled--3, .ruled--4, .principles, .meter__groups { grid-template-columns: minmax(0, 1fr); }
+  .figs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .meter__group { padding: 10px 0; border-top: 1px solid var(--line); }
   .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .transport { grid-template-columns: auto minmax(0, 1fr); }
@@ -421,9 +473,24 @@ button { font: inherit; color: inherit; }
 </style>
 </head>
 <body>
+<!-- Identity masters, placed from the 2026.9.8 vector sources (via The Lab 2026.14). Never redrawn. -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="m-wm" viewBox="0 0 3669 1510"><g transform="translate(-97 1490)"><path fill="currentColor" d="M690 20Q595 20 531.5 -12.5Q468 -45 429.5 -90.5Q391 -136 371 -177H355V0H97V-1490H360V-933H371Q391 -973 428 -1019.5Q465 -1066 528.5 -1099Q592 -1132 691 -1132Q820 -1132 924 -1066Q1028 -1000 1089.5 -872Q1151 -744 1151 -557Q1151 -373 1091 -244Q1031 -115 926.5 -47.5Q822 20 690 20ZM618 -196Q705 -196 763.5 -243Q822 -290 852 -372Q882 -454 882 -558Q882 -662 852 -743Q822 -824 764 -870Q706 -916 618 -916Q533 -916 474.5 -872Q416 -828 385.5 -747.5Q355 -667 355 -558Q355 -450 385.5 -368.5Q416 -287 475 -241.5Q534 -196 618 -196Z M1194.6 0V-1118H1449.6V-930H1461.6Q1491.6 -1028 1566.6 -1080.5Q1641.6 -1133 1737.6 -1133Q1758.6 -1133 1786.1 -1131Q1813.6 -1129 1831.6 -1126V-884Q1814.6 -890 1778.6 -894Q1742.6 -898 1709.6 -898Q1636.6 -898 1579.6 -867Q1522.6 -836 1490.1 -782Q1457.6 -728 1457.6 -656V0Z M2385.2 -1118V-914H1744.2V-1118ZM1901.2 -1384H2164.2V-336Q2164.2 -270 2193.2 -238.5Q2222.2 -207 2285.2 -207Q2302.2 -207 2323.2 -210Q2344.2 -213 2361.2 -217L2406.2 -11Q2364.2 2 2321.2 8.5Q2278.2 15 2235.2 15Q2079.2 15 1990.2 -67.5Q1901.2 -150 1901.2 -293Z M2667.8 -350 2666.8 -669H2709.8L3110.8 -1118H3418.8L2924.8 -567H2869.8ZM2427.8 0V-1490H2690.8V0ZM3128.8 0 2764.8 -508 2942.8 -694 3443.8 0Z"/><path fill="var(--wm-stop,currentColor)" d="M3605.4 17Q3537.4 17 3490.9 -29.5Q3444.4 -76 3444.4 -143Q3444.4 -210 3490.9 -256.5Q3537.4 -303 3605.4 -303Q3673.4 -303 3719.9 -256.5Q3766.4 -210 3766.4 -143Q3766.4 -76 3719.9 -29.5Q3673.4 17 3605.4 17Z"/></g></symbol>
+    <symbol id="m-ast" viewBox="0 0 29 13"><path fill="currentColor" d="M0.5 6.002 L0.5 7 L10.679 7 L10.711 7.004 L10.739 7.016 L10.764 7.035 L10.783 7.06 L10.798 7.105 L10.793 7.159 L10.764 7.205 L10.717 7.234 L5.342 9.026 L5.658 9.974 L13.276 7.435 L13.381 7.411 L13.488 7.408 L13.594 7.426 L13.695 7.464 L13.757 7.5 L13.814 7.544 L13.864 7.595 L13.908 7.652 L13.944 7.714 L13.971 7.78 L13.989 7.85 L13.999 7.921 L14 12.5 L15 12.5 L15.001 7.921 L15.011 7.85 L15.042 7.747 L15.073 7.683 L15.113 7.623 L15.16 7.569 L15.214 7.521 L15.305 7.464 L15.371 7.437 L15.476 7.412 L15.547 7.407 L15.619 7.411 L15.724 7.435 L23.342 9.974 L23.658 9.026 L18.283 7.234 L18.236 7.205 L18.207 7.159 L18.202 7.105 L18.217 7.06 L18.236 7.035 L18.261 7.016 L18.289 7.004 L18.321 7 L28.5 7 L28.5 6 L18.321 6 L18.289 5.996 L18.261 5.984 L18.236 5.965 L18.217 5.94 L18.202 5.895 L18.207 5.841 L18.236 5.795 L18.283 5.766 L23.658 3.974 L23.342 3.026 L15.724 5.565 L15.619 5.589 L15.512 5.592 L15.406 5.574 L15.305 5.536 L15.243 5.5 L15.186 5.456 L15.136 5.405 L15.092 5.348 L15.056 5.286 L15.029 5.22 L15.011 5.15 L15.001 5.079 L15 0.5 L14 0.5 L13.999 5.079 L13.989 5.15 L13.971 5.22 L13.944 5.286 L13.887 5.377 L13.84 5.431 L13.786 5.479 L13.726 5.519 L13.629 5.563 L13.524 5.588 L13.453 5.593 L13.381 5.589 L13.276 5.565 L5.658 3.026 L5.342 3.974 L10.717 5.766 L10.764 5.795 L10.793 5.841 L10.798 5.895 L10.783 5.94 L10.764 5.965 L10.739 5.984 L10.711 5.996 L10.679 6Z"/></symbol>
+    <symbol id="m-rt" viewBox="0 0 36 13"><path fill="currentColor" shape-rendering="crispEdges" d="M0 3 L0 4 L0 5 L0 6 L0 7 L0 8 L0 9 L0 10 L0 11 L0 12 L0 13 L1 13 L2 13 L2 12 L3 12 L3 13 L4 13 L5 13 L6 13 L7 13 L7 12 L8 12 L8 11 L8 10 L8 9 L8 8 L8 7 L8 6 L8 5 L7 5 L7 4 L6 4 L5 4 L4 4 L3 4 L3 5 L2 5 L2 4 L2 3 L2 2 L2 1 L2 0 L1 0 L0 0 L0 1 L0 2ZM2 8 L2 7 L2 6 L3 6 L4 6 L5 6 L6 6 L6 7 L6 8 L6 9 L6 10 L6 11 L5 11 L4 11 L3 11 L2 11 L2 10 L2 9ZM26 5 L26 6 L26 7 L26 8 L26 9 L26 10 L26 11 L26 12 L26 13 L27 13 L28 13 L28 12 L28 11 L28 10 L28 9 L29 9 L29 10 L30 10 L30 11 L31 11 L31 12 L31 13 L32 13 L33 13 L33 12 L33 11 L32 11 L32 10 L31 10 L31 9 L30 9 L30 8 L30 7 L31 7 L31 6 L32 6 L32 5 L33 5 L33 4 L32 4 L31 4 L31 5 L30 5 L30 6 L29 6 L29 7 L28 7 L28 6 L28 5 L28 4 L28 3 L28 2 L28 1 L28 0 L27 0 L26 0 L26 1 L26 2 L26 3 L26 4ZM19 4 L18 4 L18 5 L18 6 L19 6 L19 7 L19 8 L19 9 L19 10 L19 11 L19 12 L20 12 L20 13 L21 13 L22 13 L23 13 L24 13 L24 12 L24 11 L23 11 L22 11 L21 11 L21 10 L21 9 L21 8 L21 7 L21 6 L22 6 L23 6 L24 6 L24 5 L24 4 L23 4 L22 4 L21 4 L21 3 L21 2 L21 1 L20 1 L19 1 L19 2 L19 3ZM10 9 L10 10 L10 11 L10 12 L10 13 L11 13 L12 13 L12 12 L12 11 L12 10 L12 9 L12 8 L12 7 L13 7 L14 7 L14 6 L15 6 L16 6 L17 6 L17 5 L17 4 L16 4 L15 4 L14 4 L14 5 L13 5 L13 6 L12 6 L12 5 L12 4 L11 4 L10 4 L10 5 L10 6 L10 7 L10 8Z"/><path fill="var(--rt-stop,currentColor)" shape-rendering="crispEdges" d="M34 12 L34 13 L35 13 L36 13 L36 12 L36 11 L35 11 L34 11Z"/></symbol>
+    <path id="lgpath" d="M-58.531 -1.202 L-58.531 1.207 L-15.973 1.207 L-15.843 1.217 L-15.722 1.246 L-15.618 1.292 L-15.538 1.352 L-15.476 1.46 L-15.499 1.591 L-15.62 1.702 L-15.815 1.771 L-38.288 6.097 L-36.966 8.386 L-5.117 2.257 L-4.679 2.199 L-4.229 2.192 L-3.786 2.235 L-3.366 2.328 L-3.107 2.415 L-2.869 2.52 L-2.658 2.643 L-2.476 2.781 L-2.326 2.931 L-2.212 3.091 L-2.134 3.258 L-2.095 3.43 L-2.09 14.483 L2.09 14.483 L2.095 3.43 L2.134 3.258 L2.264 3.01 L2.397 2.854 L2.563 2.71 L2.76 2.58 L2.985 2.465 L3.366 2.328 L3.643 2.261 L4.08 2.201 L4.379 2.189 L4.679 2.199 L5.117 2.257 L36.966 8.386 L38.288 6.097 L15.815 1.771 L15.62 1.702 L15.499 1.591 L15.476 1.46 L15.538 1.352 L15.618 1.292 L15.722 1.246 L15.843 1.217 L15.973 1.207 L58.531 1.207 L58.531 -1.207 L15.973 -1.207 L15.843 -1.217 L15.722 -1.246 L15.618 -1.292 L15.538 -1.352 L15.476 -1.46 L15.499 -1.591 L15.62 -1.702 L15.815 -1.771 L38.288 -6.097 L36.966 -8.386 L5.117 -2.257 L4.679 -2.199 L4.229 -2.192 L3.786 -2.235 L3.366 -2.328 L3.107 -2.415 L2.869 -2.52 L2.658 -2.643 L2.476 -2.781 L2.326 -2.931 L2.212 -3.091 L2.134 -3.258 L2.095 -3.43 L2.09 -14.483 L-2.09 -14.483 L-2.095 -3.43 L-2.134 -3.258 L-2.212 -3.091 L-2.326 -2.931 L-2.563 -2.71 L-2.76 -2.58 L-2.985 -2.465 L-3.234 -2.369 L-3.643 -2.261 L-4.08 -2.201 L-4.379 -2.189 L-4.679 -2.199 L-5.117 -2.257 L-36.966 -8.386 L-38.288 -6.097 L-15.815 -1.771 L-15.62 -1.702 L-15.499 -1.591 L-15.476 -1.46 L-15.538 -1.352 L-15.618 -1.292 L-15.722 -1.246 L-15.843 -1.217 L-15.973 -1.207Z"/>
+    <symbol id="m-cmd" viewBox="-6 -6 270.49 228"><g transform="translate(129.24 58)" stroke-linejoin="miter">
+      <polygon points="-86.60,0.00 0.00,50.00 0.00,150.00 -121.24,80.00"/>
+      <polygon points="0.00,50.00 86.60,0.00 121.24,80.00 0.00,150.00"/>
+      <polygon points="0.00,-50.00 86.60,0.00 0.00,50.00 -86.60,0.00"/>
+      <use href="#lgpath" fill="var(--cmd-ast,#FE4A02)" stroke="none"/>
+    </g></symbol>
+  </defs>
+</svg>
 <div class="deck" id="deck">
   <header class="bar">
-    <span class="mark">Brittek Digital</span>
+    <span class="brand" role="img" aria-label="brtk. Brittek Digital"><svg class="brand__wm" viewBox="0 0 3669 1510" aria-hidden="true"><use href="#m-wm"/></svg><svg class="brand__ast" viewBox="0 0 29 13" aria-hidden="true"><use href="#m-ast"/></svg></span>
     <span class="label" id="edition">Selected work</span>
   </header>
 
@@ -458,64 +525,371 @@ button { font: inherit; color: inherit; }
 <script type="application/json" id="deck-data">
 {
   "edition": "Public edition",
-  "updated": "2026-09-28",
+  "updated": "2026-10-02",
   "scenes": [
     {
-      "id": "title", "type": "title", "name": "Opening", "duration": 6000,
+      "id": "title",
+      "type": "title",
+      "name": "Opening",
+      "duration": 6000,
       "eyebrow": "Brittek Digital · Sydney · Since 2018",
       "heading": "Selected work, 2018–2026",
       "lede": "Websites, identity systems, instruments and operational tools, designed and engineered inside one continuous process.",
-      "meta": ["Founded 06.10.2018", "Independent design-engineering studio", "Ten scenes"]
+      "meta": [
+        "Founded 06.10.2018",
+        "Independent design-engineering studio",
+        "Thirteen scenes"
+      ]
     },
     {
-      "id": "practices", "type": "practices", "name": "Practices", "duration": 8000,
+      "id": "practices",
+      "type": "practices",
+      "name": "Practices",
+      "duration": 8000,
       "eyebrow": "Practice",
       "heading": "Three practices. There is no fourth.",
       "lede": "Every piece of work in this sequence belongs to one of them. Visibility, SEO and answer-engine work are methods inside Digital Infrastructure, not a separate line.",
       "items": [
-        { "id": "digital-infrastructure", "name": "Digital Infrastructure", "summary": "Websites and web apps that load fast, work for everyone and are easy for search engines and AI to read.", "outputs": ["Web architecture", "Applications", "Technical remediation", "Edge deployment"] },
-        { "id": "identity-systems", "name": "Identity Systems", "summary": "Logo, type, colour and motion designed together, so everything published looks like it came from one place.", "outputs": ["Identity systems", "Typography", "Design tokens", "Interface foundations"] },
-        { "id": "operational-infrastructure", "name": "Operational Infrastructure", "summary": "Tools and automations for the repetitive parts of a business, with approvals and records so people stay in control.", "outputs": ["Workflow architecture", "Internal tools", "Approval gates", "Execution records"] }
+        {
+          "id": "digital-infrastructure",
+          "name": "Digital Infrastructure",
+          "summary": "Websites and web apps that load fast, work for everyone and are easy for search engines and AI to read.",
+          "outputs": [
+            "Web architecture",
+            "Applications",
+            "Technical remediation",
+            "Edge deployment"
+          ]
+        },
+        {
+          "id": "identity-systems",
+          "name": "Identity Systems",
+          "summary": "Logo, type, colour and motion designed together, so everything published looks like it came from one place.",
+          "outputs": [
+            "Identity systems",
+            "Typography",
+            "Design tokens",
+            "Interface foundations"
+          ]
+        },
+        {
+          "id": "operational-infrastructure",
+          "name": "Operational Infrastructure",
+          "summary": "Tools and automations for the repetitive parts of a business, with approvals and records so people stay in control.",
+          "outputs": [
+            "Workflow architecture",
+            "Internal tools",
+            "Approval gates",
+            "Execution records"
+          ]
+        }
       ]
     },
     {
-      "id": "lineage", "type": "lineage", "name": "Website lineage", "duration": 9000,
-      "eyebrow": "Websites · variations · upgrades",
-      "heading": "Many surfaces. One canonical system.",
-      "lede": "Earlier Brittek websites are kept as lineage. Mechanics that earn their place move into Brittek Surface after provenance, licence, security and test review.",
+      "id": "marks",
+      "type": "marks",
+      "name": "Marks",
+      "duration": 8000,
+      "eyebrow": "Identity · vector masters 2026.9.8",
+      "heading": "Four marks. Four jobs.",
+      "lede": "Object, authorship, orchestration, execution. The marks are related and never interchangeable: each one appears when its job is happening, and each is placed from its vector master, never traced or re-set in a font.",
       "items": [
-        { "id": "base-website", "name": "Static editorial reference", "role": "Reference surface", "summary": "Self-contained HTML that preserves the studio's editorial interface language for inspection.", "stack": "HTML · CSS" },
-        { "id": "brittek-net", "name": "Cinematic single-page site", "role": "Lineage", "summary": "Section-based React system with deterministic GSAP timelines and transform-first motion.", "stack": "React · Vite · Tailwind · GSAP" },
-        { "id": "website", "name": "Systems-scoping interface", "role": "Lineage", "summary": "Composition study whose scoping tool was moved behind a server boundary so no provider key reaches the browser.", "stack": "React 19 · Vite 6" },
-        { "id": "brit-net", "name": "Interaction donor", "role": "Donor", "summary": "React interface with Lenis scrolling and a Zod-validated Express contact endpoint.", "stack": "React 19 · GSAP · Lenis · Express 5 · Zod" },
-        { "id": "spheretek", "name": "Astro publishing theme", "role": "Theme study", "summary": "Static publishing and portfolio surface with MDX, RSS, sitemap and client-side search.", "stack": "Astro 4 · SolidJS · MDX" }
-      ],
-      "target": { "name": "Brittek Surface", "status": "Canonical · deployed", "summary": "The production merge target. Historical site repositories contribute only after review.", "stack": "Next.js · OpenNext · Cloudflare Workers" }
+        {
+          "id": "cmd",
+          "name": "COMMAND",
+          "role": "Architecture",
+          "summary": "A flared frustum on an isometric grid, with the ASTERISK registered on its top plane. Flare 1.40, top 100u, body 80u, stroke 2.2u."
+        },
+        {
+          "id": "wm",
+          "name": "brtk.",
+          "role": "Authorship",
+          "summary": "The proprietary wordmark. Its full stop is the one place the signal colour sits in the name."
+        },
+        {
+          "id": "ast",
+          "name": "ASTERISK",
+          "role": "Orchestration",
+          "summary": "Routing, coordinating, registering. Also the micro mark, from avatar to favicon."
+        },
+        {
+          "id": "rt",
+          "name": "Runtime",
+          "role": "Execution",
+          "summary": "The pixel word-sign. It appears when the system is behaving like a system, paired with mono notation."
+        }
+      ]
     },
     {
-      "id": "surface", "type": "architecture", "name": "Brittek Surface", "duration": 9000,
+      "id": "applications",
+      "type": "applications",
+      "name": "Applications",
+      "duration": 8000,
+      "eyebrow": "Identity in use",
+      "heading": "One system, at every scale.",
+      "lede": "The same masters carry from a profile avatar to a horizontal lockup and a printed lid. Grounds stay fixed to the brand palette whatever the viewer's theme.",
+      "items": [
+        {
+          "id": "avatar",
+          "name": "Avatar",
+          "summary": "The pixel word-sign on a paper disc, for profile images and other small, square placements."
+        },
+        {
+          "id": "lockup",
+          "name": "Horizontal lockup",
+          "summary": "COMMAND, the word-sign and the descriptor, separated by a hairline rule.",
+          "descriptor": [
+            "Digital",
+            "Engineering",
+            "Studio"
+          ]
+        },
+        {
+          "id": "lid",
+          "name": "Packaging lid",
+          "summary": "COMMAND drawn as a single paper line on an ink lid. The asterisk keeps its registration."
+        }
+      ],
+      "note": "An earlier mark set a b on a keycap beside a sans brtk. The current system separates the object, COMMAND, from authorship, brtk."
+    },
+    {
+      "id": "identity",
+      "type": "identity",
+      "name": "Identity system",
+      "duration": 9000,
+      "eyebrow": "Identity · type · colour · motion",
+      "heading": "Identity that survives implementation.",
+      "specimens": [
+        {
+          "role": "Editorial",
+          "face": "Inter Tight",
+          "family": "display",
+          "sample": "Synthesis & Reduction"
+        },
+        {
+          "role": "Reading",
+          "face": "Inter",
+          "family": "body",
+          "sample": "Built for clarity and scale"
+        },
+        {
+          "role": "Interface",
+          "face": "Geist",
+          "family": "ui",
+          "sample": "Studio · Work · Journal"
+        },
+        {
+          "role": "Technical",
+          "face": "Geist Mono",
+          "family": "mono",
+          "sample": "ENTITIES → DEPLOY"
+        }
+      ],
+      "specimenNote": "A fifth register, Geist Pixel Square, is reserved for runtime states and served by the application.",
+      "palette": [
+        {
+          "name": "Paper",
+          "hex": "#F4F3EF"
+        },
+        {
+          "name": "Raised",
+          "hex": "#FAFAF7"
+        },
+        {
+          "name": "Ink",
+          "hex": "#111111"
+        },
+        {
+          "name": "Instrument",
+          "hex": "#0D0D0D"
+        },
+        {
+          "name": "Signal",
+          "hex": "#FE4A02"
+        }
+      ],
+      "curves": [
+        {
+          "name": "Enter",
+          "use": "Arrivals",
+          "bezier": [
+            0.16,
+            1,
+            0.3,
+            1
+          ]
+        },
+        {
+          "name": "State",
+          "use": "Reversible change",
+          "bezier": [
+            0.83,
+            0,
+            0.17,
+            1
+          ]
+        },
+        {
+          "name": "Physical",
+          "use": "Weighted travel",
+          "bezier": [
+            0.22,
+            1,
+            0.36,
+            1
+          ]
+        }
+      ],
+      "artefact": "Registered Execution field: a seeded keycap lattice. The same parameters produce the same SVG to the last vertex. The opening scene draws a study of it."
+    },
+    {
+      "id": "lineage",
+      "type": "lineage",
+      "name": "Website lineage",
+      "duration": 9000,
+      "eyebrow": "Websites · variations · upgrades",
+      "heading": "Many surfaces. One canonical system.",
+      "lede": "Earlier Brittek websites are kept as lineage. Mechanics that earn their place move into Brittek Surface after review.",
+      "items": [
+        {
+          "id": "base-website",
+          "name": "Static editorial reference",
+          "role": "Reference surface",
+          "summary": "Self-contained HTML that preserves the studio's editorial interface language for inspection.",
+          "stack": "HTML · CSS"
+        },
+        {
+          "id": "brittek-net",
+          "name": "Cinematic single-page site",
+          "role": "Lineage",
+          "summary": "Section-based React system with deterministic GSAP timelines and transform-first motion.",
+          "stack": "React · Vite · Tailwind · GSAP"
+        },
+        {
+          "id": "website",
+          "name": "Systems-scoping interface",
+          "role": "Lineage",
+          "summary": "Composition study whose scoping tool was moved behind a server boundary so no provider key reaches the browser.",
+          "stack": "React 19 · Vite 6"
+        },
+        {
+          "id": "brit-net",
+          "name": "Interaction donor",
+          "role": "Donor",
+          "summary": "React interface with Lenis scrolling and a Zod-validated Express contact endpoint.",
+          "stack": "React 19 · GSAP · Lenis · Express 5 · Zod"
+        },
+        {
+          "id": "spheretek",
+          "name": "Astro publishing theme",
+          "role": "Theme study",
+          "summary": "Static publishing and portfolio surface with MDX, RSS, sitemap and client-side search.",
+          "stack": "Astro 4 · SolidJS · MDX"
+        },
+        {
+          "id": "lab",
+          "name": "The Lab, edition 2026.14",
+          "role": "Experimental",
+          "summary": "Single-file connected-practice edition: route curtains, six local instruments, embedded type.",
+          "stack": "HTML · CSS · JavaScript · one file"
+        }
+      ],
+      "target": {
+        "name": "Brittek Surface",
+        "status": "Canonical · deployed",
+        "summary": "The production merge target. Historical site repositories contribute only after review.",
+        "stack": "Next.js · OpenNext · Cloudflare Workers"
+      }
+    },
+    {
+      "id": "surface",
+      "type": "architecture",
+      "name": "Brittek Surface",
+      "duration": 9000,
       "eyebrow": "System · deployed · 2026",
       "heading": "Brittek Surface",
       "lede": "The public website and the governed publishing system behind it. Facts are written once, validated, then compiled into every human and machine representation.",
-      "source": { "path": "content/entities/", "summary": "Canonical public facts: organisation, practices, capabilities, systems, tools, articles." },
-      "boundary": { "path": "lib/content/graph.ts", "summary": "Validation and visibility boundary. Private, draft and donor material cannot pass." },
+      "source": {
+        "path": "content/entities/",
+        "summary": "Canonical public facts: organisation, practices, capabilities, systems, tools, articles."
+      },
+      "boundary": {
+        "path": "lib/content/graph.ts",
+        "summary": "Validation and visibility boundary. Private, draft and donor material cannot pass."
+      },
       "outputs": [
-        { "name": "Human surface", "files": ["/", "/studio", "/systems", "/capabilities", "/journal", "/instruments"] },
-        { "name": "Machine surface", "files": ["llm.json", "llms.txt", "site-index.json", "schema.json", "sitemap.json", "feed.xml"] }
+        {
+          "name": "Human surface",
+          "files": [
+            "/",
+            "/studio",
+            "/systems",
+            "/capabilities",
+            "/journal",
+            "/instruments"
+          ]
+        },
+        {
+          "name": "Machine surface",
+          "files": [
+            "llm.json",
+            "llms.txt",
+            "site-index.json",
+            "schema.json",
+            "sitemap.json",
+            "feed.xml"
+          ]
+        }
       ],
-      "gates": ["Typecheck", "Lint", "Design governance", "Content validation", "Compile", "Tests", "Build", "Browser checks"]
+      "gates": [
+        "Typecheck",
+        "Lint",
+        "Design governance",
+        "Content validation",
+        "Compile",
+        "Tests",
+        "Build",
+        "Browser checks"
+      ]
     },
     {
-      "id": "machine", "type": "dual", "name": "Machine surface", "duration": 8000,
+      "id": "machine",
+      "type": "dual",
+      "name": "Machine surface",
+      "duration": 8000,
       "eyebrow": "Dual occupancy",
       "heading": "Two readers. One source.",
       "lede": "People read the composition. Machines read the entities beneath it. Both come from the same governed record, so they cannot disagree.",
-      "human": ["Typography", "Hierarchy", "Composition", "Interaction", "Accessibility", "Editorial clarity"],
-      "machine": ["entities", "semantic relationships", "structured data", "provenance", "citations", "retrieval resources"],
-      "chain": ["Entities", "Content graph", "Compile", "Representations", "Verify", "Deploy"]
+      "human": [
+        "Typography",
+        "Hierarchy",
+        "Composition",
+        "Interaction",
+        "Accessibility",
+        "Editorial clarity"
+      ],
+      "machine": [
+        "entities",
+        "semantic relationships",
+        "structured data",
+        "provenance",
+        "citations",
+        "retrieval resources"
+      ],
+      "chain": [
+        "Entities",
+        "Content graph",
+        "Compile",
+        "Representations",
+        "Verify",
+        "Deploy"
+      ]
     },
     {
-      "id": "inspector", "type": "instrument", "name": "Instrument", "duration": 8000,
+      "id": "inspector",
+      "type": "instrument",
+      "name": "Instrument",
+      "duration": 8000,
       "eyebrow": "Tools · Public instrument · Available",
       "heading": "Machine Surface Inspector",
       "lede": "Inspects whether a public website exposes the evidence machines need to find, parse, classify and trust it.",
@@ -523,57 +897,163 @@ button { font: inherit; color: inherit; }
       "metricLabel": "Deterministic evaluations",
       "metricMeta": "Engine v2.4 · live extraction · no account required",
       "groups": [
-        { "name": "Findability", "points": 25, "summary": "Crawl access, sitemap validity, canonicals, redirects." },
-        { "name": "Quotability", "points": 25, "summary": "Extractable answers, heading structure, freshness." },
-        { "name": "Structural", "points": 25, "summary": "JSON-LD accuracy, Open Graph, semantic architecture." },
-        { "name": "Trust", "points": 25, "summary": "HTTPS, identity, contact and policy signals." }
+        {
+          "name": "Findability",
+          "points": 25,
+          "summary": "Crawl access, sitemap validity, canonicals, redirects."
+        },
+        {
+          "name": "Quotability",
+          "points": 25,
+          "summary": "Extractable answers, heading structure, freshness."
+        },
+        {
+          "name": "Structural",
+          "points": 25,
+          "summary": "JSON-LD accuracy, Open Graph, semantic architecture."
+        },
+        {
+          "name": "Trust",
+          "points": 25,
+          "summary": "HTTPS, identity, contact and policy signals."
+        }
       ],
-      "flow": ["Input", "Observe", "Analyse", "Evidence", "System state", "Recommended action"],
+      "flow": [
+        "Input",
+        "Observe",
+        "Analyse",
+        "Evidence",
+        "System state",
+        "Recommended action"
+      ],
       "boundary": "Observes public evidence only. Root cause and remediation stay with human review."
     },
     {
-      "id": "identity", "type": "identity", "name": "Identity system", "duration": 9000,
-      "eyebrow": "Identity · type · colour · motion",
-      "heading": "Identity that survives implementation.",
-      "specimens": [
-        { "role": "Editorial", "face": "Inter Tight", "family": "display", "sample": "Synthesis & Reduction" },
-        { "role": "Reading", "face": "Inter", "family": "body", "sample": "Built for clarity and scale" },
-        { "role": "Interface", "face": "Geist", "family": "ui", "sample": "Studio · Work · Journal" },
-        { "role": "Technical", "face": "Geist Mono", "family": "mono", "sample": "ENTITIES → DEPLOY" }
+      "id": "lab",
+      "type": "lab",
+      "name": "The Lab",
+      "duration": 10000,
+      "eyebrow": "Website edition 2026.14 · experimental",
+      "heading": "The Lab.",
+      "lede": "A single-file edition of the studio site: the practice, the method and six working instruments, with embedded type and no automatic external requests. It exceeds the motion contract on purpose and labels every excess.",
+      "figures": [
+        {
+          "v": "7",
+          "l": "Routes"
+        },
+        {
+          "v": "6",
+          "l": "Local instruments"
+        },
+        {
+          "v": "18",
+          "l": "Inspection checks"
+        },
+        {
+          "v": "0",
+          "l": "Automatic external requests"
+        }
       ],
-      "specimenNote": "A fifth register, Geist Pixel Square, is reserved for runtime states and served by the application.",
-      "palette": [
-        { "name": "Paper", "hex": "#F4F3EF" },
-        { "name": "Raised", "hex": "#FAFAF7" },
-        { "name": "Ink", "hex": "#111111" },
-        { "name": "Instrument", "hex": "#0D0D0D" },
-        { "name": "Signal", "hex": "#FE4A02" }
+      "items": [
+        {
+          "name": "Machine Surface Inspector",
+          "summary": "Eighteen weighted checks on pasted markup. Nothing is fetched and no source script runs."
+        },
+        {
+          "name": "Machine Layer Generator",
+          "summary": "JSON-LD, llms.txt, robots.txt and head drafts from one validated set of facts."
+        },
+        {
+          "name": "Identity Inspector",
+          "summary": "COMMAND geometry against its locked values, with a live drift readout."
+        },
+        {
+          "name": "Motion Lab",
+          "summary": "The three named curves, run at any duration from 180 to 900 ms."
+        },
+        {
+          "name": "Mark Motion",
+          "summary": "Route curtains that perform each mark: draw, wipe, register, pixel step."
+        },
+        {
+          "name": "Registered Field",
+          "summary": "A seeded lattice of blank COMMAND modules. Same seed, same field, exported as PNG."
+        }
       ],
-      "curves": [
-        { "name": "Enter", "use": "Arrivals", "bezier": [0.16, 1, 0.3, 1] },
-        { "name": "State", "use": "Reversible change", "bezier": [0.83, 0, 0.17, 1] },
-        { "name": "Physical", "use": "Weighted travel", "bezier": [0.22, 1, 0.36, 1] }
-      ],
-      "artefact": "Registered Execution field: a seeded keycap lattice. The same parameters produce the same SVG to the last vertex. The opening scene draws a study of it."
+      "note": "Reduced motion is a complete static path, and the page stays readable without JavaScript."
     },
     {
-      "id": "studies", "type": "index", "name": "Studies and tools", "duration": 10000,
+      "id": "studies",
+      "type": "index",
+      "name": "Studies and tools",
+      "duration": 10000,
       "eyebrow": "Tools · prototypes · studies",
       "heading": "Studies, tools and prototypes.",
       "items": [
-        { "id": "cmndr", "name": "Presence command layer", "status": "Milestone 1", "summary": "Turns structured organisational knowledge into coordinated publications, with approval, scheduling and provenance.", "stack": "TypeScript · pnpm workspace · Supabase" },
-        { "id": "toolkit", "name": "Tooling product surface", "status": "Prototype", "summary": "Packages developer tooling and operational capabilities into a clearer product interface.", "stack": "React 19 · Vite 6 · Express · Resend" },
-        { "id": "bkos", "name": "Knowledge operating system", "status": "Governed", "summary": "Research, doctrine and evidence vault. Current doctrine is kept distinct from history.", "stack": "Markdown · Obsidian" },
-        { "id": "brand-system", "name": "Brand system workspace", "status": "Active", "summary": "Identity tokens and interface foundations, developed alongside Figma.", "stack": "TypeScript · Vite · Figma" },
-        { "id": "neuralinks", "name": "Generative canvas study", "status": "Study", "summary": "Rotating node field with data pulses. Framework-free, high-DPI and reduced-motion aware.", "stack": "Canvas · JavaScript" },
-        { "id": "innovate", "name": "Spatial motion prototype", "status": "Study", "summary": "Richer React presentation, spatial rendering and interaction mechanics under evaluation.", "stack": "React · Three.js · GSAP" },
-        { "id": "reframe", "name": "Task and streak prototype", "status": "Prototype", "summary": "Compact task system with categories, priorities, completion streaks and local persistence.", "stack": "React · TypeScript · localStorage" },
-        { "id": "execution-field", "name": "Registered Execution field", "status": "In preparation", "summary": "The generative keycap field behind the website, prepared as seeded artwork and a small generator.", "stack": "TypeScript · SVG" }
+        {
+          "id": "cmndr",
+          "name": "Presence command layer",
+          "status": "Milestone 1",
+          "summary": "Turns structured organisational knowledge into coordinated publications, with approval, scheduling and provenance.",
+          "stack": "TypeScript · pnpm workspace · Supabase"
+        },
+        {
+          "id": "toolkit",
+          "name": "Tooling product surface",
+          "status": "Prototype",
+          "summary": "Packages developer tooling and operational capabilities into a clearer product interface.",
+          "stack": "React 19 · Vite 6 · Express · Resend"
+        },
+        {
+          "id": "bkos",
+          "name": "Knowledge operating system",
+          "status": "Governed",
+          "summary": "Research, doctrine and evidence vault. Current doctrine is kept distinct from history.",
+          "stack": "Markdown · Obsidian"
+        },
+        {
+          "id": "brand-system",
+          "name": "Brand system workspace",
+          "status": "Active",
+          "summary": "Identity tokens and interface foundations, developed alongside Figma.",
+          "stack": "TypeScript · Vite · Figma"
+        },
+        {
+          "id": "neuralinks",
+          "name": "Generative canvas study",
+          "status": "Study",
+          "summary": "Rotating node field with data pulses. Framework-free, high-DPI and reduced-motion aware.",
+          "stack": "Canvas · JavaScript"
+        },
+        {
+          "id": "innovate",
+          "name": "Spatial motion prototype",
+          "status": "Study",
+          "summary": "Richer React presentation, spatial rendering and interaction mechanics under evaluation.",
+          "stack": "React · Three.js · GSAP"
+        },
+        {
+          "id": "reframe",
+          "name": "Task and streak prototype",
+          "status": "Prototype",
+          "summary": "Compact task system with categories, priorities, completion streaks and local persistence.",
+          "stack": "React · TypeScript · localStorage"
+        },
+        {
+          "id": "execution-field",
+          "name": "Registered Execution field",
+          "status": "In preparation",
+          "summary": "The generative keycap field behind the website, prepared as seeded artwork and a small generator.",
+          "stack": "TypeScript · SVG"
+        }
       ],
       "note": "Client work is withheld from this sequence until provenance and publication clearance are both in place."
     },
     {
-      "id": "operations", "type": "operations", "name": "Operations", "duration": 9000,
+      "id": "operations",
+      "type": "operations",
+      "name": "Operations",
+      "duration": 9000,
       "eyebrow": "Operational infrastructure",
       "heading": "Operations are part of the work.",
       "lede": "The public profile runs on the same discipline as client systems: generated assets, validation on every change, and pinned dependencies.",
@@ -584,11 +1064,22 @@ button { font: inherit; color: inherit; }
         "Every third-party Action pinned to an immutable commit SHA",
         "Per-workflow concurrency, with generator pushes restricted to main"
       ],
-      "process": ["Strategy", "Requirements", "Architecture", "Design system", "Implementation", "Verification", "Production"],
+      "process": [
+        "Strategy",
+        "Requirements",
+        "Architecture",
+        "Design system",
+        "Implementation",
+        "Verification",
+        "Production"
+      ],
       "priority": "Customer impact → Business impact → Engineering simplicity → Long-term maintainability"
     },
     {
-      "id": "close", "type": "close", "name": "Close", "duration": 7000,
+      "id": "close",
+      "type": "close",
+      "name": "Close",
+      "duration": 7000,
       "eyebrow": "Brittek Digital",
       "heading": "Strength is defined by what we remove.",
       "principles": [
@@ -600,9 +1091,18 @@ button { font: inherit; color: inherit; }
         "AI is infrastructure, not identity."
       ],
       "contact": [
-        { "label": "brittek.net", "href": "https://brittek.net" },
-        { "label": "hello@brittek.net", "href": "" },
-        { "label": "github.com/brittek", "href": "https://github.com/brittek" }
+        {
+          "label": "brittek.net",
+          "href": "https://brittek.net"
+        },
+        {
+          "label": "hello@brittek.net",
+          "href": ""
+        },
+        {
+          "label": "github.com/brittek",
+          "href": "https://github.com/brittek"
+        }
       ]
     }
   ]
@@ -667,9 +1167,8 @@ button { font: inherit; color: inherit; }
           ${s.items.map((it, i) => `
             <li class="lineage__row" ${r(i + 3)}>
               <div class="lineage__text">
-                <div class="lineage__top"><h3 class="h3">${esc(it.name)}</h3><span class="label">${esc(it.role)}</span>${ref(it)}</div>
+                <div class="lineage__top"><h3 class="h3">${esc(it.name)}</h3><span class="label">${esc(it.role)}</span><span class="stack">${esc(it.stack)}</span>${ref(it)}</div>
                 <p class="body">${esc(it.summary)}</p>
-                <span class="stack">${esc(it.stack)}</span>
               </div>
               <span class="lineage__conn" data-line style="--i:${i + 4}" aria-hidden="true"></span>
             </li>`).join('')}
@@ -810,6 +1309,65 @@ button { font: inherit; color: inherit; }
         </div>
       </div>`,
 
+    marks: (s) => {
+      const art = {
+        cmd: (i) => `<svg class="mk__cmd cmd" viewBox="-6 -6 270.49 228" data-mask style="--i:${i}" aria-hidden="true"><use href="#m-cmd"/></svg>`,
+        wm: (i) => `<svg class="mk__wm" viewBox="0 0 3669 1510" data-wipe style="--i:${i}" aria-hidden="true"><use href="#m-wm"/></svg>`,
+        ast: (i) => `<svg class="mk__ast" viewBox="0 0 29 13" data-r style="--i:${i}" aria-hidden="true"><use href="#m-ast"/></svg>`,
+        rt: (i) => `<svg class="mk__rt" viewBox="0 0 36 13" data-wipe style="--i:${i}" shape-rendering="crispEdges" aria-hidden="true"><use href="#m-rt"/></svg>`,
+      };
+      return `
+      ${head(s)}
+      <ol class="marks">
+        ${s.items.map((m, i) => `
+          <li class="mk">
+            <div class="mk__art" role="img" aria-label="${esc(m.name)} master">
+              <span class="label">${pad(i + 1)}</span>${art[m.id](i + 3)}
+            </div>
+            <div class="mk__top" ${r(i + 4)}><h3 class="h3">${esc(m.name)}</h3><span class="label">${esc(m.role)}</span></div>
+            <p class="body" ${r(i + 5)}>${esc(m.summary)}</p>
+          </li>`).join('')}
+      </ol>`;
+    },
+
+    applications: (s) => {
+      const art = {
+        avatar: () => `<div class="app__art app__art--ink"><span class="avatar"><svg viewBox="0 0 36 13" shape-rendering="crispEdges" aria-hidden="true"><use href="#m-rt"/></svg></span></div>`,
+        lockup: (it) => `<div class="app__art app__art--paper"><div class="lockup">
+            <svg class="cmd" viewBox="-6 -6 270.49 228" aria-hidden="true"><use href="#m-cmd"/></svg>
+            <svg class="lockup__rt" viewBox="0 0 36 13" shape-rendering="crispEdges" aria-hidden="true"><use href="#m-rt"/></svg>
+            <span class="lockup__rule" aria-hidden="true"></span>
+            <p class="lockup__txt">${it.descriptor.map(esc).join('<br>')}</p></div></div>`,
+        lid: () => `<div class="app__art app__art--low"><div class="lid"><svg viewBox="-6 -6 270.49 228" aria-hidden="true"><use href="#m-cmd"/></svg></div></div>`,
+      };
+      return `
+      ${head(s)}
+      <ul class="apps">
+        ${s.items.map((it, i) => `
+          <li class="app" data-r style="--i:${i + 3}">
+            <div role="img" aria-label="${esc(it.name)}">${art[it.id](it)}</div>
+            <h3 class="h3">${esc(it.name)}</h3>
+            <p class="body">${esc(it.summary)}</p>
+          </li>`).join('')}
+      </ul>
+      <p class="note" ${r(7)}>${esc(s.note)}</p>`;
+    },
+
+    lab: (s) => `
+      ${head(s)}
+      <div class="figs">
+        ${s.figures.map((f, i) => `<div ${r(i + 3)}><span class="figs__n">${esc(f.v)}</span><span class="label">${esc(f.l)}</span></div>`).join('')}
+      </div>
+      <ol class="ruled ruled--3">
+        ${s.items.map((it, i) => `
+          <li style="--i:${i + 5}">
+            <span class="idx" ${r(i + 5)}>${pad(i + 1)} · Instrument</span>
+            <h3 class="h3" ${r(i + 5)}>${esc(it.name)}</h3>
+            <p class="body" ${r(i + 6)}>${esc(it.summary)}</p>
+          </li>`).join('')}
+      </ol>
+      <p class="note" ${r(12)}>${esc(s.note)}</p>`,
+
     close: (s) => `
       <div class="close">
         <span class="label" ${r(0)}>${esc(s.eyebrow)}</span>
@@ -838,21 +1396,9 @@ button { font: inherit; color: inherit; }
 
   /* ---------------------------------------------------------------- field */
   // A study of the Registered Execution field: a seeded isometric lattice of
-  // keycap frusta at four elevation levels, drawn back to front. Same seed,
-  // same field. Drawn once per size or theme change; it never loops.
+  // blank COMMAND modules, drawn back to front. Same seed, same field.
+  // Drawn once per size or theme change; it never loops.
 
-  const C30 = Math.cos(Math.PI / 6);
-  const LEVELS = [0.45, 1, 1.4, 1.9];
-
-  function mulberry(seed) {
-    let a = seed;
-    return () => {
-      a |= 0; a = (a + 0x6d2b79f5) | 0;
-      let t = Math.imul(a ^ (a >>> 15), 1 | a);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  }
   function hash2(x, y, seed) {
     let h = Math.imul(x, 374761393) ^ Math.imul(y, 668265263) ^ Math.imul(seed, 2246822519);
     h = Math.imul(h ^ (h >>> 13), 1274126177);
@@ -866,6 +1412,11 @@ button { font: inherit; color: inherit; }
     const c = hash2(xi, yi + 1, seed), d = hash2(xi + 1, yi + 1, seed);
     return (a + (b - a) * sx) + ((c + (d - c) * sx) - (a + (b - a) * sx)) * sy;
   }
+
+  // COMMAND geometry in master units: top diamond 86.60 x 50, body 80,
+  // base diamond 121.24 x 70 (flare 1.40). The ASTERISK is the master path.
+  const CMD = { tx: 86.6, ty: 50, body: 80, bx: 121.24, by: 70 };
+  const AST_PATH = new Path2D(document.getElementById('lgpath').getAttribute('d'));
 
   function drawField(canvas, seed = 1018) {
     const box = canvas.parentElement.getBoundingClientRect();
@@ -882,35 +1433,30 @@ button { font: inherit; color: inherit; }
     const top = col('--field-top'), left = col('--field-left'), right = col('--field-right');
     const edge = col('--field-edge'), signal = col('--signal');
 
-    const s = Math.max(18, Math.min(40, w / 24));
-    const a = s * C30, b = s * 0.5;
-    const fx = w * 0.58, fy = h * 0.52, diag = Math.hypot(w, h);
-    const rand = mulberry(seed);
-    const caps = [];
+    // One unit k scales the master; lattice steps follow the base diamond.
+    const half = Math.max(14, Math.min(34, w / 18));
+    const k = half / CMD.bx;
+    const a = half * 1.08, b = a * Math.tan(Math.PI / 6);
+    const fx = w * 0.56, fy = h * 0.55, diag = Math.hypot(w, h);
+    const modules = [];
 
-    for (let row = -2; row * b < h + s * 3; row++) {
-      for (let c = -Math.ceil(w / a) - 2; c * a < w + a * 2; c++) {
+    for (let row = -1; row * b < h + CMD.by * k; row++) {
+      for (let c = -1; c * a < w + a; c++) {
         if ((c + row) & 1) continue;
-        const x = c * a, y = row * b;
-        if (x < -a || x > w + a) continue;
+        const x = c * a, y = row * b + CMD.body * k;
         const d = Math.hypot(x - fx, y - fy) / diag;
-        const fall = Math.max(0, 1 - d / 0.52);
-        const presence = valueNoise(c * 0.21, row * 0.21, seed) * 0.55 + fall * 0.8;
+        const fall = Math.max(0, 1 - d / 0.5);
+        const presence = valueNoise(c * 0.23, row * 0.23, seed) * 0.55 + fall * 0.82;
         if (presence < 0.74) continue;
-        const level = Math.min(3, Math.floor(valueNoise(c * 0.13 + 40, row * 0.13 + 40, seed + 7) * 3.2 + fall * 1.4));
-        caps.push({ x, y, level, d, jitter: rand() });
+        modules.push({ x, y, d });
       }
     }
-    if (!caps.length) return;
+    if (!modules.length) return;
 
-    // One Signal module: the most central cap at elevation two or above.
-    let signalCap = caps[0];
-    for (const cap of caps) {
-      if (cap.level >= 2 && (signalCap.level < 2 || cap.d < signalCap.d)) signalCap = cap;
-    }
+    // One Signal module carries the ASTERISK: the one nearest the focus.
+    const signalModule = modules.reduce((best, m) => (m.d < best.d ? m : best), modules[0]);
 
-    const g = 0.86, t = 0.6;
-    ctx.lineJoin = 'round';
+    ctx.lineJoin = 'miter';
     ctx.lineWidth = 0.75;
     ctx.strokeStyle = edge;
     const poly = (pts, fill) => {
@@ -921,26 +1467,18 @@ button { font: inherit; color: inherit; }
       ctx.fillStyle = fill; ctx.fill(); ctx.stroke();
     };
 
-    for (const cap of caps) { // Painter's order: rows were generated back to front.
-      const { x, y } = cap;
-      const lift = LEVELS[cap.level] * s * 0.34;
-      const B = [[x, y - b * g], [x + a * g, y], [x, y + b * g], [x - a * g, y]];
-      const ty = y - lift, tg = g * t;
-      const T = [[x, ty - b * tg], [x + a * tg, ty], [x, ty + b * tg], [x - a * tg, ty]];
-      poly([B[3], B[2], T[2], T[3]], left);
-      poly([B[2], B[1], T[1], T[2]], right);
-      poly(T, cap === signalCap ? signal : top);
-      if (cap !== signalCap && cap.jitter > 0.93) { // sparse asterisk legends
+    for (const m of modules) { // Painter's order: rows were generated back to front.
+      const bx = m.x, by = m.y;                 // base diamond centre
+      const tx = m.x, ty = m.y - CMD.body * k;  // top diamond centre
+      const T = [[tx, ty - CMD.ty * k], [tx + CMD.tx * k, ty], [tx, ty + CMD.ty * k], [tx - CMD.tx * k, ty]];
+      const Bl = [bx - CMD.bx * k, by], Bb = [bx, by + CMD.by * k], Br = [bx + CMD.bx * k, by];
+      poly([T[3], T[2], Bb, Bl], left);
+      poly([T[2], T[1], Br, Bb], right);
+      poly(T, top);
+      if (m === signalModule) {
         ctx.save();
-        ctx.strokeStyle = edge; ctx.lineWidth = 1;
-        const r0 = b * tg * 0.55;
-        for (let k = 0; k < 3; k++) {
-          const ang = (Math.PI / 3) * k;
-          ctx.beginPath();
-          ctx.moveTo(x - Math.cos(ang) * r0 * 1.6, ty - Math.sin(ang) * r0);
-          ctx.lineTo(x + Math.cos(ang) * r0 * 1.6, ty + Math.sin(ang) * r0);
-          ctx.stroke();
-        }
+        ctx.translate(tx, ty); ctx.scale(k, k);
+        ctx.fillStyle = signal; ctx.fill(AST_PATH);
         ctx.restore();
       }
     }

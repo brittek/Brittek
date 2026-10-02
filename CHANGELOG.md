@@ -20,6 +20,11 @@ semantic versioning for ordinary profile edits.
   selected Brittek work (practices, website lineage, Brittek Surface, the
   Machine Surface Inspector, identity system, studies and tools, operations).
   Content lives in one JSON block; client work is withheld until clearance.
+- presentation scenes for the four identity marks (COMMAND, brtk., ASTERISK,
+  Runtime), their applications (avatar, horizontal lockup, packaging lid) and
+  The Lab edition 2026.14; the Lab also joins the website lineage. Marks are
+  placed from the 2026.9.8 vector masters, and the opening field now draws
+  blank COMMAND modules with the master ASTERISK on the signal module.
 
 ### Changed
 
