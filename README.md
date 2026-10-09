@@ -8,8 +8,8 @@ https://brittek.net
 
 <a href="https://brittek.net">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="brittek-keys-logo.webp">
-    <img src="brittek-keys-logo.webp" width="520" alt="Brittek Digital">
+    <source media="(prefers-color-scheme: dark)" srcset="asterisk-on-signal.svg">
+    <img src="asterisk-on-signal.svg" width="520" alt="Brittek Digital">
   </picture>
 </a>
 
