@@ -46,6 +46,10 @@ semantic versioning for ordinary profile edits.
 - the presentation loads its type from `brand/fonts` and makes no third-party
   requests (Google Fonts removed). The Runtime register is now rendered;
 - small Signal text on Paper uses `#CC3B02` to meet contrast;
+- the presentation passes the studio pre-flight: the dark ground is Ink
+  (retired `#0D0D0B` removed), the palette shows Paper, Bone, Ink and Signal,
+  controls are 48px, step numbers and scene markers meet contrast, hover states
+  no longer animate colour, notes read in Inter, and visible copy has no en dash;
 
 - repository standard moved from aspirational documentation toward actual
   implementation;

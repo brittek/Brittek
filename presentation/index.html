@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Brittek Selected Work</title>
-<meta name="description" content="Brittek Digital selected work, 2018–2026: websites, identity systems, instruments and operational tools, presented as one sequence.">
+<meta name="description" content="Brittek Digital selected work, 2018 to 2026: websites, identity systems, instruments and operational tools, presented as one sequence.">
 <style>
 /* Type is self-hosted from brand/fonts (latin subsets, OFL). No third-party requests. */
 @font-face { font-family: "Inter Tight"; src: url("../brand/fonts/InterTight-Variable.woff2") format("woff2"); font-weight: 400 600; font-display: swap; }
@@ -50,12 +50,12 @@
 
   --gutter: clamp(16px, 4vw, 56px);
   --radius: 2px;
-  --target: 44px;
+  --target: 48px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #0D0D0B;
+    --bg: #111111;
     --raised: #161614;
     --low: #1C1C19;
     --ink: #F4F3EF;
@@ -71,7 +71,7 @@
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0D0D0B;
+  --bg: #111111;
   --raised: #161614;
   --low: #1C1C19;
   --ink: #F4F3EF;
@@ -235,7 +235,7 @@ button { font: inherit; color: inherit; }
   font: 400 10.5px/1 var(--font-mono); letter-spacing: 0.06em;
   padding: 6px 8px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--muted);
 }
-.note { font: 400 11px/1.6 var(--font-mono); letter-spacing: 0.06em; color: var(--muted); margin: 0; max-width: 90ch; }
+.note { font: 400 13px/1.55 var(--font-body); color: var(--muted); margin: 0; max-width: 72ch; }
 
 /* --- Lineage ------------------------------------------------------------- */
 .lineage {
@@ -329,7 +329,7 @@ button { font: inherit; color: inherit; }
 .meter__pts { font: 400 clamp(1.5rem, 2.4vw, 2.25rem)/1 var(--font-metric); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
 .steps { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; }
 .steps li { font: 400 10px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-.steps li::before { content: attr(data-n) "  "; color: var(--faint); white-space: pre; }
+.steps li::before { content: attr(data-n) "  "; color: var(--muted); white-space: pre; }
 
 /* --- Identity ------------------------------------------------------------ */
 .identity { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); }
@@ -403,7 +403,7 @@ button { font: inherit; color: inherit; }
   position: relative; height: clamp(180px, 30vh, 300px); display: grid; place-items: center; overflow: hidden;
   border-radius: var(--radius); border: 1px solid var(--line);
 }
-.app__art--ink { background: #111111; border-color: #111111; color: #F4F3EF; }
+.app__art--ink { background: #111111; color: #F4F3EF; }
 .app__art--paper { background: #F4F3EF; color: #111111; }
 .app__art--bone { background: #ECEAE3; color: #111111; }
 .favs { display: flex; align-items: flex-end; gap: 14px; }
@@ -437,7 +437,6 @@ button { font: inherit; color: inherit; }
   padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius);
   background: var(--raised); cursor: pointer;
   font: 500 11px/1 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;
-  transition: border-color 180ms var(--ease-state);
 }
 .btn:hover { border-color: var(--ink); }
 .btn > span[aria-hidden] { transition: transform 180ms var(--ease-state); }
@@ -449,8 +448,8 @@ button { font: inherit; color: inherit; }
   width: 100%; min-height: var(--target); padding: 0; border: 0; background: none; cursor: pointer;
   display: grid; align-items: center;
 }
-.seg::before { content: ""; height: 2px; background: var(--line); transition: background-color 180ms var(--ease-state); }
-.seg:hover::before { background: var(--faint); }
+.seg::before { content: ""; height: 2px; background: var(--faint); }
+.seg:hover::before { background: var(--ink); }
 .seg[data-state="past"]::before { background: var(--ink); }
 .seg[aria-current="step"]::before { background: var(--signal); }
 .count { display: grid; justify-items: end; gap: 4px; min-width: 18ch; }
@@ -536,7 +535,7 @@ button { font: inherit; color: inherit; }
       "name": "Opening",
       "duration": 6000,
       "eyebrow": "Brittek Digital · Sydney · Since 2018",
-      "heading": "Selected work, 2018–2026",
+      "heading": "Selected work, 2018 to 2026",
       "lede": "Websites, identity systems, instruments and operational tools, designed and engineered inside one continuous process.",
       "meta": [
         "Founded 06.10.2018",
@@ -704,20 +703,20 @@ button { font: inherit; color: inherit; }
           "hex": "#F4F3EF"
         },
         {
-          "name": "Raised",
-          "hex": "#FAFAF7"
+          "name": "Bone",
+          "hex": "#ECEAE3"
         },
         {
           "name": "Ink",
           "hex": "#111111"
         },
         {
-          "name": "Instrument",
-          "hex": "#0D0D0D"
-        },
-        {
           "name": "Signal",
           "hex": "#FE4A02"
+        },
+        {
+          "name": "Signal hover",
+          "hex": "#CC3B02"
         }
       ],
       "curves": [
