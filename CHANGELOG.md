@@ -10,6 +10,15 @@ semantic versioning for ordinary profile edits.
 
 ### Added
 
+- `brand/`, a reusable kit generated from the brittek-surface masters: a
+  symbol sprite (`#brtk`, `#command`, `#asterisk`), standalone SVGs for the
+  primary lockup, wordmark, COMMAND and ASTERISK in light and dark, the
+  canonical favicon, and the five self-hosted type registers with their OFL
+  licences;
+- `scripts/check_brand.py`, run by the Profile quality workflow, which keeps
+  the presentation's inline sprite identical to `brand/marks.svg` and rejects
+  third-party font or asset origins;
+
 - repository governance documents;
 - machine-readable profile surfaces;
 - workflow documentation;
@@ -27,6 +36,16 @@ semantic versioning for ordinary profile edits.
   blank COMMAND modules with the master ASTERISK on the signal module.
 
 ### Changed
+
+- the presentation now places the current masters: the BRAND-01 `brtk.`
+  wordmark and the APPEARANCE-04C COMMAND legend replace the retired Lab
+  2026.14 drawings. The header carries `brtk.` alone; the primary lockup is
+  COMMAND + `brtk.`; the favicon tile is the Signal ASTERISK; Runtime is set in
+  Geist Pixel Square; the opening field marks important nodes with the
+  ASTERISK and the active node in Signal;
+- the presentation loads its type from `brand/fonts` and makes no third-party
+  requests (Google Fonts removed). The Runtime register is now rendered;
+- small Signal text on Paper uses `#CC3B02` to meet contrast;
 
 - repository standard moved from aspirational documentation toward actual
   implementation;
