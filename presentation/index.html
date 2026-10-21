@@ -4,11 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Brittek Selected Work</title>
-<meta name="description" content="Brittek Digital selected work, 2018–2026: websites, identity systems, instruments and operational tools, presented as one sequence.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500&family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500&display=swap">
+<meta name="description" content="Brittek Digital selected work, 2018 to 2026: websites, identity systems, instruments and operational tools, presented as one sequence.">
 <style>
+/* Type is self-hosted from brand/fonts (latin subsets, OFL). No third-party requests. */
+@font-face { font-family: "Inter Tight"; src: url("../brand/fonts/InterTight-Variable.woff2") format("woff2"); font-weight: 400 600; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../brand/fonts/Inter-Variable.woff2") format("woff2"); font-weight: 400 600; font-display: swap; }
+@font-face { font-family: "Geist"; src: url("../brand/fonts/Geist-Variable.woff2") format("woff2"); font-weight: 400 600; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("../brand/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 400 500; font-display: swap; }
+@font-face { font-family: "Geist Pixel Square"; src: url("../brand/fonts/GeistPixel-Square.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 /* ---------------------------------------------------------------------------
    Tokens. Values follow brittek-surface (app/globals.css, lib/design) and the
    Brittek motion contract. Light is paper; dark is the instrument surface.
@@ -24,6 +27,7 @@
   --line: #D7D0C4;
   --signal: #FE4A02;
   --signal-hover: #CC3B02;
+  --signal-text: #CC3B02;
   --field-top: #FAFAF7;
   --field-left: #E3E1DA;
   --field-right: #D0CDC4;
@@ -34,6 +38,7 @@
   --font-ui: "Geist", "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --font-metric: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-runtime: "Geist Pixel Square", "Geist Mono", ui-monospace, monospace;
 
   --ease-enter: cubic-bezier(.16, 1, .3, 1);
   --ease-state: cubic-bezier(.83, 0, .17, 1);
@@ -45,12 +50,12 @@
 
   --gutter: clamp(16px, 4vw, 56px);
   --radius: 2px;
-  --target: 44px;
+  --target: 48px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #0D0D0B;
+    --bg: #111111;
     --raised: #161614;
     --low: #1C1C19;
     --ink: #F4F3EF;
@@ -61,11 +66,12 @@
     --field-left: #161614;
     --field-right: #0F0F0D;
     --field-edge: rgba(244, 243, 239, 0.24);
+    --signal-text: #FE4A02;
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0D0D0B;
+  --bg: #111111;
   --raised: #161614;
   --low: #1C1C19;
   --ink: #F4F3EF;
@@ -76,6 +82,7 @@
   --field-left: #161614;
   --field-right: #0F0F0D;
   --field-edge: rgba(244, 243, 239, 0.24);
+  --signal-text: #FE4A02;
 }
 
 html, body { height: 100%; }
@@ -106,8 +113,7 @@ button { font: inherit; color: inherit; }
   padding: 18px var(--gutter);
 }
 .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); }
-.brand__wm { display: block; height: 19px; width: auto; --wm-stop: var(--signal); }
-.brand__ast { display: block; height: 9px; width: auto; color: var(--signal); }
+.brand__wm { display: block; height: 20px; width: auto; }
 .label {
   font: 400 10px/1.4 var(--font-mono);
   letter-spacing: 0.2em;
@@ -197,7 +203,7 @@ button { font: inherit; color: inherit; }
 .body { margin: 0; color: var(--muted); max-width: 52ch; }
 .head { display: grid; gap: 18px; max-width: 1100px; }
 .stack { font: 400 11px/1.5 var(--font-mono); letter-spacing: 0.04em; color: var(--muted); }
-.ref { font: 400 11px/1.5 var(--font-mono); color: var(--signal); }
+.ref { font: 400 11px/1.5 var(--font-mono); color: var(--signal-text); }
 
 /* --- Title --------------------------------------------------------------- */
 .title {
@@ -229,7 +235,7 @@ button { font: inherit; color: inherit; }
   font: 400 10.5px/1 var(--font-mono); letter-spacing: 0.06em;
   padding: 6px 8px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--muted);
 }
-.note { font: 400 11px/1.6 var(--font-mono); letter-spacing: 0.06em; color: var(--muted); margin: 0; max-width: 90ch; }
+.note { font: 400 13px/1.55 var(--font-body); color: var(--muted); margin: 0; max-width: 72ch; }
 
 /* --- Lineage ------------------------------------------------------------- */
 .lineage {
@@ -323,7 +329,7 @@ button { font: inherit; color: inherit; }
 .meter__pts { font: 400 clamp(1.5rem, 2.4vw, 2.25rem)/1 var(--font-metric); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
 .steps { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; }
 .steps li { font: 400 10px/1 var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-.steps li::before { content: attr(data-n) "  "; color: var(--faint); white-space: pre; }
+.steps li::before { content: attr(data-n) "  "; color: var(--muted); white-space: pre; }
 
 /* --- Identity ------------------------------------------------------------ */
 .identity { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); }
@@ -373,40 +379,43 @@ button { font: inherit; color: inherit; }
 }
 
 /* --- Marks: placed from the vector masters, never redrawn ---------------- */
-.cmd { fill: var(--bg); stroke: currentColor; stroke-width: 2.2; --cmd-ast: var(--signal); }
+.cmd { fill: var(--bg); stroke: currentColor; stroke-width: 2.2; --command-legend: var(--signal); }
 .marks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); margin: 0; padding: 0; list-style: none; }
-.mk { display: grid; align-content: start; gap: 10px; }
+.mk { display: grid; align-content: start; gap: 8px; }
 .mk__art {
   position: relative; aspect-ratio: 1.15 / 1; display: grid; place-items: center; overflow: hidden;
   background: var(--raised); border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink);
 }
 .mk__art svg { display: block; height: auto; max-width: 100%; }
 .mk__art .label { position: absolute; left: 12px; top: 10px; }
-.mk__cmd { width: 50%; }
-.mk__wm { width: 60%; --wm-stop: var(--signal); }
+.mk__cmd { width: 46%; }
+.mk__wm { width: 56%; }
 .mk__ast { width: 58%; color: var(--signal); }
-.mk__rt { width: 58%; --rt-stop: var(--signal); }
-.mk__top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.runtime { display: inline-flex; align-items: flex-end; gap: 0.08em; font: 400 clamp(2rem, 4vw, 3.25rem)/1 var(--font-runtime); color: inherit; }
+.runtime i { width: 0.16em; height: 0.16em; background: var(--signal); }
+.mk__job { margin: 0; color: var(--ink); }
+.mk__job strong { font-weight: 600; }
 
 /* --- Applications: fixed brand grounds, independent of viewer theme ----- */
-.apps { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(12px, 1.6vw, 24px); margin: 0; padding: 0; list-style: none; }
+.apps { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); gap: clamp(12px, 1.6vw, 24px); margin: 0; padding: 0; list-style: none; }
 .app { display: grid; align-content: start; gap: 10px; }
 .app__art {
   position: relative; height: clamp(180px, 30vh, 300px); display: grid; place-items: center; overflow: hidden;
   border-radius: var(--radius); border: 1px solid var(--line);
 }
-.app__art--ink { background: #0D0D0B; border-color: #0D0D0B; }
-.app__art--paper { background: #FAFAF7; }
-.app__art--low { background: #E4E2DC; }
-.avatar { width: clamp(130px, 22vh, 230px); aspect-ratio: 1; border-radius: 50%; background: #F4F3EF; display: grid; place-items: center; }
-.avatar svg { width: 68%; height: auto; color: #111111; --rt-stop: #FE4A02; }
-.lockup { display: flex; align-items: center; gap: clamp(8px, 1.6vw, 22px); width: 88%; color: #111111; }
-.lockup .cmd { width: 24%; height: auto; flex: none; fill: #FAFAF7; stroke: #111111; stroke-width: 6; }
-.lockup__rt { width: 40%; height: auto; flex: none; --rt-stop: #FE4A02; }
-.lockup__rule { align-self: stretch; width: 1px; background: #BDB8AE; margin-block: 6%; flex: none; }
-.lockup__txt { margin: 0; font: 500 clamp(7px, 0.85vw, 12px)/1.6 var(--font-mono); letter-spacing: 0.3em; text-transform: uppercase; color: #111111; }
-.lid { width: min(74%, clamp(160px, 26vh, 280px)); aspect-ratio: 1.42; background: #111111; border-bottom: 10px solid #2A2A27; display: grid; place-items: center; }
-.lid svg { width: 38%; height: auto; fill: none; stroke: #F4F3EF; stroke-width: 3; --cmd-ast: #F4F3EF; }
+.app__art--ink { background: #111111; color: #F4F3EF; }
+.app__art--paper { background: #F4F3EF; color: #111111; }
+.app__art--bone { background: #ECEAE3; color: #111111; }
+.favs { display: flex; align-items: flex-end; gap: 14px; }
+.favs svg { display: block; }
+.lockup { width: 82%; height: auto; }
+.lockup .cmd { fill: #F4F3EF; stroke: #111111; stroke-width: 2.6; --command-legend: #111111; }
+.rt { display: grid; justify-items: start; gap: 14px; }
+.rt .runtime { font-size: clamp(2.4rem, 4.4vw, 4rem); }
+.rt__state { display: flex; gap: 12px; align-items: baseline; font: 400 10px/1 var(--font-mono); letter-spacing: 0.2em; text-transform: uppercase; color: #A9A69E; }
+.rt__state b { font: 400 13px/1 var(--font-runtime); letter-spacing: 0.06em; color: #F4F3EF; }
+.lid { width: min(78%, clamp(160px, 26vh, 280px)); aspect-ratio: 1.42; background: #111111; border-bottom: 10px solid #2A2A27; display: grid; place-items: center; }
+.lid svg { width: 40%; height: auto; fill: #111111; stroke: #F4F3EF; stroke-width: 3; --command-legend: #F4F3EF; }
 
 /* --- The Lab ------------------------------------------------------------- */
 .figs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 clamp(16px, 2vw, 32px); }
@@ -428,7 +437,6 @@ button { font: inherit; color: inherit; }
   padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius);
   background: var(--raised); cursor: pointer;
   font: 500 11px/1 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;
-  transition: border-color 180ms var(--ease-state);
 }
 .btn:hover { border-color: var(--ink); }
 .btn > span[aria-hidden] { transition: transform 180ms var(--ease-state); }
@@ -440,8 +448,8 @@ button { font: inherit; color: inherit; }
   width: 100%; min-height: var(--target); padding: 0; border: 0; background: none; cursor: pointer;
   display: grid; align-items: center;
 }
-.seg::before { content: ""; height: 2px; background: var(--line); transition: background-color 180ms var(--ease-state); }
-.seg:hover::before { background: var(--faint); }
+.seg::before { content: ""; height: 2px; background: var(--faint); }
+.seg:hover::before { background: var(--ink); }
 .seg[data-state="past"]::before { background: var(--ink); }
 .seg[aria-current="step"]::before { background: var(--signal); }
 .count { display: grid; justify-items: end; gap: 4px; min-width: 18ch; }
@@ -454,7 +462,6 @@ button { font: inherit; color: inherit; }
   .ruled--3, .ruled--4, .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .flow, .apps { grid-template-columns: minmax(0, 1fr); }
   .marks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .lockup__txt { font-size: 9px; }
   .flow__arrow { width: 1px; height: 28px; justify-self: start; margin-left: 24px; }
   .flow__arrow::after { right: -4px; top: auto; bottom: -1px; border: 4.5px solid transparent; border-top: 7px solid var(--ink); border-bottom: 0; }
   .lineage__row { grid-template-columns: minmax(0, 1fr); }
@@ -473,24 +480,19 @@ button { font: inherit; color: inherit; }
 </style>
 </head>
 <body>
-<!-- Identity masters, placed from the 2026.9.8 vector sources (via The Lab 2026.14). Never redrawn. -->
+<!-- brand:marks:start (generated from brand/marks.svg; edit there) -->
 <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
-  <defs>
-    <symbol id="m-wm" viewBox="0 0 3669 1510"><g transform="translate(-97 1490)"><path fill="currentColor" d="M690 20Q595 20 531.5 -12.5Q468 -45 429.5 -90.5Q391 -136 371 -177H355V0H97V-1490H360V-933H371Q391 -973 428 -1019.5Q465 -1066 528.5 -1099Q592 -1132 691 -1132Q820 -1132 924 -1066Q1028 -1000 1089.5 -872Q1151 -744 1151 -557Q1151 -373 1091 -244Q1031 -115 926.5 -47.5Q822 20 690 20ZM618 -196Q705 -196 763.5 -243Q822 -290 852 -372Q882 -454 882 -558Q882 -662 852 -743Q822 -824 764 -870Q706 -916 618 -916Q533 -916 474.5 -872Q416 -828 385.5 -747.5Q355 -667 355 -558Q355 -450 385.5 -368.5Q416 -287 475 -241.5Q534 -196 618 -196Z M1194.6 0V-1118H1449.6V-930H1461.6Q1491.6 -1028 1566.6 -1080.5Q1641.6 -1133 1737.6 -1133Q1758.6 -1133 1786.1 -1131Q1813.6 -1129 1831.6 -1126V-884Q1814.6 -890 1778.6 -894Q1742.6 -898 1709.6 -898Q1636.6 -898 1579.6 -867Q1522.6 -836 1490.1 -782Q1457.6 -728 1457.6 -656V0Z M2385.2 -1118V-914H1744.2V-1118ZM1901.2 -1384H2164.2V-336Q2164.2 -270 2193.2 -238.5Q2222.2 -207 2285.2 -207Q2302.2 -207 2323.2 -210Q2344.2 -213 2361.2 -217L2406.2 -11Q2364.2 2 2321.2 8.5Q2278.2 15 2235.2 15Q2079.2 15 1990.2 -67.5Q1901.2 -150 1901.2 -293Z M2667.8 -350 2666.8 -669H2709.8L3110.8 -1118H3418.8L2924.8 -567H2869.8ZM2427.8 0V-1490H2690.8V0ZM3128.8 0 2764.8 -508 2942.8 -694 3443.8 0Z"/><path fill="var(--wm-stop,currentColor)" d="M3605.4 17Q3537.4 17 3490.9 -29.5Q3444.4 -76 3444.4 -143Q3444.4 -210 3490.9 -256.5Q3537.4 -303 3605.4 -303Q3673.4 -303 3719.9 -256.5Q3766.4 -210 3766.4 -143Q3766.4 -76 3719.9 -29.5Q3673.4 17 3605.4 17Z"/></g></symbol>
-    <symbol id="m-ast" viewBox="0 0 29 13"><path fill="currentColor" d="M0.5 6.002 L0.5 7 L10.679 7 L10.711 7.004 L10.739 7.016 L10.764 7.035 L10.783 7.06 L10.798 7.105 L10.793 7.159 L10.764 7.205 L10.717 7.234 L5.342 9.026 L5.658 9.974 L13.276 7.435 L13.381 7.411 L13.488 7.408 L13.594 7.426 L13.695 7.464 L13.757 7.5 L13.814 7.544 L13.864 7.595 L13.908 7.652 L13.944 7.714 L13.971 7.78 L13.989 7.85 L13.999 7.921 L14 12.5 L15 12.5 L15.001 7.921 L15.011 7.85 L15.042 7.747 L15.073 7.683 L15.113 7.623 L15.16 7.569 L15.214 7.521 L15.305 7.464 L15.371 7.437 L15.476 7.412 L15.547 7.407 L15.619 7.411 L15.724 7.435 L23.342 9.974 L23.658 9.026 L18.283 7.234 L18.236 7.205 L18.207 7.159 L18.202 7.105 L18.217 7.06 L18.236 7.035 L18.261 7.016 L18.289 7.004 L18.321 7 L28.5 7 L28.5 6 L18.321 6 L18.289 5.996 L18.261 5.984 L18.236 5.965 L18.217 5.94 L18.202 5.895 L18.207 5.841 L18.236 5.795 L18.283 5.766 L23.658 3.974 L23.342 3.026 L15.724 5.565 L15.619 5.589 L15.512 5.592 L15.406 5.574 L15.305 5.536 L15.243 5.5 L15.186 5.456 L15.136 5.405 L15.092 5.348 L15.056 5.286 L15.029 5.22 L15.011 5.15 L15.001 5.079 L15 0.5 L14 0.5 L13.999 5.079 L13.989 5.15 L13.971 5.22 L13.944 5.286 L13.887 5.377 L13.84 5.431 L13.786 5.479 L13.726 5.519 L13.629 5.563 L13.524 5.588 L13.453 5.593 L13.381 5.589 L13.276 5.565 L5.658 3.026 L5.342 3.974 L10.717 5.766 L10.764 5.795 L10.793 5.841 L10.798 5.895 L10.783 5.94 L10.764 5.965 L10.739 5.984 L10.711 5.996 L10.679 6Z"/></symbol>
-    <symbol id="m-rt" viewBox="0 0 36 13"><path fill="currentColor" shape-rendering="crispEdges" d="M0 3 L0 4 L0 5 L0 6 L0 7 L0 8 L0 9 L0 10 L0 11 L0 12 L0 13 L1 13 L2 13 L2 12 L3 12 L3 13 L4 13 L5 13 L6 13 L7 13 L7 12 L8 12 L8 11 L8 10 L8 9 L8 8 L8 7 L8 6 L8 5 L7 5 L7 4 L6 4 L5 4 L4 4 L3 4 L3 5 L2 5 L2 4 L2 3 L2 2 L2 1 L2 0 L1 0 L0 0 L0 1 L0 2ZM2 8 L2 7 L2 6 L3 6 L4 6 L5 6 L6 6 L6 7 L6 8 L6 9 L6 10 L6 11 L5 11 L4 11 L3 11 L2 11 L2 10 L2 9ZM26 5 L26 6 L26 7 L26 8 L26 9 L26 10 L26 11 L26 12 L26 13 L27 13 L28 13 L28 12 L28 11 L28 10 L28 9 L29 9 L29 10 L30 10 L30 11 L31 11 L31 12 L31 13 L32 13 L33 13 L33 12 L33 11 L32 11 L32 10 L31 10 L31 9 L30 9 L30 8 L30 7 L31 7 L31 6 L32 6 L32 5 L33 5 L33 4 L32 4 L31 4 L31 5 L30 5 L30 6 L29 6 L29 7 L28 7 L28 6 L28 5 L28 4 L28 3 L28 2 L28 1 L28 0 L27 0 L26 0 L26 1 L26 2 L26 3 L26 4ZM19 4 L18 4 L18 5 L18 6 L19 6 L19 7 L19 8 L19 9 L19 10 L19 11 L19 12 L20 12 L20 13 L21 13 L22 13 L23 13 L24 13 L24 12 L24 11 L23 11 L22 11 L21 11 L21 10 L21 9 L21 8 L21 7 L21 6 L22 6 L23 6 L24 6 L24 5 L24 4 L23 4 L22 4 L21 4 L21 3 L21 2 L21 1 L20 1 L19 1 L19 2 L19 3ZM10 9 L10 10 L10 11 L10 12 L10 13 L11 13 L12 13 L12 12 L12 11 L12 10 L12 9 L12 8 L12 7 L13 7 L14 7 L14 6 L15 6 L16 6 L17 6 L17 5 L17 4 L16 4 L15 4 L14 4 L14 5 L13 5 L13 6 L12 6 L12 5 L12 4 L11 4 L10 4 L10 5 L10 6 L10 7 L10 8Z"/><path fill="var(--rt-stop,currentColor)" shape-rendering="crispEdges" d="M34 12 L34 13 L35 13 L36 13 L36 12 L36 11 L35 11 L34 11Z"/></symbol>
-    <path id="lgpath" d="M-58.531 -1.202 L-58.531 1.207 L-15.973 1.207 L-15.843 1.217 L-15.722 1.246 L-15.618 1.292 L-15.538 1.352 L-15.476 1.46 L-15.499 1.591 L-15.62 1.702 L-15.815 1.771 L-38.288 6.097 L-36.966 8.386 L-5.117 2.257 L-4.679 2.199 L-4.229 2.192 L-3.786 2.235 L-3.366 2.328 L-3.107 2.415 L-2.869 2.52 L-2.658 2.643 L-2.476 2.781 L-2.326 2.931 L-2.212 3.091 L-2.134 3.258 L-2.095 3.43 L-2.09 14.483 L2.09 14.483 L2.095 3.43 L2.134 3.258 L2.264 3.01 L2.397 2.854 L2.563 2.71 L2.76 2.58 L2.985 2.465 L3.366 2.328 L3.643 2.261 L4.08 2.201 L4.379 2.189 L4.679 2.199 L5.117 2.257 L36.966 8.386 L38.288 6.097 L15.815 1.771 L15.62 1.702 L15.499 1.591 L15.476 1.46 L15.538 1.352 L15.618 1.292 L15.722 1.246 L15.843 1.217 L15.973 1.207 L58.531 1.207 L58.531 -1.207 L15.973 -1.207 L15.843 -1.217 L15.722 -1.246 L15.618 -1.292 L15.538 -1.352 L15.476 -1.46 L15.499 -1.591 L15.62 -1.702 L15.815 -1.771 L38.288 -6.097 L36.966 -8.386 L5.117 -2.257 L4.679 -2.199 L4.229 -2.192 L3.786 -2.235 L3.366 -2.328 L3.107 -2.415 L2.869 -2.52 L2.658 -2.643 L2.476 -2.781 L2.326 -2.931 L2.212 -3.091 L2.134 -3.258 L2.095 -3.43 L2.09 -14.483 L-2.09 -14.483 L-2.095 -3.43 L-2.134 -3.258 L-2.212 -3.091 L-2.326 -2.931 L-2.563 -2.71 L-2.76 -2.58 L-2.985 -2.465 L-3.234 -2.369 L-3.643 -2.261 L-4.08 -2.201 L-4.379 -2.189 L-4.679 -2.199 L-5.117 -2.257 L-36.966 -8.386 L-38.288 -6.097 L-15.815 -1.771 L-15.62 -1.702 L-15.499 -1.591 L-15.476 -1.46 L-15.538 -1.352 L-15.618 -1.292 L-15.722 -1.246 L-15.843 -1.217 L-15.973 -1.207Z"/>
-    <symbol id="m-cmd" viewBox="-6 -6 270.49 228"><g transform="translate(129.24 58)" stroke-linejoin="miter">
-      <polygon points="-86.60,0.00 0.00,50.00 0.00,150.00 -121.24,80.00"/>
-      <polygon points="0.00,50.00 86.60,0.00 121.24,80.00 0.00,150.00"/>
-      <polygon points="0.00,-50.00 86.60,0.00 0.00,50.00 -86.60,0.00"/>
-      <use href="#lgpath" fill="var(--cmd-ast,#FE4A02)" stroke="none"/>
-    </g></symbol>
-  </defs>
+<defs>
+<symbol id="brtk" viewBox="0 0 3669 1510"><path fill="currentColor" fill-rule="evenodd" d="M643.7 1414.4C815.3 1383.7 945.2 1248.3 984.2 1060.2C996.1 1001 997.9 983.1 997.9 913.9C997.9 851.9 997.5 846.9 989.2 798.7C982.3 756 966.3 703.3 950.2 668.4C870.8 495.9 702.9 407.8 511.6 437.6C423.9 451.4 336.3 507.3 288.1 579.8C282.6 587.6 278.5 590.9 278.5 586.3C278.5 585.3 278 474.3 278 339.9L277.6 95.3L274.8 93.5C270.7 90.7 81.2 90.3 76.2 92.6L73.4 94.4L73.4 742.7L73.4 1391L75.7 1393.3C79.4 1397 272.1 1397 276.2 1393.3C278 1391 278.5 1384.2 278.5 1337.4C278.5 1307.5 278.5 1282.3 278.5 1280.5C278.5 1275.9 282.6 1278.2 288.1 1285.5C335.8 1356.6 432.7 1409.4 529 1417.6C551.5 1419.5 626.7 1417.6 643.7 1414.4ZM2212.9 1404.8C2241.8 1402.5 2278.9 1397.5 2289 1395.2C2294.1 1393.8 2294.1 1393.3 2293.6 1310.3C2293.2 1244.2 2293.2 1233.2 2290.9 1232.3C2289.5 1231.4 2277.6 1230.9 2259.7 1231.8C2206.9 1233.7 2158.7 1233.2 2147.3 1230C2106 1219 2083.9 1194.2 2074.3 1147.4L2071.6 1135L2071.6 878.5C2071.6 651.9 2072 621.6 2073.9 620.2C2075.2 619.3 2116.1 618.8 2176.6 618.8C2252.3 618.8 2277.1 618.4 2278.5 617C2280.8 614.7 2281.2 456 2278.9 452.3C2277.6 450 2264.7 450 2176.6 450C2093.6 450 2075.2 449.5 2073.4 447.7L2070.6 445.9L2070.6 324.3L2070.6 203.2L2068.3 202.2C2063.3 200.4 1868.3 201.3 1866 203.2C1864.6 204.5 1864.2 233.9 1864.2 325.2C1864.2 420.6 1863.7 445.9 1862.3 447.2C1861 448.2 1836.6 449.1 1791.2 449.1C1741.2 449.5 1721.5 450 1719.6 451.4C1716.4 453.7 1714.6 607.4 1717.4 614.7L1719.2 618.8L1788.9 618.8C1830.2 618.8 1860 619.3 1861.4 620.2C1863.3 621.6 1863.7 655.5 1864.2 904.2L1865.1 1186.9L1867.8 1201.1C1889.4 1317.6 1967 1391.5 2082.1 1404.8C2090.8 1406.2 2098.6 1407.1 2100 1407.1C2109.2 1408.9 2184.4 1407.6 2212.9 1404.8ZM1318.2 1393.8C1319.6 1392.4 1320 1337.4 1320 1155.2C1320 883.1 1319.6 886.3 1331 829.9C1351.2 724.8 1424.6 650 1526.9 630.3C1548 626.6 1568.7 624.8 1605.9 623.4L1641.6 622.5L1642.1 533.5L1642.6 444.5L1638.4 441.7C1632.9 438.1 1563.6 438.1 1540.7 442.2C1444.8 457.8 1374.2 507.3 1332.9 588.1C1320.5 612 1320.5 613.8 1320 530.3C1320 479.8 1319.1 457.3 1318.2 455.5C1315.9 452.8 1124.1 452.8 1121.3 455.5C1120 456.9 1119.5 563.3 1119.5 924.9L1119.5 1392.4L1122.3 1394.2C1126.4 1396.5 1315.4 1396.5 1318.2 1393.8ZM2618 1393.8C2619.4 1392.4 2619.9 1358.5 2619.9 1251.1C2619.9 1133.6 2620.3 1108.9 2622.1 1104.7C2624 1100.6 2651.1 1070.8 2716.2 1001.5C2735.9 980.4 2732.7 979.5 2755.2 1011.1C2765.3 1025.4 2780 1046.5 2788.2 1057.9C2833.7 1122.2 2873.6 1178.1 2899.3 1214.4C2915.3 1237.3 2936 1266.7 2945.6 1280.5C2955.2 1293.8 2976.8 1324.5 2993.3 1348.4C3010.3 1372.2 3025 1392.9 3026.4 1393.8C3028.2 1395.2 3054.4 1395.6 3148.9 1395.6L3269.1 1395.2L3269.5 1392.4C3270 1389.7 3263.6 1379.6 3218.6 1317.6C3202.6 1295.6 3180.5 1265.3 3170.4 1250.6C3159.9 1236 3142 1211.2 3130.5 1195.6C3119 1180 3101.6 1155.7 3091.5 1141.9C3054.8 1090.5 3021.3 1044.2 3005.3 1022.6C2996.1 1010.2 2982.8 991.9 2975.4 981.3C2967.6 970.8 2951.6 948.3 2939.6 931.8C2892.4 866.6 2878.2 846 2878.2 844.1C2878.2 841.8 2888.7 829.9 2918.5 797.8C2928.6 786.3 2949.3 763.8 2964 747.3C2978.6 730.8 3005.3 701.9 3022.7 682.2C3040.6 662.9 3064 637.2 3075 624.8C3086 612.9 3106.2 590.4 3120 575.7C3133.7 560.6 3148.4 544.1 3152.5 539.5C3157.1 534.4 3175.9 513.8 3194.3 493.1C3224.6 459.6 3231.5 450.9 3227.3 450.5C3206.2 449.5 2995.6 450 2993.3 451.4C2990.6 452.8 2956.2 489.9 2932.8 517C2926.8 523.9 2909.4 543.1 2894.2 560.1C2879.1 576.6 2863.5 594.1 2859.8 598.2C2856.1 602.8 2837.8 623.4 2818.5 644.5C2799.7 665.2 2773.6 694.5 2760.7 709.2C2722.2 752.4 2707.5 768.9 2694.2 783.1C2687.3 790.9 2668.9 811.5 2653.8 829C2635.5 849.2 2624.4 860.6 2623.1 860.2L2620.8 859.7L2620.3 477.5C2619.9 205.4 2619.4 94.9 2618.5 93.5C2615.3 90.7 2423.5 90.7 2420.3 93.5L2418 95.8L2418 744.1C2418 1246 2418.4 1392.4 2419.8 1393.8C2421.2 1395.2 2445.5 1395.6 2518.9 1395.6C2592.3 1395.6 2616.6 1395.2 2618 1393.8ZM495.5 1241.9C358.3 1220.4 278.5 1102.9 278.5 923C278 734.5 371.6 614.7 523 608.7C661.6 603.2 758.4 689.5 783.7 841.4C817.1 1041 733.6 1211.6 588.7 1240.5C571.2 1244.2 513.9 1245.1 495.5 1241.9Z"/><path fill="var(--brtk-stop, #FE4A02)" d="M3504 1404.8C3621.5 1376.8 3626.5 1207.1 3510.9 1167.6L3499.9 1163.9L3473.3 1164.4L3446.6 1164.4L3432.9 1169.4C3286.1 1222.7 3351.7 1441 3504 1404.8Z"/></symbol>
+<symbol id="command" viewBox="-131.24 -60.00 262.49 220.00"><g stroke-linejoin="miter"><polygon points="-86.60,0.00 0.00,50.00 0.00,150.00 -121.24,80.00"/><polygon points="0.00,50.00 86.60,0.00 121.24,80.00 0.00,150.00"/><polygon points="0.00,-50.00 86.60,0.00 0.00,50.00 -86.60,0.00"/></g><path stroke="none" fill="var(--command-legend, currentColor)" d="M-37.972 -3.462 L-33.975 -1.154 L-29.978 1.154 L-25.981 3.462 L-21.984 5.769 L-17.987 8.077 L-13.99 10.385 L-9.993 12.692 L-5.996 15 L-1.999 17.308 L1.999 19.615 L5.996 21.923 L9.993 24.231 L13.99 21.923 L17.987 19.615 L13.99 17.308 L17.987 15 L21.984 17.308 L25.981 15 L29.978 12.692 L33.975 10.385 L37.972 8.077 L33.975 5.769 L37.972 3.462 L33.975 1.154 L29.978 -1.154 L25.981 -3.462 L21.984 -5.769 L17.987 -8.077 L13.99 -10.385 L9.993 -12.692 L5.996 -10.385 L1.999 -12.692 L-1.999 -10.385 L-5.996 -8.077 L-9.993 -5.769 L-13.99 -3.462 L-9.993 -1.154 L-13.99 1.154 L-17.987 -1.154 L-21.984 -3.462 L-25.981 -5.769 L-29.978 -8.077 L-33.975 -10.385 L-37.972 -8.077 L-41.969 -5.769ZM5.996 12.692 L1.999 10.385 L-1.999 8.077 L-5.996 5.769 L-9.993 3.462 L-5.996 1.154 L-1.999 -1.154 L1.999 -3.462 L5.996 -5.769 L9.993 -3.462 L13.99 -1.154 L17.987 1.154 L21.984 3.462 L25.981 5.769 L21.984 8.077 L17.987 10.385 L13.99 12.692 L9.993 15Z"/></symbol>
+<path id="asterisk-path" d="M-58.531 -1.202 L-58.531 1.207 L-15.973 1.207 L-15.843 1.217 L-15.722 1.246 L-15.618 1.292 L-15.538 1.352 L-15.476 1.46 L-15.499 1.591 L-15.62 1.702 L-15.815 1.771 L-38.288 6.097 L-36.966 8.386 L-5.117 2.257 L-4.679 2.199 L-4.229 2.192 L-3.786 2.235 L-3.366 2.328 L-3.107 2.415 L-2.869 2.52 L-2.658 2.643 L-2.476 2.781 L-2.326 2.931 L-2.212 3.091 L-2.134 3.258 L-2.095 3.43 L-2.09 14.483 L2.09 14.483 L2.095 3.43 L2.134 3.258 L2.264 3.01 L2.397 2.854 L2.563 2.71 L2.76 2.58 L2.985 2.465 L3.366 2.328 L3.643 2.261 L4.08 2.201 L4.379 2.189 L4.679 2.199 L5.117 2.257 L36.966 8.386 L38.288 6.097 L15.815 1.771 L15.62 1.702 L15.499 1.591 L15.476 1.46 L15.538 1.352 L15.618 1.292 L15.722 1.246 L15.843 1.217 L15.973 1.207 L58.531 1.207 L58.531 -1.207 L15.973 -1.207 L15.843 -1.217 L15.722 -1.246 L15.618 -1.292 L15.538 -1.352 L15.476 -1.46 L15.499 -1.591 L15.62 -1.702 L15.815 -1.771 L38.288 -6.097 L36.966 -8.386 L5.117 -2.257 L4.679 -2.199 L4.229 -2.192 L3.786 -2.235 L3.366 -2.328 L3.107 -2.415 L2.869 -2.52 L2.658 -2.643 L2.476 -2.781 L2.326 -2.931 L2.212 -3.091 L2.134 -3.258 L2.095 -3.43 L2.09 -14.483 L-2.09 -14.483 L-2.095 -3.43 L-2.134 -3.258 L-2.212 -3.091 L-2.326 -2.931 L-2.563 -2.71 L-2.76 -2.58 L-2.985 -2.465 L-3.234 -2.369 L-3.643 -2.261 L-4.08 -2.201 L-4.379 -2.189 L-4.679 -2.199 L-5.117 -2.257 L-36.966 -8.386 L-38.288 -6.097 L-15.815 -1.771 L-15.62 -1.702 L-15.499 -1.591 L-15.476 -1.46 L-15.538 -1.352 L-15.618 -1.292 L-15.722 -1.246 L-15.843 -1.217 L-15.973 -1.207Z"/>
+<symbol id="asterisk" viewBox="-60 -16 120 32"><use href="#asterisk-path" fill="currentColor"/></symbol>
+</defs>
 </svg>
+<!-- brand:marks:end -->
 <div class="deck" id="deck">
   <header class="bar">
-    <span class="brand" role="img" aria-label="brtk. Brittek Digital"><svg class="brand__wm" viewBox="0 0 3669 1510" aria-hidden="true"><use href="#m-wm"/></svg><svg class="brand__ast" viewBox="0 0 29 13" aria-hidden="true"><use href="#m-ast"/></svg></span>
+    <span class="brand" role="img" aria-label="brtk. Brittek Digital"><svg class="brand__wm" viewBox="0 0 3669 1510" aria-hidden="true"><use href="#brtk"/></svg></span>
     <span class="label" id="edition">Selected work</span>
   </header>
 
@@ -525,7 +527,7 @@ button { font: inherit; color: inherit; }
 <script type="application/json" id="deck-data">
 {
   "edition": "Public edition",
-  "updated": "2026-10-02",
+  "updated": "2026-10-21",
   "scenes": [
     {
       "id": "title",
@@ -533,7 +535,7 @@ button { font: inherit; color: inherit; }
       "name": "Opening",
       "duration": 6000,
       "eyebrow": "Brittek Digital · Sydney · Since 2018",
-      "heading": "Selected work, 2018–2026",
+      "heading": "Selected work, 2018 to 2026",
       "lede": "Websites, identity systems, instruments and operational tools, designed and engineered inside one continuous process.",
       "meta": [
         "Founded 06.10.2018",
@@ -590,33 +592,37 @@ button { font: inherit; color: inherit; }
       "type": "marks",
       "name": "Marks",
       "duration": 8000,
-      "eyebrow": "Identity · vector masters 2026.9.8",
-      "heading": "Four marks. Four jobs.",
-      "lede": "Object, authorship, orchestration, execution. The marks are related and never interchangeable: each one appears when its job is happening, and each is placed from its vector master, never traced or re-set in a font.",
+      "eyebrow": "Identity · vector masters",
+      "heading": "Four marks. One system.",
+      "lede": "Each mark has one job. They belong together but never stand in for each other: the one you see tells you what the system is doing.",
       "items": [
         {
-          "id": "cmd",
           "name": "COMMAND",
-          "role": "Architecture",
-          "summary": "A flared frustum on an isometric grid, with the ASTERISK registered on its top plane. Flare 1.40, top 100u, body 80u, stroke 2.2u."
+          "role": "architecture",
+          "label": "Structure.",
+          "job": "How it's built.",
+          "description": "An isometric frustum with its legend on the top face; the main brand object."
         },
         {
-          "id": "wm",
           "name": "brtk.",
-          "role": "Authorship",
-          "summary": "The proprietary wordmark. Its full stop is the one place the signal colour sits in the name."
+          "role": "authorship",
+          "label": "Signature.",
+          "job": "Who made it.",
+          "description": "Our custom wordmark, always placed from the master drawing, never typed in a font."
         },
         {
-          "id": "ast",
           "name": "ASTERISK",
-          "role": "Orchestration",
-          "summary": "Routing, coordinating, registering. Also the micro mark, from avatar to favicon."
+          "role": "orchestration",
+          "label": "Connection.",
+          "job": "How things link up.",
+          "description": "Routing and coordination, and the small mark used for avatars and the favicon."
         },
         {
-          "id": "rt",
           "name": "Runtime",
-          "role": "Execution",
-          "summary": "The pixel word-sign. It appears when the system is behaving like a system, paired with mono notation."
+          "role": "execution",
+          "label": "Live.",
+          "job": "When it's running.",
+          "description": "Pixel lettering with monospace labels, used only when the system is doing work."
         }
       ]
     },
@@ -627,30 +633,30 @@ button { font: inherit; color: inherit; }
       "duration": 8000,
       "eyebrow": "Identity in use",
       "heading": "One system, at every scale.",
-      "lede": "The same masters carry from a profile avatar to a horizontal lockup and a printed lid. Grounds stay fixed to the brand palette whatever the viewer's theme.",
+      "lede": "Three masters carry from a 16-pixel favicon to a printed lid. Each application uses the mark whose job it is; grounds stay fixed to the brand palette whatever the viewer's theme.",
       "items": [
         {
-          "id": "avatar",
-          "name": "Avatar",
-          "summary": "The pixel word-sign on a paper disc, for profile images and other small, square placements."
+          "id": "favicon",
+          "name": "Favicon and avatar",
+          "summary": "The Paper ASTERISK on a Signal field: the canonical browser identity, legible at 16 pixels."
         },
         {
           "id": "lockup",
-          "name": "Horizontal lockup",
-          "summary": "COMMAND, the word-sign and the descriptor, separated by a hairline rule.",
-          "descriptor": [
-            "Digital",
-            "Engineering",
-            "Studio"
-          ]
+          "name": "Primary lockup",
+          "summary": "COMMAND with the brtk. wordmark, for full identity compositions with room to breathe."
+        },
+        {
+          "id": "runtime",
+          "name": "Runtime word-sign",
+          "summary": "Pixel brtk. appears only while the system is working, paired with a Mono state label."
         },
         {
           "id": "lid",
           "name": "Packaging lid",
-          "summary": "COMMAND drawn as a single paper line on an ink lid. The asterisk keeps its registration."
+          "summary": "COMMAND as a single Paper line on an Ink lid. The legend keeps its registration."
         }
       ],
-      "note": "An earlier mark set a b on a keycap beside a sans brtk. The current system separates the object, COMMAND, from authorship, brtk."
+      "note": "The compact header carries brtk. alone. COMMAND gives way to the ASTERISK below about 32 pixels, where its construction stops reading."
     },
     {
       "id": "identity",
@@ -683,29 +689,34 @@ button { font: inherit; color: inherit; }
           "face": "Geist Mono",
           "family": "mono",
           "sample": "ENTITIES → DEPLOY"
+        },
+        {
+          "role": "Runtime",
+          "face": "Geist Pixel Square",
+          "family": "runtime",
+          "sample": "READY · DEPLOY"
         }
       ],
-      "specimenNote": "A fifth register, Geist Pixel Square, is reserved for runtime states and served by the application.",
       "palette": [
         {
           "name": "Paper",
           "hex": "#F4F3EF"
         },
         {
-          "name": "Raised",
-          "hex": "#FAFAF7"
+          "name": "Bone",
+          "hex": "#ECEAE3"
         },
         {
           "name": "Ink",
           "hex": "#111111"
         },
         {
-          "name": "Instrument",
-          "hex": "#0D0D0D"
-        },
-        {
           "name": "Signal",
           "hex": "#FE4A02"
+        },
+        {
+          "name": "Signal hover",
+          "hex": "#CC3B02"
         }
       ],
       "curves": [
@@ -740,7 +751,7 @@ button { font: inherit; color: inherit; }
           ]
         }
       ],
-      "artefact": "Registered Execution field: a seeded keycap lattice. The same parameters produce the same SVG to the last vertex. The opening scene draws a study of it."
+      "artefact": "Registered Execution field: a seeded lattice of blank COMMAND modules. Important nodes carry the ASTERISK; the active node carries it in Signal. The opening scene draws a study of it."
     },
     {
       "id": "lineage",
@@ -1134,6 +1145,16 @@ button { font: inherit; color: inherit; }
       ${s.lede ? `<p class="lede" ${r(3)}>${esc(s.lede)}</p>` : ''}
     </div>`;
 
+  // Outer viewBoxes for <use> of the brand sprite (brand/marks.svg). A <use>
+  // of a <symbol> renders from the outer origin, so these start at 0 0 and
+  // carry each symbol's own width and height. The lockup is a composition.
+  const VB = {
+    brtk: '0 0 3669 1510',
+    command: '0 0 262.49 220',
+    asterisk: '0 0 120 32',
+    lockup: '-24 68 5747 1370',
+  };
+
   const renderers = {
     title: (s) => `
       <div class="title">
@@ -1246,7 +1267,7 @@ button { font: inherit; color: inherit; }
                 <span class="label">${esc(sp.role)} · ${esc(sp.face)}</span>
               </li>`).join('')}
           </ul>
-          <p class="note" ${r(7)}>${esc(s.specimenNote)}</p>
+          ${s.specimenNote ? `<p class="note" ${r(8)}>${esc(s.specimenNote)}</p>` : ''}
         </div>
         <div class="side">
           <div class="block">
@@ -1311,46 +1332,47 @@ button { font: inherit; color: inherit; }
 
     marks: (s) => {
       const art = {
-        cmd: (i) => `<svg class="mk__cmd cmd" viewBox="-6 -6 270.49 228" data-mask style="--i:${i}" aria-hidden="true"><use href="#m-cmd"/></svg>`,
-        wm: (i) => `<svg class="mk__wm" viewBox="0 0 3669 1510" data-wipe style="--i:${i}" aria-hidden="true"><use href="#m-wm"/></svg>`,
-        ast: (i) => `<svg class="mk__ast" viewBox="0 0 29 13" data-r style="--i:${i}" aria-hidden="true"><use href="#m-ast"/></svg>`,
-        rt: (i) => `<svg class="mk__rt" viewBox="0 0 36 13" data-wipe style="--i:${i}" shape-rendering="crispEdges" aria-hidden="true"><use href="#m-rt"/></svg>`,
+        COMMAND: (i) => `<svg class="mk__cmd cmd" viewBox="${VB.command}" data-mask style="--i:${i}" aria-hidden="true"><use href="#command"/></svg>`,
+        'brtk.': (i) => `<svg class="mk__wm" viewBox="${VB.brtk}" data-wipe style="--i:${i}" aria-hidden="true"><use href="#brtk"/></svg>`,
+        ASTERISK: (i) => `<svg class="mk__ast" viewBox="${VB.asterisk}" data-r style="--i:${i}" aria-hidden="true"><use href="#asterisk"/></svg>`,
+        Runtime: (i) => `<span class="runtime" data-wipe style="--i:${i}" aria-hidden="true">Runtime<i></i></span>`,
       };
       return `
       ${head(s)}
       <ol class="marks">
         ${s.items.map((m, i) => `
-          <li class="mk">
-            <div class="mk__art" role="img" aria-label="${esc(m.name)} master">
-              <span class="label">${pad(i + 1)}</span>${art[m.id](i + 3)}
+          <li class="mk" data-mark-role="${esc(m.role)}">
+            <div class="mk__art" role="img" aria-label="${esc(m.name)}, placed from its master">
+              <span class="label">${pad(i + 1)}</span>${art[m.name](i + 3)}
             </div>
-            <div class="mk__top" ${r(i + 4)}><h3 class="h3">${esc(m.name)}</h3><span class="label">${esc(m.role)}</span></div>
-            <p class="body" ${r(i + 5)}>${esc(m.summary)}</p>
+            <h3 class="h3" ${r(i + 4)}>${esc(m.name)}</h3>
+            <p class="mk__job" ${r(i + 4)}><strong>${esc(m.label)}</strong> ${esc(m.job)}</p>
+            <p class="body" ${r(i + 5)}>${esc(m.description)}</p>
           </li>`).join('')}
       </ol>`;
     },
 
     applications: (s) => {
+      const fav = (px) => `<svg viewBox="0 0 32 32" width="${px}" height="${px}" aria-hidden="true"><rect width="32" height="32" fill="#FE4A02"/><g transform="translate(16 16) scale(0.24)"><use href="#asterisk-path" fill="#F4F3EF"/></g></svg>`;
       const art = {
-        avatar: () => `<div class="app__art app__art--ink"><span class="avatar"><svg viewBox="0 0 36 13" shape-rendering="crispEdges" aria-hidden="true"><use href="#m-rt"/></svg></span></div>`,
-        lockup: (it) => `<div class="app__art app__art--paper"><div class="lockup">
-            <svg class="cmd" viewBox="-6 -6 270.49 228" aria-hidden="true"><use href="#m-cmd"/></svg>
-            <svg class="lockup__rt" viewBox="0 0 36 13" shape-rendering="crispEdges" aria-hidden="true"><use href="#m-rt"/></svg>
-            <span class="lockup__rule" aria-hidden="true"></span>
-            <p class="lockup__txt">${it.descriptor.map(esc).join('<br>')}</p></div></div>`,
-        lid: () => `<div class="app__art app__art--low"><div class="lid"><svg viewBox="-6 -6 270.49 228" aria-hidden="true"><use href="#m-cmd"/></svg></div></div>`,
+        favicon: () => `<div class="app__art app__art--bone"><div class="favs">${fav(96)}${fav(32)}${fav(16)}</div></div>`,
+        lockup: () => `<div class="app__art app__art--paper"><svg class="lockup" viewBox="${VB.lockup}" aria-hidden="true">
+            <svg x="0" y="92" width="1577.3" height="1322" viewBox="${VB.command}"><g class="cmd"><use href="#command"/></g></svg>
+            <svg x="2059" y="0" width="3669" height="1510" viewBox="${VB.brtk}"><use href="#brtk"/></svg></svg></div>`,
+        runtime: () => `<div class="app__art app__art--ink"><div class="rt"><span class="runtime">brtk<i></i></span><span class="rt__state">State<b>Ready</b></span></div></div>`,
+        lid: () => `<div class="app__art app__art--bone"><div class="lid"><svg viewBox="${VB.command}" aria-hidden="true"><use href="#command"/></svg></div></div>`,
       };
       return `
       ${head(s)}
       <ul class="apps">
         ${s.items.map((it, i) => `
           <li class="app" data-r style="--i:${i + 3}">
-            <div role="img" aria-label="${esc(it.name)}">${art[it.id](it)}</div>
+            <div role="img" aria-label="${esc(it.name)}">${art[it.id]()}</div>
             <h3 class="h3">${esc(it.name)}</h3>
             <p class="body">${esc(it.summary)}</p>
           </li>`).join('')}
       </ul>
-      <p class="note" ${r(7)}>${esc(s.note)}</p>`;
+      <p class="note" ${r(8)}>${esc(s.note)}</p>`;
     },
 
     lab: (s) => `
@@ -1416,7 +1438,7 @@ button { font: inherit; color: inherit; }
   // COMMAND geometry in master units: top diamond 86.60 x 50, body 80,
   // base diamond 121.24 x 70 (flare 1.40). The ASTERISK is the master path.
   const CMD = { tx: 86.6, ty: 50, body: 80, bx: 121.24, by: 70 };
-  const AST_PATH = new Path2D(document.getElementById('lgpath').getAttribute('d'));
+  const AST_PATH = new Path2D(document.getElementById('asterisk-path').getAttribute('d'));
 
   function drawField(canvas, seed = 1018) {
     const box = canvas.parentElement.getBoundingClientRect();
@@ -1448,12 +1470,13 @@ button { font: inherit; color: inherit; }
         const fall = Math.max(0, 1 - d / 0.5);
         const presence = valueNoise(c * 0.23, row * 0.23, seed) * 0.55 + fall * 0.82;
         if (presence < 0.74) continue;
-        modules.push({ x, y, d });
+        modules.push({ x, y, d, node: hash2(c, row, seed + 3) > 0.93 });
       }
     }
     if (!modules.length) return;
 
-    // One Signal module carries the ASTERISK: the one nearest the focus.
+    // Doctrine: ordinary module blank, important node ASTERISK, active node
+    // Signal ASTERISK. The active node is the module nearest the focus.
     const signalModule = modules.reduce((best, m) => (m.d < best.d ? m : best), modules[0]);
 
     ctx.lineJoin = 'miter';
@@ -1475,10 +1498,10 @@ button { font: inherit; color: inherit; }
       poly([T[3], T[2], Bb, Bl], left);
       poly([T[2], T[1], Br, Bb], right);
       poly(T, top);
-      if (m === signalModule) {
+      if (m === signalModule || m.node) {
         ctx.save();
         ctx.translate(tx, ty); ctx.scale(k, k);
-        ctx.fillStyle = signal; ctx.fill(AST_PATH);
+        ctx.fillStyle = m === signalModule ? signal : col('--ink'); ctx.fill(AST_PATH);
         ctx.restore();
       }
     }

@@ -7,6 +7,9 @@ on:
       - "brittek-keys-logo.webp"
       - "profile/**"
       - "scripts/validate_profile.py"
+      - "scripts/check_brand.py"
+      - "brand/**"
+      - "presentation/**"
       - "lychee.toml"
       - ".github/workflows/profile-quality.yml"
   push:
@@ -17,6 +20,9 @@ on:
       - "brittek-keys-logo.webp"
       - "profile/**"
       - "scripts/validate_profile.py"
+      - "scripts/check_brand.py"
+      - "brand/**"
+      - "presentation/**"
       - "lychee.toml"
       - ".github/workflows/profile-quality.yml"
   schedule:
@@ -44,6 +50,9 @@ jobs:
 
       - name: Validate README structure and local assets
         run: python3 scripts/validate_profile.py
+
+      - name: Validate brand kit and presentation
+        run: python3 scripts/check_brand.py
 
       - name: Check external links
         uses: lycheeverse/lychee-action@885c65f3dc543b57c898c8099f4e08c8afd178a2 # v2.6.1
